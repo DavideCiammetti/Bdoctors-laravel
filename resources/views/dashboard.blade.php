@@ -15,6 +15,7 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+                        <h1 class="mb-5">Welcome {{ Auth::user()->name }}</h1>
                     </div>
                 </div>
             </div>
