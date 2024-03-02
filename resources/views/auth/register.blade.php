@@ -11,6 +11,7 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
+                            {{-- Nome --}}
                             <div class="mb-4 row">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -28,6 +29,7 @@
                                 </div>
                             </div>
 
+                            {{-- Cognome --}}
                             <div class="mb-4 row">
                                 <label for="surnname"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
@@ -45,6 +47,50 @@
                                 </div>
                             </div>
 
+                            {{-- Indirizzo --}}
+                            <div class="mb-4 row">
+                                <label for="address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            {{-- Specializzazione --}}
+                            <div class="mb-4 row">
+                                <label for="specializations"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="specializations" class="form-select" aria-label="Default select example"
+                                        @error('specializations') is-invalid @enderror" name="specializations" required
+                                        autocomplete="specializations" autofocus>
+                                        <option selected>Open this select menu</option>
+                                        @foreach ($specializations as $key => $specialization)
+                                            {
+                                            <option value="{{ $key + 1 }}">{{ $specialization }}</option>
+                                            }
+                                        @endforeach
+                                    </select>
+
+                                    @error('specializations')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            {{-- Email --}}
                             <div class="mb-4 row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -62,6 +108,7 @@
                                 </div>
                             </div>
 
+                            {{-- Password --}}
                             <div class="mb-4 row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -79,6 +126,7 @@
                                 </div>
                             </div>
 
+                            {{-- Conferma Password --}}
                             <div class="mb-4 row">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
@@ -89,6 +137,7 @@
                                 </div>
                             </div>
 
+                            {{-- Bottone di invio --}}
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

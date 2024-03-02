@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Doctor;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $specializations = ['Ortopedico', 'Dermatologo', 'Psicologo', 'Oculista', 'Ginecologo', 'Nutrizionista', 'Dentista', 'Cardiologo', 'Osteopata', 'Ostetrica', 'Anestetista', 'Logopedista'];
+        return view('auth.register', compact('specializations'));
     }
 
     /**
@@ -33,7 +35,9 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:30'],
             'surname' => ['required', 'string', 'max:40'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'address' => ['required', 'string',  'max:100'],
+            'specializations' => ['required'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -43,6 +47,13 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $doctor = Doctor::create([
+            'user_id' => $user->id,
+            'address' => $request->address,
+        ]);
+
+        $doctor->specializations()->attach($request->specializations);
 
         event(new Registered($user));
 

@@ -44,18 +44,18 @@ class DoctorsController extends Controller
             $uniqueSlugId = microtime(true) * 10000;
             $doctor->slug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
         } while (Doctor::where($doctor->slug)->exists());
-        
+
         $doctor->fill($data);
 
         // gestione immagini 
-        if(isset($data['doctor_doctor_img'])){
+        if (isset($data['doctor_doctor_img'])) {
             $doctor->doctor_doctor_img = Storage::put('uploads', $data['doctor_doctor_img']);
         }
 
         $doctor->save();
 
         // prendo specializations se settato
-        if(isset($data['specializations'])){
+        if (isset($data['specializations'])) {
             $doctor->specializations()->sync($data['specializations']);
         }
         return redirect()->route('admin.doctors.show', $doctor->slug);
@@ -66,7 +66,8 @@ class DoctorsController extends Controller
      */
     public function show(Doctor $doctor)
     {
-        return view('admin.doctors.doctorShow', compact('doctor'));
+        $user = Auth::user();
+        return view('admin.doctors.doctorShow', compact('doctor', 'user'));
     }
 
     /**
@@ -91,17 +92,17 @@ class DoctorsController extends Controller
         } while (Doctor::where($doctor->slug)->exists());
 
         // gestione immagini 
-        if(isset($data['doctor_img'])){
-            $doctor->doctor_img = Storage::put('uploads',$data['doctor_img']);
-        }else{
+        if (isset($data['doctor_img'])) {
+            $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
+        } else {
             $doctor->doctor_img = 'doctor_img';
         }
         $doctor->update($data);
-        
+
         // aggiorno elemento specializations
-        if(isset($data['specializations'])){
+        if (isset($data['specializations'])) {
             $doctor->specializations()->sync($data['specializations']);
-        }else{
+        } else {
             $doctor->specializations()->sync([]);
         }
         return redirect()->route('admin.doctors.show', $doctor);
@@ -112,11 +113,11 @@ class DoctorsController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-          // elimino elemento technologies
-          $doctor->specializations()->sync([]);
-        
-          // elimino progetto
-          $doctor->delete();
-          return redirect()->route('admin');
+        // elimino elemento technologies
+        $doctor->specializations()->sync([]);
+
+        // elimino progetto
+        $doctor->delete();
+        return redirect()->route('admin');
     }
 }
