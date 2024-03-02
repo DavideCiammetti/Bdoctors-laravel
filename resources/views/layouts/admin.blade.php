@@ -35,7 +35,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="navbar-nav">
+            <div class="navbar-nav flex-row">
                 <div class="nav-item text-nowrap ms-2">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -43,6 +43,18 @@
                         {{ __('Logout') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+
+                {{-- delete account --}}
+                <div class="nav-item text-nowrap ms-2">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                    document.getElementById('destroy').submit();">
+                        {{ __('Delete') }}
+                    </a>
+                    <form id="destroy" action="{{ route('admin.user.destroy') }}" method="POST" class="d-none">
                         @csrf
                     </form>
                 </div>
@@ -59,13 +71,11 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('dashboard') }}">
+                                    href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
                             </li>
                         </ul>
-
-
                     </div>
                 </nav>
 

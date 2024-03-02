@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardControllers;
+use App\Http\Controllers\Admin\DoctorsController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +21,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+Route::middleware(['auth','verified'])->name('admin.')->prefix('admin')->group(function(){
+    
+    Route::get('/', [DashboardControllers::class, 'index'])->name('dashboard');
+    // route resource controller doctors
+    Route::resource('doctors',DoctorsController::class);
+    // cancella account
+    Route::post('user', [UserController::class, 'destroy'])->name('user.destroy');
+  
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

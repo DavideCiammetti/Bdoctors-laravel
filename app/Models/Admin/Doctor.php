@@ -10,9 +10,16 @@ class Doctor extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['slug', 'doctor_img', 'specializations'];
+
     // relazione 1-1 doctor
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+      // collegamento specializations
+      public function specializations(){
+        return $this->belongsToMany(Specialization::class);
     }
 }

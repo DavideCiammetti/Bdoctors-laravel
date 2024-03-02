@@ -15,7 +15,14 @@
                         @endif
 
                         {{ __('You are logged in!') }}
-                        <h1 class="mb-5">Welcome {{ Auth::user()->name }}</h1>
+                        <h1 class="mb-5">Welcome {{ $user->name }}</h1>
+                        <h1  class="mb-5">
+                            non hai aggiornato il tuo profilo fai sapere chi sei 
+                            {{-- <button>{{route('admin.doctors.edit')}}</button> --}}
+                            @if ($doctor)
+                                welcome
+                            @endif{{ $doctor?->address }}
+                        </h1>
                     </div>
                 </div>
             </div>

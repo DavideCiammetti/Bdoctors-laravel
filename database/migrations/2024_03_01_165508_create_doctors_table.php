@@ -20,8 +20,6 @@ return new class extends Migration
             $table->text('doctor_cv')->nullable();
             $table->boolean('is_available')->default(1)->nullable();
             $table->text('services')->nullable();
-            // $table->unsignedBigInteger('user_id')->after('id');
-            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
