@@ -30,6 +30,7 @@ class StoreDoctorsRequest extends FormRequest
             'is_available' => ['nullable'],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],
+            'phone_number' => ['max:100', 'nullable','string'],
         ];
     }
 }

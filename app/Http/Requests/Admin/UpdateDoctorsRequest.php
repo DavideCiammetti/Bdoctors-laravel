@@ -30,6 +30,9 @@ class UpdateDoctorsRequest extends FormRequest
             'is_available' => ['nullable'],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],
+            'name' => ['max:30', 'required'],
+            'surname' => ['max:40', 'required'],
+            'phone_number' => ['max:100', 'nullable','string'],
         ];
     }
 }

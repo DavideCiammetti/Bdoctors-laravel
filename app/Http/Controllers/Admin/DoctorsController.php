@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\StoreDoctorsRequest;
 use App\Http\Requests\Admin\UpdateDoctorsRequest;
 use App\Models\Admin\Doctor;
 use App\Models\User;
+use App\Models\Admin\Specialization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -42,8 +43,9 @@ class DoctorsController extends Controller
 
         do {
             $uniqueSlugId = microtime(true) * 10000;
-            $doctor->slug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
-        } while (Doctor::where($doctor->slug)->exists());
+            $doctorSlug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
+        } while (Doctor::where('slug', $doctorSlug)->exists());
+        $doctor->slug = $doctorSlug;
 
         $doctor->fill($data);
 
@@ -75,7 +77,9 @@ class DoctorsController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        return view('admin.doctors.doctorEdit', compact('doctor'));
+        $user = Auth::user();
+        $specializations = Specialization::all();
+        return view('admin.doctors.doctorEdit', compact('doctor','user','specializations'));
     }
 
     /**
@@ -86,17 +90,27 @@ class DoctorsController extends Controller
         $user = Auth::user();
         $data = $request->validated();
 
+
+
+        // Aggiornamento dei dati dell'utente associato al dottore
+        $user->update([
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+        ]);
+
+        
         do {
             $uniqueSlugId = microtime(true) * 10000;
-            $doctor->slug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
-        } while (Doctor::where($doctor->slug)->exists());
+            $doctorSlug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
+        } while (Doctor::where('slug', $doctorSlug)->exists());
+        $doctor->slug = $doctorSlug;
 
         // gestione immagini 
-        if (isset($data['doctor_img'])) {
-            $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
-        } else {
-            $doctor->doctor_img = 'doctor_img';
-        }
+        // if (isset($data['doctor_img'])) {
+        //     $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
+        // } else {
+        //     $doctor->doctor_img = 'doctor_img';
+        // }
         $doctor->update($data);
 
         // aggiorno elemento specializations
@@ -105,6 +119,7 @@ class DoctorsController extends Controller
         } else {
             $doctor->specializations()->sync([]);
         }
+       
         return redirect()->route('admin.doctors.show', $doctor);
     }
 

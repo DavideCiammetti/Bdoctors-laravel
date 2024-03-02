@@ -10,35 +10,37 @@
             {{-- Indirizzo --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Address</h3>
-                <div>{{ $doctor?->address ?: 'No Address' }}</div>
+                {{-- <div>{{ $doctor?->address ?: 'No Address' }}</div> --}}
+                <div>{{ $user->doctor?->address ?: 'No Address' }}</div>
             </li>
 
             {{-- Cellulare --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Phone Number</h3>
-                <div>{{ $doctor?->phone_number ?: 'No Phone Number' }}</div>
+                {{-- <div>{{ $user->doctor?->phone_number ?: 'No Phone Number' }}</div> --}}
+                <div>{{ $user->doctor->phone_number }}</div>
             </li>
 
             {{-- Immagine Profilo --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Profile Image</h3>
-                <div>{{ $doctor?->doctor_img ?: 'No Profile Image' }}</div>
+                <div>{{ $user->doctor?->doctor_img ?: 'No Profile Image' }}</div>
             </li>
 
             {{-- CV --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>CV</h3>
-                <div>{{ $doctor?->doctor_cv ?: 'No CV' }}</div>
+                <div>{{ $user->doctor?->doctor_cv ?: 'No CV' }}</div>
             </li>
 
             {{-- Disponibilità --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Avaiability</h3>
                 <div>
-                    @if ($doctor->is_available === 1)
-                        Avaiable
+                    @if ($user->doctor->is_available === 1)
+                        Available
                     @else
-                        Not Avaiable
+                        Not Available
                     @endif
                 </div>
             </li>
@@ -46,7 +48,7 @@
             {{-- Prestazioni --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Services</h3>
-                <div>{{ $doctor?->services ?: 'No Services' }}</div>
+                <div>{{ $user->doctor?->services ?: 'No Services' }}</div>
             </li>
 
             {{-- Cellulare --}}

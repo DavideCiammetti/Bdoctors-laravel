@@ -85,6 +85,14 @@
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Details
                                 </a>
                             </li>
+
+                            {{-- Link Edit --}}
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.doctors.edit', $doctor->id) }}">
+                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Edit
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
