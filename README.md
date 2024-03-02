@@ -10,3 +10,5 @@
 8. [] validazioni FE-BE
 
 Ricorda di fare le migrations e runnare il seeder per le specializzazioni
+
+Prova a creare un nuovo dottore con i campi che ho aggiunto e vedi se le info sono corrette
