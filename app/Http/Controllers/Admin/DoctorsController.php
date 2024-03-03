@@ -97,6 +97,7 @@ class DoctorsController extends Controller
             'surname' => $data['surname'],
         ]);
         
+        // gestione slug
         do {
             $uniqueSlugId = microtime(true) * 10000;
             $doctorSlug = Str::of("{$user->name}-{$user->surname}-{$uniqueSlugId}")->slug('-');
@@ -111,45 +112,26 @@ class DoctorsController extends Controller
         // }
         // $doctor->update($data);
 
-        // aggiorno elemento specializations
-        // if (isset($data['specializations'])) {
-        //     $doctor->specializations()->sync($data['specializations']);
-        // } else {
-        //     $doctor->specializations()->sync([]);
-        // }
-
-    
-        // Aggiornamento delle specializzazioni solo se sono state selezionate
-        // if (!empty($data['specializations'])) {
-        //     $specializations = array_filter(array_unique($data['specializations']));
-    
-        //     // Rimuovi le specializzazioni precedenti e aggiungi quelle nuove
-        //     $doctor->specializations()->sync($specializations);
-        // } else {
-        //     // Se non ci sono specializzazioni selezionate, rimuovi tutte le specializzazioni
-        //     $doctor->specializations()->detach();
-        // }
-
         if (!empty($data['specializations'])) {
             // Ottieni l'elenco delle specializzazioni selezionate dal form
             $selectedSpecializations = $data['specializations'];
         
-            // Ottieni l'elenco delle specializzazioni attualmente associate al dottore
+            // Ottengo l'elenco delle specializzazioni attualmente associate al dottore
             $currentSpecializations = $doctor->specializations->pluck('id')->toArray();
         
-            // Aggiungi le nuove specializzazioni
+            // Aggiungo le nuove specializzazioni
             $newSpecializations = array_diff($selectedSpecializations, $currentSpecializations);
             foreach ($newSpecializations as $newSpecialization) {
                 $doctor->specializations()->attach($newSpecialization);
             }
         
-            // Rimuovi le specializzazioni non più selezionate
+            // Rimuovo le specializzazioni non più selezionate
             $removedSpecializations = array_diff($currentSpecializations, $selectedSpecializations);
             foreach ($removedSpecializations as $removedSpecialization) {
                 $doctor->specializations()->detach($removedSpecialization);
             }
         } else {
-            // Se non ci sono specializzazioni selezionate, rimuovi tutte le specializzazioni
+            // Se non ci sono specializzazioni selezionate, rimuovo tutte le specializzazioni
             $doctor->specializations()->detach();
         }
 
