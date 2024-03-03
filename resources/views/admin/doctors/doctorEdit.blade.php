@@ -21,15 +21,6 @@
                         @endif
                     </div>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
             </div>
             <div class="col-md-8">
                 {{-- enctype="multipart/form-data" --}}
@@ -41,24 +32,36 @@
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control"
                             value="{{ old('name', $user->name) }}">
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group pb-2">
                         <label for="surname">Surname</label>
                         <input type="text" name="surname" id="surname" class="form-control"
                             value="{{ old('surname', $user->surname) }}">
+                        @error('surname')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group pb-2">
                         <label for="address">Address</label>
                         <input type="text" name="address" id="address" class="form-control"
                             value="{{ old('address', $doctor->address) }}">
+                        @error('address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group pb-2">
                         <label for="phone_number">Phone Number</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control"
                             value="{{ old('phone_number', $doctor->phone_number) }}">
+                        @error('phone_number')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="form-group pb-2">

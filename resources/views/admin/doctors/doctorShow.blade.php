@@ -17,8 +17,8 @@
             {{-- Cellulare --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Phone Number</h3>
-                {{-- <div>{{ $user->doctor?->phone_number ?: 'No Phone Number' }}</div> --}}
-                <div>{{ $user->doctor->phone_number }}</div>
+                <div>{{ $user->doctor?->phone_number ?: 'No Phone Number' }}</div>
+                {{-- <div>{{ $user->doctor->phone_number }}</div> --}}
             </li>
 
             {{-- Immagine Profilo --}}

@@ -32,7 +32,14 @@ class UpdateDoctorsRequest extends FormRequest
             'address' => ['max:100', 'required'],
             'name' => ['max:30', 'required'],
             'surname' => ['max:40', 'required'],
-            'phone_number' => ['max:100', 'nullable','string'],
+            'phone_number' => ['max:15', 'nullable','string','regex:/^[\d\+\/\- ]+$/'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone_number.regex' => 'The phone number field can only contain numbers, or symbols such as \'+\', \'/\', or \'-\' as a prefix or separator.',
         ];
     }
 }
