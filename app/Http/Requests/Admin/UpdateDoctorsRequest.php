@@ -25,7 +25,11 @@ class UpdateDoctorsRequest extends FormRequest
             'slug'=> ['nullable'],
             'doctor_img'=> ['nullable','image', 'max:4096'],
             'user_id'=> ['nullable', 'exists:users,id'],
-            'specializations'=> [ 'required', 'exists:specializations,id'],
+            // 'specializations'=> [ 'required', 'exists:specializations,id'],
+            'specializations.0' => 'required|exists:specializations,id|array|min:1',
+            'specializations.1' => 'nullable|exists:specializations,id',
+            'specializations.2' => 'nullable|exists:specializations,id',
+            // 'specializations.*' => 'exists:specializations,id',
             'doctor_cv' => ['nullable', 'mimes:pdf'],
             'is_available' => ['nullable'],
             'services' => ['nullable'],
@@ -40,6 +44,7 @@ class UpdateDoctorsRequest extends FormRequest
     {
         return [
             'phone_number.regex' => 'The phone number field can only contain numbers, or symbols such as \'+\', \'/\', or \'-\' as a prefix or separator.',
+            'specializations.required' => 'At least one specialization is required.',
         ];
     }
 }

@@ -52,9 +52,24 @@
             </li>
 
             {{-- Specializzazione --}}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Specializations</h3>
                 <div>{{ $doctor->specializations[0]->title ?: 'No Specialization' }}</div>
+            </li> --}}
+
+            {{-- prova specializations  --}}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h3>Specializations</h3>
+                <div>
+                    @if ($doctor->specializations->isNotEmpty())
+                        @php
+                            $specializations = $doctor->specializations->pluck('title')->implode(', ');
+                        @endphp
+                        {{ $specializations }}
+                    @else
+                        No Specialization
+                    @endif
+                </div>
             </li>
         </ul>
     </div>

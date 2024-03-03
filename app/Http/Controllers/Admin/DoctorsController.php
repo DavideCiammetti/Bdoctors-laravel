@@ -111,14 +111,34 @@ class DoctorsController extends Controller
         // } else {
         //     $doctor->doctor_img = 'doctor_img';
         // }
-        $doctor->update($data);
+        // $doctor->update($data);
 
         // aggiorno elemento specializations
-        if (isset($data['specializations'])) {
-            $doctor->specializations()->sync($data['specializations']);
+        // if (isset($data['specializations'])) {
+        //     $doctor->specializations()->sync($data['specializations']);
+        // } else {
+        //     $doctor->specializations()->sync([]);
+        // }
+
+    
+        // Aggiornamento delle specializzazioni solo se sono state selezionate
+        if (!empty($data['specializations'])) {
+            // Rimuoviamo eventuali valori vuoti e duplicati dall'array di specializzazioni
+            $specializations = array_filter(array_unique($data['specializations']));
+            // Verifica che l'array di specializzazioni non sia vuoto prima di sincronizzarlo
+            if (!empty($specializations)) {
+                $doctor->specializations()->sync($specializations);
+            } else {
+                // Se l'array di specializzazioni è vuoto, rimuovi tutte le specializzazioni associate al dottore
+                $doctor->specializations()->detach();
+            }
         } else {
-            $doctor->specializations()->sync([]);
+            // Se non sono state selezionate specializzazioni, rimuovi tutte le specializzazioni associate al dottore
+            $doctor->specializations()->detach();
         }
+
+        // Aggiornamento dei restanti dati del dottore
+        $doctor->update($data);
        
         return redirect()->route('admin.doctors.show', $doctor);
     }

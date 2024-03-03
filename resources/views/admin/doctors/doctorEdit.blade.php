@@ -86,7 +86,7 @@
                     </div>
 
                     {{-- specializzazione  --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="specializations">Specialization</label>
                         <select name="specializations" id="specializations" class="form-control">
                             @foreach ($specializations as $specialization)
@@ -96,7 +96,51 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div> --}}
+
+                    {{-- prova 3 select specializations  --}}
+                    <div class="form-group">
+                        <label for="specialization1">Specialization 1</label>
+                        <select name="specializations[]" id="specialization1" class="form-control">
+                            <option value="">Select Specialization</option>
+                            @foreach ($specializations as $specialization)
+                                <option value="{{ $specialization->id }}"
+                                    {{ in_array($specialization->id, old('specializations', [])) ? 'selected' : '' }}>
+                                    {{ $specialization->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('specializations')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="specialization2">Specialization 2</label>
+                        <select name="specializations[]" id="specialization2" class="form-control">
+                            <option value="">Select Specialization</option>
+                            @foreach ($specializations as $specialization)
+                                <option value="{{ $specialization->id }}"
+                                    {{ in_array($specialization->id, old('specializations', [])) ? 'selected' : '' }}>
+                                    {{ $specialization->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialization3">Specialization 3</label>
+                        <select name="specializations[]" id="specialization3" class="form-control">
+                            <option value="">Select Specialization</option>
+                            @foreach ($specializations as $specialization)
+                                <option value="{{ $specialization->id }}"
+                                    {{ in_array($specialization->id, old('specializations', [])) ? 'selected' : '' }}>
+                                    {{ $specialization->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     <div class="py-3">
                         <button type="submit" class="btn btn-primary">Update</button>
