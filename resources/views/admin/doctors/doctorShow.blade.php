@@ -51,7 +51,7 @@
                 <div>{{ $user->doctor?->services ?: 'No Services' }}</div>
             </li>
 
-            {{-- Cellulare --}}
+            {{-- Specializzazione --}}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <h3>Specializations</h3>
                 <div>{{ $doctor->specializations[0]->title ?: 'No Specialization' }}</div>

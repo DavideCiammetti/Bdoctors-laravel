@@ -28,6 +28,7 @@
                     @csrf
                     @method('PUT')
 
+                    {{-- nome  --}}
                     <div class="form-group pb-2">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control"
@@ -37,6 +38,7 @@
                         @enderror
                     </div>
 
+                    {{-- cognome  --}}
                     <div class="form-group pb-2">
                         <label for="surname">Surname</label>
                         <input type="text" name="surname" id="surname" class="form-control"
@@ -46,6 +48,7 @@
                         @enderror
                     </div>
 
+                    {{-- indirizzo  --}}
                     <div class="form-group pb-2">
                         <label for="address">Address</label>
                         <input type="text" name="address" id="address" class="form-control"
@@ -55,6 +58,7 @@
                         @enderror
                     </div>
 
+                    {{-- numero di telefono  --}}
                     <div class="form-group pb-2">
                         <label for="phone_number">Phone Number</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control"
@@ -64,6 +68,7 @@
                         @enderror
                     </div>
 
+                    {{-- disponibilità  --}}
                     <div class="form-group pb-2">
                         <label for="is_available">Available</label>
                         <select name="is_available" id="is_available" class="form-control">
@@ -73,12 +78,14 @@
                         </select>
                     </div>
 
+                    {{-- servizi  --}}
                     <div class="form-group pb-2">
                         <label for="services">Services</label>
                         <input type="text" name="services" id="services" class="form-control"
                             value="{{ old('services', $doctor->services) }}">
                     </div>
 
+                    {{-- specializzazione  --}}
                     <div class="form-group">
                         <label for="specializations">Specialization</label>
                         <select name="specializations" id="specializations" class="form-control">
