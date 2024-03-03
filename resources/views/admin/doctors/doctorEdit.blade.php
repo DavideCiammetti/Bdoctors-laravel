@@ -151,7 +151,7 @@
 
                     {{-- specializzazione  --}}
                     {{-- prima select --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="specialization1">Specialization 1</label>
                         <select name="specializations[]" id="specialization1" class="form-control">
                             <option value="">Select Specialization</option>
@@ -168,10 +168,10 @@
                         @error('specializations.0')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     {{-- seconda select --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="specialization2">Specialization 2</label>
                         <select name="specializations[]" id="specialization2" class="form-control">
                             <option value="">Select Specialization</option>
@@ -185,10 +185,10 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{-- terza select --}}
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="specialization3">Specialization 3</label>
                         <select name="specializations[]" id="specialization3" class="form-control">
                             <option value="">Select Specialization</option>
@@ -202,8 +202,76 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
+                    {{-- prima select --}}
+                    @for ($i = 0; $i < min(count($doctor->specializations), 3); $i++)
+                        <div class="form-group" id="specialization{{ $i + 1 }}Div">
+                            <label for="specialization{{ $i + 1 }}">Specialization {{ $i + 1 }}</label>
+                            <select name="specializations[]" id="specialization{{ $i + 1 }}" class="form-control">
+                                <option value="">Select Specialization</option>
+                                @foreach ($specializations as $specialization)
+                                    <option value="{{ $specialization->id }}"
+                                        {{ $doctor->specializations[$i]->id == $specialization->id ? 'selected' : '' }}>
+                                        {{ $specialization->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('specializations.' . $i)
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    @endfor
+
+                    <!-- Bottone per aggiungere specializzazione -->
+                    @if (count($doctor->specializations) < 3)
+                        <div class="pt-3">
+                            <button type="button" class="btn btn-primary" id="addSpecializationButton">Add
+                                Specialization</button>
+                        </div>
+                    @endif
+
+                    <!-- Script aggiunta dinamica delle select -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var specializationCount = {{ count($doctor->specializations) }};
+                            var maxSpecializations = 3;
+                            var lastSpecializationId = specializationCount;
+
+                            document.getElementById('addSpecializationButton').addEventListener('click', function() {
+                                if (specializationCount < maxSpecializations) {
+                                    specializationCount++;
+                                    var nextSpecializationId = specializationCount;
+                                    var specializationDiv = document.createElement('div');
+                                    specializationDiv.className = 'form-group';
+                                    specializationDiv.id = 'specialization' + nextSpecializationId + 'Div';
+                                    specializationDiv.innerHTML = '<label for="specialization' + nextSpecializationId +
+                                        '">Specialization ' + nextSpecializationId + '</label>' +
+                                        '<select name="specializations[]" id="specialization' + nextSpecializationId +
+                                        '" class="form-control">' +
+                                        '<option value="">Select Specialization</option>' +
+                                        '@foreach ($specializations as $specialization)' +
+                                        '<option value="{{ $specialization->id }}">{{ $specialization->title }}</option>' +
+                                        '@endforeach' +
+                                        '</select>';
+
+                                    // Trovo ultima select utilizzando ultimo ID numerico
+                                    var lastSpecializationDiv = document.getElementById('specialization' +
+                                        lastSpecializationId + 'Div');
+                                    lastSpecializationDiv.parentNode.insertBefore(specializationDiv, lastSpecializationDiv
+                                        .nextSibling);
+
+                                    // Aggiorno ID ultima select
+                                    lastSpecializationId = nextSpecializationId;
+
+                                    // Nascondo il bottone se abbiamo raggiunto il max di specializzazioni
+                                    if (specializationCount === maxSpecializations) {
+                                        document.getElementById('addSpecializationButton').style.display = 'none';
+                                    }
+                                }
+                            });
+                        });
+                    </script>
 
 
                     <div class="py-3">
