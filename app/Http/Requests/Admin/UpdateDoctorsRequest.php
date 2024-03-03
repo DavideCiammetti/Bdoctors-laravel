@@ -29,12 +29,12 @@ class UpdateDoctorsRequest extends FormRequest
             'specializations.0' => 'required','exists:specializations,id','array','min:1',
             'specializations.1' => 'nullable|exists:specializations,id',
             'specializations.2' => 'nullable|exists:specializations,id',
-            'doctor_cv' => ['nullable', 'mimes:pdf'],
+            'doctor_cv' => ['nullable', 'image', 'max:4096'],
             'is_available' => ['nullable'],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],
-            'name' => ['max:30', 'required'],
-            'surname' => ['max:40', 'required'],
+            'name' => ['max:30', 'required','regex:/^[a-zA-Z\-\,\.\s]+$/'],
+            'surname' => ['max:40', 'required','regex:/^[a-zA-Z\-\,\.\s]+$/'],
             'phone_number' => ['max:15', 'nullable','string','regex:/^[\d\+\/\- ]+$/'],
         ];
     }

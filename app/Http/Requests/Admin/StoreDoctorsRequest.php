@@ -26,7 +26,7 @@ class StoreDoctorsRequest extends FormRequest
             'doctor_img'=> ['nullable','image', 'max:4096'],
             'user_id'=> ['nullable', 'exists:users,id'],
             'specializations'=> [ 'required', 'exists:specializations,id'],
-            'doctor_cv' => ['nullable', 'mimes:pdf'],
+            'doctor_cv' => ['nullable', 'image', 'max:4096'],
             'is_available' => ['nullable'],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],

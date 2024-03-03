@@ -6,28 +6,91 @@
             <h1>Update Doctor: {{ $user->name }} {{ $user->surname }}</h1>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-header">Foto</div>
-                    <div class="card-body">
-                        @if ($doctor->doctor_img)
-                            <img src="{{ asset($doctor->doctor_img) }}" class="img-fluid mb-3" alt="Doctor Image">
-                            <button class="btn btn-secondary btn-sm">Change Image</button>
-                        @else
-                            <div class="text-center">
-                                <button class="btn btn-primary btn-sm">Add an image</button>
+        <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <div class="row">
+                <div class="col-md-4">
+
+                    {{-- foto  --}}
+                    <div class="card mb-4">
+
+                        <div class="card-header">Foto</div>
+
+                        <div class="card-body">
+                            {{-- Immagine --}}
+                            <div class="mb-3">
+                                @if ($doctor->doctor_img)
+                                    <img src="{{ asset('storage/' . $doctor->doctor_img) }}" class="img-fluid"
+                                        alt="Doctor Image">
+                                @endif
                             </div>
-                        @endif
+
+                            {{-- Testo "Change/Add image" --}}
+                            <div class="mb-3">
+                                <label for="doctor-img-edit" class="form-label d-flex justify-content-between">
+                                    @if ($doctor->doctor_img)
+                                        Change image
+                                    @else
+                                        Add an image
+                                    @endif
+                                    {{-- errore url immagine --}}
+                                    @error('doctor_img')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </label>
+                            </div>
+
+                            {{-- Input "Scegli file" --}}
+                            <div class="input-group">
+                                <input class="upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
+                                    type="file" id="doctor-img-edit" name="doctor_img"
+                                    value="{{ old('doctor_img', $doctor->doctor_img) }}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {{-- CV --}}
+                    <div class="card mb-4">
+
+                        <div class="card-header">CV</div>
+
+                        <div class="card-body">
+                            <div class="mb-3">
+                                @if ($doctor->doctor_cv)
+                                    <img src="{{ asset('storage/' . $doctor->doctor_cv) }}" class="img-fluid"
+                                        alt="Doctor CV">
+                                @endif
+                            </div>
+
+                            {{-- Testo "Change/Add image" --}}
+                            <div class="mb-3">
+                                <label for="doctor-cv-edit" class="form-label d-flex justify-content-between">
+                                    @if ($doctor->doctor_cv)
+                                        Change CV
+                                    @else
+                                        Add a CV
+                                    @endif
+                                    {{-- errore url immagine --}}
+                                    @error('doctor_cv')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </label>
+                            </div>
+
+                            {{-- Input "Scegli file" --}}
+                            <div class="input-group">
+                                <input class="upload-image my-input form-control @error('doctor_cv') is-invalid @enderror"
+                                    type="file" id="doctor-cv-edit" name="doctor_cv"
+                                    value="{{ old('doctor_cv', $doctor->doctor_cv) }}">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8">
-                {{-- enctype="multipart/form-data" --}}
-                <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST">
-                    @csrf
-                    @method('PUT')
 
+                <div class="col-md-8">
                     {{-- nome  --}}
                     <div class="form-group pb-2">
                         <label for="name">Name</label>
@@ -72,7 +135,8 @@
                     <div class="form-group pb-2">
                         <label for="is_available">Available</label>
                         <select name="is_available" id="is_available" class="form-control">
-                            <option value="1" {{ $doctor->is_available == 1 ? 'selected' : '' }}>Available</option>
+                            <option value="1" {{ $doctor->is_available == 1 ? 'selected' : '' }}>Available
+                            </option>
                             <option value="0" {{ $doctor->is_available == 0 ? 'selected' : '' }}>Not Available
                             </option>
                         </select>
@@ -145,7 +209,7 @@
                     <div class="py-3">
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
-                </form>
-            </div>
-        </div>
-    @endsection
+        </form>
+    </div>
+    </div>
+@endsection

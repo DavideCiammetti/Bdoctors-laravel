@@ -105,9 +105,10 @@ class DoctorsController extends Controller
         $doctor->slug = $doctorSlug;
 
         // gestione immagini 
-        // if (isset($data['doctor_img'])) {
-        //     $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
-        // } else {
+        if (isset($data['doctor_img'])) {
+            $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
+        } 
+        // else {
         //     $doctor->doctor_img = 'doctor_img';
         // }
         // $doctor->update($data);
@@ -146,7 +147,7 @@ class DoctorsController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        // elimino elemento technologies
+        // elimino elemento specializations
         $doctor->specializations()->sync([]);
 
         // elimino progetto
