@@ -10,7 +10,7 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['slug', 'doctor_img', 'specializations'];
+    protected $guarded = ['slug', 'doctor_img', 'doctor_cv', 'specializations'];
 
     // relazione 1-1 doctor
     public function user()
@@ -18,8 +18,9 @@ class Doctor extends Model
         return $this->belongsTo(User::class);
     }
 
-      // collegamento specializations
-      public function specializations(){
+    // collegamento specializations
+    public function specializations()
+    {
         return $this->belongsToMany(Specialization::class);
     }
 }
