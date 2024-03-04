@@ -74,7 +74,7 @@
                                     <select id="specializations" class="form-select" aria-label="Default select example"
                                         @error('specializations') is-invalid @enderror" name="specializations" required
                                         autocomplete="specializations" autofocus>
-                                        <option selected>Open this select menu</option>
+                                        <option selected value="">No specialization</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
                                             <option value="{{ $key + 1 }}">{{ $specialization }}</option>
