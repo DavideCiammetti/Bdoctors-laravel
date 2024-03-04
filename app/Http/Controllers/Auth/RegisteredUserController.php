@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -34,10 +35,10 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:30'],
-            'surname' => ['required', 'string', 'max:40'],
+            'name' => ['max:30', 'required', 'string','regex:/^[a-zA-Z\-\,\.\s]+$/'],
+            'surname' => ['max:40', 'required', 'string','regex:/^[a-zA-Z\-\,\.\s]+$/'],
             'address' => ['required', 'string',  'max:100'],
-            'specializations' => ['required'],
+            'specializations' => ['required',Rule::in($this->SpecializationsId())],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -61,5 +62,10 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function SpecializationsId(){
+        $specializations = Specialization::all();
+        return $specializationIds = Specialization::pluck('id')->toArray(); 
     }
 }

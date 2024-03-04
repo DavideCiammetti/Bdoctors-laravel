@@ -14,12 +14,13 @@
                             {{-- Nome --}}
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        placeholder="Mario" value="{{ old('name') }}" required autocomplete="name"
+                                        autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -32,12 +33,13 @@
                             {{-- Cognome --}}
                             <div class="mb-4 row">
                                 <label for="surnname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                                        placeholder="Rossi" value="{{ old('surname') }}" required autocomplete="surname"
+                                        autofocus>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -50,12 +52,13 @@
                             {{-- Indirizzo --}}
                             <div class="mb-4 row">
                                 <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
+                                        placeholder="Via Roma" value="{{ old('address') }}" required autocomplete="address"
+                                        autofocus>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -68,16 +71,18 @@
                             {{-- Specializzazione --}}
                             <div class="mb-4 row">
                                 <label for="specializations"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}*</label>
 
                                 <div class="col-md-6">
-                                    <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror" aria-label="Default select example"
-                                        name="specializations" required
+                                    <select id="specializations"
+                                        class="form-select  @error('specializations') is-invalid @enderror"
+                                        aria-label="Default select example" name="specializations" required
                                         autocomplete="specializations" autofocus>
                                         <option selected value="">No specialization</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
-                                            <option value="{{ $specialization->id }}">{{ $specialization->title }}</option>
+                                            <option value="{{ $specialization->id }}">{{ $specialization->title }}
+                                            </option>
                                             }
                                         @endforeach
                                     </select>
@@ -93,12 +98,13 @@
                             {{-- Email --}}
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        placeholder="e-mail@address.com" value="{{ old('email') }}" required
+                                        autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -111,7 +117,7 @@
                             {{-- Password --}}
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -129,7 +135,7 @@
                             {{-- Conferma Password --}}
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"

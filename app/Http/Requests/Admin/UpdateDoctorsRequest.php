@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Models\Admin\Specialization;
 
 class UpdateDoctorsRequest extends FormRequest
 {
@@ -25,9 +27,9 @@ class UpdateDoctorsRequest extends FormRequest
             'slug'=> ['nullable'],
             'doctor_img'=> ['nullable','image', 'max:4096'],
             'user_id'=> ['nullable', 'exists:users,id'],
-            'specializations'=> ['required','exists:specializations,id'],
+            'specializations'=> ['required','exists:specializations,id',Rule::in($this->SpecializationsId())],
             'doctor_cv' => ['nullable', 'mimes:pdf,svg,png,jpg,jpeg,webp', 'max:4096'],
-            'is_available' => ['nullable'],
+            'is_available' => ['nullable',Rule::in('0','1')],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],
             'name' => ['max:30', 'required','regex:/^[a-zA-Z\-\,\.\s]+$/'],
@@ -42,5 +44,10 @@ class UpdateDoctorsRequest extends FormRequest
             'phone_number.regex' => 'The phone number field can only contain numbers, or symbols such as \'+\', \'/\', or \'-\' as a prefix or separator.',
             'specializations.required' => 'At least one specialization is required.',
         ];
+    }
+
+    public function SpecializationsId(){
+        $specializations = Specialization::all();
+        return $specializationIds = Specialization::pluck('id')->toArray(); 
     }
 }
