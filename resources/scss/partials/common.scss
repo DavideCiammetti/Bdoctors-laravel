@@ -1,5 +1,17 @@
 @import "./palette.scss";
 
+//stile comune
 main {
     background-color: $green-50;
+}
+
+//elementi ripetuti nelle pagine
+.btn-link {
+    background-color: $green-950;
+    color: $green-50;
+
+    &:hover {
+        background-color: $green-500;
+        color: $green-800;
+    }
 }

@@ -149,60 +149,6 @@
                             value="{{ old('services', $doctor->services) }}">
                     </div>
 
-                    {{-- specializzazione  --}}
-                    {{-- prima select --}}
-                    {{-- <div class="form-group">
-                        <label for="specialization1">Specialization 1</label>
-                        <select name="specializations[]" id="specialization1" class="form-control">
-                            <option value="">Select Specialization</option>
-                            @foreach ($specializations as $specialization)
-                                <option value="{{ $specialization->id }}"
-                                    {{ $doctor->specializations->contains($specialization->id) &&
-                                    $doctor->specializations->pluck('id')->search($specialization->id) === 0
-                                        ? 'selected'
-                                        : '' }}>
-                                    {{ $specialization->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('specializations.0')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
-                    {{-- seconda select --}}
-                    {{-- <div class="form-group">
-                        <label for="specialization2">Specialization 2</label>
-                        <select name="specializations[]" id="specialization2" class="form-control">
-                            <option value="">Select Specialization</option>
-                            @foreach ($specializations as $specialization)
-                                <option value="{{ $specialization->id }}"
-                                    {{ $doctor->specializations->contains($specialization->id) &&
-                                    $doctor->specializations->pluck('id')->search($specialization->id) === 1
-                                        ? 'selected'
-                                        : '' }}>
-                                    {{ $specialization->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div> --}}
-
-                    {{-- terza select --}}
-                    {{-- <div class="form-group">
-                        <label for="specialization3">Specialization 3</label>
-                        <select name="specializations[]" id="specialization3" class="form-control">
-                            <option value="">Select Specialization</option>
-                            @foreach ($specializations as $specialization)
-                                <option value="{{ $specialization->id }}"
-                                    {{ $doctor->specializations->contains($specialization->id) &&
-                                    $doctor->specializations->pluck('id')->search($specialization->id) === 2
-                                        ? 'selected'
-                                        : '' }}>
-                                    {{ $specialization->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div> --}}
 
                     {{-- prima select --}}
                     @for ($i = 0; $i < min(count($doctor->specializations), 3); $i++)
