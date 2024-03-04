@@ -2,6 +2,7 @@
 
 namespace App\Models\Guest;
 
+use App\Models\Admin\Doctor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

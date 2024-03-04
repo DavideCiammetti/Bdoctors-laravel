@@ -2,6 +2,9 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Guest\Message;
+use App\Models\Guest\Review;
+use App\Models\Guest\Vote;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,7 +42,7 @@ class Doctor extends Model
     // collegamento sponsorships
     public function sponsorships()
     {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsoriship::class);
     }
 
     // collegamento votes
