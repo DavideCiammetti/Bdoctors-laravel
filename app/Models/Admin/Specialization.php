@@ -9,8 +9,8 @@ class Specialization extends Model
 {
     use HasFactory;
 
-       // collegamneto doctors
-       public function doctors(){
+    // collegamneto doctors
+    public function doctors(){
         return $this->belongsToMany(Doctor::class);
     }
 }

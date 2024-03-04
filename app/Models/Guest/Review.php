@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
-    //prova
+    
+    // collegamento doctors
+    public function doctors()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }

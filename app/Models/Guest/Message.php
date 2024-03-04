@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
+
+    // collegamento doctors
+    public function doctors()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }

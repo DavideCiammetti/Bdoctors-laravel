@@ -23,4 +23,28 @@ class Doctor extends Model
     {
         return $this->belongsToMany(Specialization::class);
     }
+
+    // collegamento messages
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    // collegamento reviews
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    // collegamento sponsorships
+    public function sponsorships()
+    {
+        return $this->belongsToMany(Sponsorship::class);
+    }
+
+    // collegamento votes
+    public function votes()
+    {
+        return $this->belongsToMany(Vote::class);
+    }
 }
