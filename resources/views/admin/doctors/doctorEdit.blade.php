@@ -53,15 +53,15 @@
 
 
                     {{-- CV --}}
-                    <div class="card mb-4">
+                    <div class="card mb-4 cv">
 
                         <div class="card-header">CV</div>
 
                         <div class="card-body">
                             <div class="mb-3">
                                 @if ($doctor->doctor_cv)
-                                    <img src="{{ asset('storage/' . $doctor->doctor_cv) }}" class="img-fluid"
-                                        alt="Doctor CV">
+                                    <iframe src="{{ asset('storage/' . $doctor->doctor_cv) }}" alt="Doctor CV"
+                                        title="Doctor CV"></iframe>
                                 @endif
                             </div>
 
