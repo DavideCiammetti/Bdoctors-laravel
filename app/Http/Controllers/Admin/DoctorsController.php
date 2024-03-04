@@ -54,6 +54,11 @@ class DoctorsController extends Controller
             $doctor->doctor_doctor_img = Storage::put('uploads', $data['doctor_doctor_img']);
         }
 
+        // gestione cv 
+        if (isset($data['doctor_doctor_cv'])) {
+            $doctor->doctor_doctor_cv = Storage::put('uploads', $data['doctor_doctor_cv']);
+        }
+
         $doctor->save();
 
         // prendo specializations se settato
@@ -108,10 +113,11 @@ class DoctorsController extends Controller
         if (isset($data['doctor_img'])) {
             $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
         } 
-        // else {
-        //     $doctor->doctor_img = 'doctor_img';
-        // }
-        // $doctor->update($data);
+        
+        // gestione cv 
+        if (isset($data['doctor_cv'])) {
+            $doctor->doctor_cv = Storage::put('uploads', $data['doctor_cv']);
+        }
 
         if (!empty($data['specializations'])) {
             // Ottieni l'elenco delle specializzazioni selezionate dal form
