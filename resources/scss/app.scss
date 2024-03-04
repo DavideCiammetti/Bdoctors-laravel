@@ -5,6 +5,7 @@
 //Admin style
 #admin-header {
     background-color: $green-600;
+    height: 4.375rem;
 }
 
 #sidebarMenu {
@@ -16,4 +17,9 @@
         background-color: $green-200;
         color: $green-900;
     }
+}
+
+//Doctor Show
+#doctor-show {
+    height: calc(100vh - 4.375rem);
 }
