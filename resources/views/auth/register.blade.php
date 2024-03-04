@@ -71,13 +71,13 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="specializations" class="form-select" aria-label="Default select example"
-                                        @error('specializations') is-invalid @enderror" name="specializations" required
+                                    <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror" aria-label="Default select example"
+                                        name="specializations" required
                                         autocomplete="specializations" autofocus>
                                         <option selected value="">No specialization</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
-                                            <option value="{{ $key + 1 }}">{{ $specialization }}</option>
+                                            <option value="{{ $specialization->id }}">{{ $specialization->title }}</option>
                                             }
                                         @endforeach
                                     </select>

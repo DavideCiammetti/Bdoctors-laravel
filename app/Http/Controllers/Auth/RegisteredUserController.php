@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Doctor;
+use App\Models\Admin\Specialization;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $specializations = ['Ortopedico', 'Dermatologo', 'Psicologo', 'Oculista', 'Ginecologo', 'Nutrizionista', 'Dentista', 'Cardiologo', 'Osteopata', 'Ostetrica', 'Anestetista', 'Logopedista'];
+        $specializations = Specialization::all();
         return view('auth.register', compact('specializations'));
     }
 

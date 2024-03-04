@@ -127,28 +127,9 @@ class DoctorsController extends Controller
             }
             $doctor->doctor_cv = Storage::put('uploads', $data['doctor_cv']);
         }
-
-        if (!empty($data['specializations'])) {
-            // Ottieni l'elenco delle specializzazioni selezionate dal form
-            $selectedSpecializations = $data['specializations'];
-        
-            // Ottengo l'elenco delle specializzazioni attualmente associate al dottore
-            $currentSpecializations = $doctor->specializations->pluck('id')->toArray();
-        
-            // Aggiungo le nuove specializzazioni
-            $newSpecializations = array_diff($selectedSpecializations, $currentSpecializations);
-            foreach ($newSpecializations as $newSpecialization) {
-                $doctor->specializations()->attach($newSpecialization);
-            }
-        
-            // Rimuovo le specializzazioni non più selezionate
-            $removedSpecializations = array_diff($currentSpecializations, $selectedSpecializations);
-            foreach ($removedSpecializations as $removedSpecialization) {
-                $doctor->specializations()->detach($removedSpecialization);
-            }
-        } else {
-            // Se non ci sono specializzazioni selezionate, rimuovo tutte le specializzazioni
-            $doctor->specializations()->detach();
+        // gestione specializazioni
+        if (isset($data['specializations'])) {
+            $doctor->specializations()->sync($data['specializations']);
         }
 
         // Aggiornamento dei restanti dati del dottore
