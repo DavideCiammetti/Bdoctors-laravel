@@ -42,6 +42,8 @@
                                     <li class="list-group-item">Le tue Prestazioni</li>
                                 @endif
                             </ul>
+                        @else
+                            <h2 class="mb-3">Tutti i campi sono compilati</h2>
                         @endif
                     </div>
                 </div>
