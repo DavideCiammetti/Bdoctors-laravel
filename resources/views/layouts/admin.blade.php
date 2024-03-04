@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BDoctors') }}</title>
 
     <!-- Fontawesome 6 cdn -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
@@ -26,10 +26,10 @@
 <body>
     <div id="app">
 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+        <header id="admin-header" class="navbar sticky-top flex-md-nowrap p-2 shadow">
             {{-- logo torna home --}}
             <div class="row justify-content-between">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">BoolPress</a>
+                <a class="navbar-brand col-md-3 col-lg-2 text-white me-0 px-3" href="/">Bdoctors</a>
                 <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
             <div class="navbar-nav flex-row">
                 {{-- Logout --}}
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class="nav-link text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -53,7 +53,7 @@
 
                 {{-- delete account --}}
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class="nav-link text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('destroy').submit();">
                         {{ __('Delete') }}
@@ -67,12 +67,12 @@
 
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             {{-- Link alla Dashboard --}}
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.dashboard' ? 'current-route' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
@@ -80,17 +80,17 @@
 
                             {{-- Link Show --}}
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.doctors.show' ? 'bg-secondary' : '' }}"
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.show' ? 'current-route' : '' }}"
                                     href="{{ route('admin.doctors.show', $doctor->id) }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Details
+                                    <i class="fa-solid fa-circle-info fa-lg fa-fw"></i> Your Details
                                 </a>
                             </li>
 
                             {{-- Link Edit --}}
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'bg-secondary' : '' }}"
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'current-route' : '' }}"
                                     href="{{ route('admin.doctors.edit', $doctor->id) }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Edit
+                                    <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i> Edit Profile
                                 </a>
                             </li>
                         </ul>

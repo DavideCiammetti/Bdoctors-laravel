@@ -1,2 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./partials/palette.scss";
+@import "./partials/common.scss";
+
+//Admin style
+#admin-header {
+    background-color: $green-600;
+}
+
+#sidebarMenu {
+    background-color: $green-700;
+    a {
+        color: $green-50;
+    }
+    .current-route {
+        background-color: $green-200;
+        color: $green-900;
+    }
+}
