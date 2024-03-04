@@ -111,16 +111,20 @@ class DoctorsController extends Controller
 
         // gestione immagini 
         if (isset($data['doctor_img'])) {
-            //cancella l'immagine vecchia
-            Storage::delete($doctor->doctor_img);
+            if ($doctor->doctor_img) {
+                //cancella l'immagine vecchia
+                Storage::delete($doctor->doctor_img);
+            }
             $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
-        } 
+        }
         
         // gestione cv 
         if (isset($data['doctor_cv'])) {
-            // dd($data['doctor_cv']);
             //cancella cv vecchio
-            Storage::delete($doctor->doctor_cv);
+            if ($doctor->doctor_cv) {
+                //cancella l'immagine vecchia
+                Storage::delete($doctor->doctor_cv);
+            }
             $doctor->doctor_cv = Storage::put('uploads', $data['doctor_cv']);
         }
 
