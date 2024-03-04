@@ -1,2 +1,48 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./partials/palette.scss";
+@import "./partials/common.scss";
+
+//Admin style
+#admin-header {
+    background-color: $green-600;
+    height: 4.375rem;
+}
+
+#sidebarMenu {
+    background-color: $green-700;
+    a {
+        color: $green-50;
+    }
+    .current-route {
+        background-color: $green-200;
+        color: $green-900;
+    }
+}
+
+//dashboard
+#dashboard {
+    height: calc(100vh - 4.375rem);
+}
+
+//Doctor Show
+#doctor-show {
+    height: calc(100vh - 4.375rem);
+
+    .profile-img {
+        width: 200px;
+        height: 300px;
+    }
+    .profile-cv {
+        width: 100%;
+        height: 600px;
+    }
+    .img-placeholder {
+        background-color: $green-200;
+        color: $green-950;
+        text-decoration: none;
+    }
+    .list-item {
+        background-color: $green-700;
+        color: $green-50;
+    }
+}
