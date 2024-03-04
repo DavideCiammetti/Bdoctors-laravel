@@ -93,7 +93,7 @@
                 <div class="col-md-8">
                     {{-- nome  --}}
                     <div class="form-group pb-2">
-                        <label for="name">Name</label>
+                        <label for="name">Name *</label>
                         <input type="text" name="name" id="name" class="form-control"
                             value="{{ old('name', $user->name) }}">
                         @error('name')
@@ -103,7 +103,7 @@
 
                     {{-- cognome  --}}
                     <div class="form-group pb-2">
-                        <label for="surname">Surname</label>
+                        <label for="surname">Surname *</label>
                         <input type="text" name="surname" id="surname" class="form-control"
                             value="{{ old('surname', $user->surname) }}">
                         @error('surname')
@@ -113,7 +113,7 @@
 
                     {{-- indirizzo  --}}
                     <div class="form-group pb-2">
-                        <label for="address">Address</label>
+                        <label for="address">Address *</label>
                         <input type="text" name="address" id="address" class="form-control"
                             value="{{ old('address', $doctor->address) }}">
                         @error('address')
@@ -207,7 +207,7 @@
                     {{-- prima select --}}
                     @for ($i = 0; $i < min(count($doctor->specializations), 3); $i++)
                         <div class="form-group" id="specialization{{ $i + 1 }}Div">
-                            <label for="specialization{{ $i + 1 }}">Specialization {{ $i + 1 }}</label>
+                            <label for="specialization{{ $i + 1 }}">Specialization {{ $i + 1 }} *</label>
                             <select name="specializations[]" id="specialization{{ $i + 1 }}" class="form-control">
                                 <option value="">Select Specialization</option>
                                 @foreach ($specializations as $specialization)
