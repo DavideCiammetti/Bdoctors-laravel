@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
+
                         <h1 class="mb-4">Benvenuto {{ $user->name }} {{ $user->surname }} </h1>
 
                         @if (!$user->doctor->phone_number || !$user->doctor->doctor_img || !$user->doctor->doctor_cv || !$user->doctor->services)

@@ -16,8 +16,8 @@
                 <div class="col-md-8">
 
                     {{-- nome  --}}
-                    <div class="form-group pb-2">
-                        <label for="name">Nome *</label>
+                    <div class="form-group mb-3">
+                        <label for="name" class="mb-2">Nome *</label>
                         <input type="text" name="name" id="name" class="val-name form-control"
                             value="{{ old('name', $user->name) }}">
                         @error('name')
@@ -26,8 +26,8 @@
                     </div>
 
                     {{-- cognome  --}}
-                    <div class="form-group pb-2">
-                        <label for="surname">Cognome *</label>
+                    <div class="form-group mb-3">
+                        <label for="surname" class="mb-2">Cognome *</label>
                         <input type="text" name="surname" id="surname" class="val-surname form-control"
                             value="{{ old('surname', $user->surname) }}">
                         @error('surname')
@@ -36,8 +36,8 @@
                     </div>
 
                     {{-- indirizzo  --}}
-                    <div class="form-group pb-2">
-                        <label for="address">Indirizzo *</label>
+                    <div class="form-group mb-3">
+                        <label for="address" class="mb-2">Indirizzo *</label>
                         <input type="text" name="address" id="address" class="val-address form-control"
                             value="{{ old('address', $user->doctor->address) }}">
                         @error('address')
@@ -46,8 +46,8 @@
                     </div>
 
                     {{-- numero di telefono  --}}
-                    <div class="form-group pb-2">
-                        <label for="phone_number">Numero di telefono</label>
+                    <div class="form-group mb-3">
+                        <label for="phone_number" class="mb-2">Numero di telefono</label>
                         <input type="text" name="phone_number" id="phone_number" class="val-phone-number form-control"
                             value="{{ old('phone_number', $user->doctor->phone_number) }}">
                         @error('phone_number')
@@ -55,7 +55,22 @@
                         @enderror
                     </div>
 
-                    {{-- disponibilità  --}}
+                    {{-- disponibilità --}}
+                    <div class="form-group mb-2">
+                        <label class="mb-2">Disponibilità</label>
+                        <div class="form-check">
+                            <input type="radio" id="available" name="is_available" value="1" class="form-check-input"
+                                {{ $user->doctor->is_available == 1 ? 'checked' : '' }}>
+                            <label for="available" class="form-check-label">Disponibile</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="not_available" name="is_available" value="0"
+                                class="form-check-input" {{ $user->doctor->is_available == 0 ? 'checked' : '' }}>
+                            <label for="not_available" class="form-check-label">Non Disponibile</label>
+                        </div>
+                    </div>
+
+                    {{-- disponibilità 
                     <div class="form-group pb-2">
                         <label for="is_available">Disponibilità</label>
                         <select name="is_available" id="is_available" class="form-control">
@@ -64,16 +79,16 @@
                             <option value="0" {{ $user->doctor->is_available == 0 ? 'selected' : '' }}>Not Available
                             </option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{-- specializzazione  --}}
-                    <div>
+                    <div class="form-group mb-3">
                         <label for="specializations"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Specializzazioni') }}</label>
+                            class="col-md-4 col-form-label text-md-right mb-2">{{ __('Specializzazioni') }}</label>
                         <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror"
                             aria-label="Default select example" name="specializations" required
                             autocomplete="specializations" autofocus>
-                            <option selected value="">No specialization</option>
+                            <option selected value="">Nessuna Specializzazione</option>
                             @foreach ($specializations as $specialization)
                                 {
                                 <option value="{{ $specialization->id }}"
@@ -92,7 +107,7 @@
 
                     {{-- Prestazioni  --}}
                     <div class="form-group pb-2">
-                        <label for="services">Prestazioni</label>
+                        <label for="services" class="mb-2">Prestazioni</label>
                         <textarea type="text" name="services" id="services" class="form-control" cols="30" rows="10">{{ old('services', $user->doctor->services) }}</textarea>
                     </div>
 
