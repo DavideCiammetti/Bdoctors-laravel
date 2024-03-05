@@ -1,4 +1,3 @@
-console.log("ci sono");
 let isValid = true;
 
 //elementi HTML input
@@ -14,6 +13,8 @@ const inputPassword = document.querySelector(".val-password");
 const inputConfirmPassword = document.querySelector(".val-confirm-password");
 console.log(inputPassword);
 console.log(inputConfirmPassword);
+const inputPasswordLogin = document.querySelector(".val-password-login");
+console.log(inputPasswordLogin);
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
@@ -160,6 +161,20 @@ function validPassowrd() {
     }
 }
 
+function validPasswordLogin() {
+    let currentPasswordLogin = inputPasswordLogin.value;
+
+    if (currentPasswordLogin.length > 8) {
+        if (!isValid === false) {
+            isValid = true;
+        }
+        console.log("la password è valida");
+    } else {
+        console.log("la password deve avere almeno otto caratteri");
+        isValid = false;
+    }
+}
+
 function validate(event) {
     if (inputName !== null) {
         validName();
@@ -175,6 +190,9 @@ function validate(event) {
     }
     if (inputPassword !== null) {
         validPassowrd();
+    }
+    if (inputPasswordLogin !== null) {
+        validPasswordLogin();
     }
 
     if (!isValid) {
