@@ -169,7 +169,7 @@ function validPasswordLogin() {
 }
 
 //VALIDAZIONI EDIT
-// validazione cognome
+// validazione cellulare
 function validPhoneNumber() {
     // variabili
     let currentPhoneNumber = inputPhoneNumber.value;
@@ -201,6 +201,22 @@ function validPhoneNumber() {
     }
 }
 
+//validazione disponibilità
+function validateAvailability() {
+    let currentIsAvailable = inputIsAvailable.value;
+    let currentNotAvailable = inputNotAvailable.value;
+
+    if (currentIsAvailable !== "1") {
+        isValid = false;
+        console.log("valore check 1 non valido");
+    }
+
+    if (currentNotAvailable !== "0") {
+        isValid = false;
+        console.log("valore check 0 non valido");
+    }
+}
+
 function validate(event) {
     if (inputName !== null) {
         validName();
@@ -222,6 +238,9 @@ function validate(event) {
     }
     if (inputPhoneNumber !== null) {
         validPhoneNumber();
+    }
+    if (inputIsAvailable !== null && inputNotAvailable !== null) {
+        validateAvailability();
     }
 
     if (!isValid) {
