@@ -94,7 +94,7 @@
                     {{-- nome  --}}
                     <div class="form-group pb-2">
                         <label for="name">Name *</label>
-                        <input type="text" name="name" id="name" class="form-control"
+                        <input type="text" name="name" id="name" class="val-name form-control"
                             value="{{ old('name', $user->name) }}">
                         @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -104,7 +104,7 @@
                     {{-- cognome  --}}
                     <div class="form-group pb-2">
                         <label for="surname">Surname *</label>
-                        <input type="text" name="surname" id="surname" class="form-control"
+                        <input type="text" name="surname" id="surname" class="val-surname form-control"
                             value="{{ old('surname', $user->surname) }}">
                         @error('surname')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -114,7 +114,7 @@
                     {{-- indirizzo  --}}
                     <div class="form-group pb-2">
                         <label for="address">Address *</label>
-                        <input type="text" name="address" id="address" class="form-control"
+                        <input type="text" name="address" id="address" class="val-address form-control"
                             value="{{ old('address', $user->doctor->address) }}">
                         @error('address')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -174,7 +174,7 @@
                     </div>
 
                     <div class="py-5">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="send btn btn-primary">Update</button>
                     </div>
         </form>
     </div>

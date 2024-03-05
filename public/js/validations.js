@@ -17,6 +17,7 @@ const inputPasswordLogin = document.querySelector(".val-password-login");
 console.log(inputPasswordLogin);
 
 const inputButton = document.querySelector(".send");
+console.log(inputButton);
 inputButton.addEventListener("click", validate, isValid);
 
 //Validazione Nome
@@ -35,7 +36,9 @@ function validName() {
     }
 
     if (currentName.length < 30) {
-        isValid = true;
+        if (!isValid === false) {
+            isValid = true;
+        }
         console.log("Il nome è valido.");
     } else {
         isValid = false;
@@ -82,12 +85,6 @@ function validAddress() {
     const maxLength = 100;
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
     let errorMessage = "";
-
-    // if (
-    //     currentAddress.length > maxLength ||
-    //     !validAddressRegex.test(currentAddress)
-    // ) {
-    // }
 
     // Controllo max length
     if (currentAddress.length > maxLength) {
@@ -196,7 +193,6 @@ function validate(event) {
     }
 
     if (!isValid) {
-        console.log(isValid);
         event.preventDefault();
         console.log("form bloccato");
     }
