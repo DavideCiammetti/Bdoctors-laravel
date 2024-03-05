@@ -18,7 +18,7 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                        class="val-name form-control @error('name') is-invalid @enderror" name="name"
                                         placeholder="Mario" value="{{ old('name') }}" required autocomplete="name"
                                         autofocus>
 
@@ -146,7 +146,7 @@
                             {{-- Bottone di invio --}}
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="send btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
