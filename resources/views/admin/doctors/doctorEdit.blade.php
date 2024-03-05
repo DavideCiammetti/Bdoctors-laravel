@@ -59,13 +59,15 @@
                     <div class="form-group mb-2">
                         <label class="mb-2">Disponibilità</label>
                         <div class="form-check">
-                            <input type="radio" id="available" name="is_available" value="1" class="form-check-input"
+                            <input type="radio" id="available" name="is_available" value="1"
+                                class="val-avaiable form-check-input"
                                 {{ $user->doctor->is_available == 1 ? 'checked' : '' }}>
                             <label for="available" class="form-check-label">Disponibile</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="not_available" name="is_available" value="0"
-                                class="form-check-input" {{ $user->doctor->is_available == 0 ? 'checked' : '' }}>
+                                class="val-not-avaiable form-check-input"
+                                {{ $user->doctor->is_available == 0 ? 'checked' : '' }}>
                             <label for="not_available" class="form-check-label">Non Disponibile</label>
                         </div>
                     </div>

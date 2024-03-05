@@ -2,24 +2,17 @@ let isValid = true;
 
 //elementi HTML input
 const inputName = document.querySelector(".val-name");
-console.log(inputName);
 const inputSurname = document.querySelector(".val-surname");
-console.log(inputSurname);
 const inputAddress = document.querySelector(".val-address");
-console.log(inputAddress);
 const inputEmail = document.querySelector(".val-email");
-console.log(inputEmail);
 const inputPassword = document.querySelector(".val-password");
 const inputConfirmPassword = document.querySelector(".val-confirm-password");
-console.log(inputPassword);
-console.log(inputConfirmPassword);
 const inputPasswordLogin = document.querySelector(".val-password-login");
-console.log(inputPasswordLogin);
 const inputPhoneNumber = document.querySelector(".val-phone-number");
-console.log(inputPhoneNumber);
+const inputIsAvailable = document.querySelector(".val-avaiable");
+const inputNotAvailable = document.querySelector(".val-not-avaiable");
 
 const inputButton = document.querySelector(".send");
-console.log(inputButton);
 inputButton.addEventListener("click", validate, isValid);
 
 //Validazione Nome
