@@ -22,12 +22,12 @@
             {{-- Card Dottore --}}
             <div class="col-md-4">
                 <div class="card py-4 d-flex justify-content-center align-items-center">
-                    @if ($doctor->doctor_img)
-                        <img src="{{ asset('storage/' . $doctor->doctor_img) }}" class="profile-img rounded-3 mb-2"
+                    @if ($user->doctor->doctor_img)
+                        <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}" class="profile-img rounded-3 mb-2"
                             alt="{{ $user->name }} {{ $user->surname }} Img">
                     @else
                         <a class="profile-img img-placeholder rounded-3 d-flex flex-column justify-content-center align-items-center mb-2"
-                            href="{{ route('admin.doctors.edit', $doctor->id) }}">
+                            href="{{ route('admin.doctors.edit', $user->doctor->id) }}">
                             <span class="mb-3">Inserisci Immagine</span>
                             <i class="fa-solid fa-plus"></i>
                         </a>
@@ -93,12 +93,12 @@
                     {{-- <img src="{{ asset('storage/' . $doctor->doctor_cv) }}" class="profile-cv rounded-3"
                         alt="{{ $user->name }} {{ $user->surname }} CV"> --}}
                     <div class="profile-cv rounded-3">
-                        <iframe src="{{ asset('storage/' . $doctor->doctor_cv) }}" alt="Doctor CV" title="Doctor CV"
+                        <iframe src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV" title="Doctor CV"
                             style="height:100%; width:100%"></iframe>
                     </div>
                 @else
                     <a class="profile-cv img-placeholder rounded-3 d-flex flex-column justify-content-center align-items-center "
-                        href="{{ route('admin.doctors.edit', $doctor->id) }}">
+                        href="{{ route('admin.doctors.edit', $user->doctor->id) }}">
                         <span class="mb-3">Inserisci CV</span>
                         <i class="fa-solid fa-plus"></i>
                     </a>

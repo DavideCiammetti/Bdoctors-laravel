@@ -21,8 +21,8 @@
                         <div class="card-body">
                             {{-- Immagine --}}
                             <div class="mb-3">
-                                @if ($doctor->doctor_img)
-                                    <img src="{{ asset('storage/' . $doctor->doctor_img) }}" class="img-fluid"
+                                @if ($user->doctor->doctor_img)
+                                    <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}" class="img-fluid"
                                         alt="Doctor Image">
                                 @endif
                             </div>
@@ -30,7 +30,7 @@
                             {{-- Testo "Change/Add image" --}}
                             <div class="mb-3">
                                 <label for="doctor-img-edit" class="form-label d-flex justify-content-between">
-                                    @if ($doctor->doctor_img)
+                                    @if ($user->doctor->doctor_img)
                                         Change image
                                     @else
                                         Add an image
@@ -46,7 +46,7 @@
                             <div class="input-group">
                                 <input class="upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
                                     type="file" id="doctor-img-edit" name="doctor_img"
-                                    value="{{ old('doctor_img', $doctor->doctor_img) }}">
+                                    value="{{ old('doctor_img', $user->doctor->doctor_img) }}">
                             </div>
                         </div>
                     </div>
@@ -59,8 +59,8 @@
 
                         <div class="card-body">
                             <div class="mb-3">
-                                @if ($doctor->doctor_cv)
-                                    <iframe src="{{ asset('storage/' . $doctor->doctor_cv) }}" alt="Doctor CV"
+                                @if ($user->doctor->doctor_cv)
+                                    <iframe src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV"
                                         title="Doctor CV"></iframe>
                                 @endif
                             </div>
@@ -68,7 +68,7 @@
                             {{-- Testo "Change/Add image" --}}
                             <div class="mb-3">
                                 <label for="doctor-cv-edit" class="form-label d-flex justify-content-between">
-                                    @if ($doctor->doctor_cv)
+                                    @if ($user->doctor->doctor_cv)
                                         Change CV
                                     @else
                                         Add a CV
@@ -84,7 +84,7 @@
                             <div class="input-group">
                                 <input class="upload-image my-input form-control @error('doctor_cv') is-invalid @enderror"
                                     type="file" id="doctor-cv-edit" name="doctor_cv"
-                                    value="{{ old('doctor_cv', $doctor->doctor_cv) }}">
+                                    value="{{ old('doctor_cv', $user->doctor->doctor_cv) }}">
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <div class="form-group pb-2">
                         <label for="address">Address *</label>
                         <input type="text" name="address" id="address" class="form-control"
-                            value="{{ old('address', $doctor->address) }}">
+                            value="{{ old('address', $user->doctor->address) }}">
                         @error('address')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -125,7 +125,7 @@
                     <div class="form-group pb-2">
                         <label for="phone_number">Phone Number</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control"
-                            value="{{ old('phone_number', $doctor->phone_number) }}">
+                            value="{{ old('phone_number', $user->doctor->phone_number) }}">
                         @error('phone_number')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -135,9 +135,9 @@
                     <div class="form-group pb-2">
                         <label for="is_available">Available</label>
                         <select name="is_available" id="is_available" class="form-control">
-                            <option value="1" {{ $doctor->is_available == 1 ? 'selected' : '' }}>Available
+                            <option value="1" {{ $user->doctor->is_available == 1 ? 'selected' : '' }}>Available
                             </option>
-                            <option value="0" {{ $doctor->is_available == 0 ? 'selected' : '' }}>Not Available
+                            <option value="0" {{ $user->doctor->is_available == 0 ? 'selected' : '' }}>Not Available
                             </option>
                         </select>
                     </div>
@@ -146,29 +146,31 @@
                     <div class="form-group pb-2">
                         <label for="services">Services</label>
                         <input type="text" name="services" id="services" class="form-control"
-                            value="{{ old('services', $doctor->services) }}">
+                            value="{{ old('services', $user->doctor->services) }}">
                     </div>
-                    
+
                     {{-- specializzazione  --}}
                     <div>
                         <label for="specializations"
                             class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}</label>
-                            <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror" aria-label="Default select example"
-                                name="specializations" required
-                                autocomplete="specializations" autofocus>
-                                <option selected value="">No specialization</option>
-                                @foreach ($specializations as $specialization)
-                                    {
-                                        <option value="{{ $specialization->id }}" {{old('specialization->id', $doctor->specializations[0]['id']) == $specialization->id ? 'selected' : '' }}>{{ $specialization->title }}</option>
-                                    }
-                                @endforeach
-                            </select>
+                        <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror"
+                            aria-label="Default select example" name="specializations" required
+                            autocomplete="specializations" autofocus>
+                            <option selected value="">No specialization</option>
+                            @foreach ($specializations as $specialization)
+                                {
+                                <option value="{{ $specialization->id }}"
+                                    {{ old('specialization->id', $user->doctor->specializations[0]['id']) == $specialization->id ? 'selected' : '' }}>
+                                    {{ $specialization->title }}</option>
+                                }
+                            @endforeach
+                        </select>
 
-                            @error('specializations')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        @error('specializations')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="py-5">
