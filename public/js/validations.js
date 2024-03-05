@@ -15,6 +15,8 @@ console.log(inputPassword);
 console.log(inputConfirmPassword);
 const inputPasswordLogin = document.querySelector(".val-password-login");
 console.log(inputPasswordLogin);
+const inputPhoneNumber = document.querySelector(".val-phone-number");
+console.log(inputPhoneNumber);
 
 const inputButton = document.querySelector(".send");
 console.log(inputButton);
@@ -84,7 +86,7 @@ function validAddress() {
     let currentAddress = inputAddress.value;
     const maxLength = 100;
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
-    let errorMessage = "";
+    let errorMessage = "indirizzo valido";
 
     // Controllo max length
     if (currentAddress.length > maxLength) {
@@ -158,6 +160,7 @@ function validPassowrd() {
     }
 }
 
+//VALIDAZIONE LOGIN
 function validPasswordLogin() {
     let currentPasswordLogin = inputPasswordLogin.value;
 
@@ -169,6 +172,39 @@ function validPasswordLogin() {
     } else {
         console.log("la password deve avere almeno otto caratteri");
         isValid = false;
+    }
+}
+
+//VALIDAZIONI EDIT
+// validazione cognome
+function validPhoneNumber() {
+    // variabili
+    let currentPhoneNumber = inputPhoneNumber.value;
+    const validRegex = /^[\d\+\/\- ]+$/;
+
+    // controlli
+    if (validRegex.test(currentPhoneNumber)) {
+        if (!isValid === false) {
+            isValid = true;
+        }
+        console.log("Il cellulare è valido.");
+    } else {
+        isValid = false;
+
+        console.log(
+            "Il cellulare non è valido. Assicurati di solo numeri o +."
+        );
+    }
+
+    if (currentPhoneNumber.length < 15) {
+        if (!isValid === false) {
+            isValid = true;
+        }
+        console.log("Il cellulare è valido.");
+    } else {
+        isValid = false;
+
+        console.log("Il cellulare è troppo lungo");
     }
 }
 
@@ -190,6 +226,9 @@ function validate(event) {
     }
     if (inputPasswordLogin !== null) {
         validPasswordLogin();
+    }
+    if (inputPhoneNumber !== null) {
+        validPhoneNumber();
     }
 
     if (!isValid) {

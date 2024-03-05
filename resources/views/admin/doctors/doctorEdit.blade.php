@@ -124,7 +124,7 @@
                     {{-- numero di telefono  --}}
                     <div class="form-group pb-2">
                         <label for="phone_number">Phone Number</label>
-                        <input type="text" name="phone_number" id="phone_number" class="form-control"
+                        <input type="text" name="phone_number" id="phone_number" class="val-phone-number form-control"
                             value="{{ old('phone_number', $user->doctor->phone_number) }}">
                         @error('phone_number')
                             <div class="alert alert-danger">{{ $message }}</div>
