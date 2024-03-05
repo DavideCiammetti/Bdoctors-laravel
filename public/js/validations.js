@@ -83,11 +83,11 @@ function validAddress() {
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
     let errorMessage = "";
 
-    if (
-        currentAddress.length > maxLength ||
-        !validAddressRegex.test(currentAddress)
-    ) {
-    }
+    // if (
+    //     currentAddress.length > maxLength ||
+    //     !validAddressRegex.test(currentAddress)
+    // ) {
+    // }
 
     // Controllo max length
     if (currentAddress.length > maxLength) {
@@ -124,15 +124,15 @@ function validEmail() {
         console.log("Inserire un formato email corretto");
     }
 
-    if (currentEmail.length > 255) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("La è troppo lunga");
-    } else {
-        isValid = false;
-        console.log("La mail è valida.");
-    }
+    // if (currentEmail.length > 255) {
+    //     if (!isValid === false) {
+    //         isValid = true;
+    //     }
+    //     console.log("La è troppo lunga");
+    // } else {
+    //     isValid = false;
+    //     console.log("La mail è valida.");
+    // }
 }
 
 // validazione password
@@ -196,6 +196,7 @@ function validate(event) {
     }
 
     if (!isValid) {
+        console.log(isValid);
         event.preventDefault();
         console.log("form bloccato");
     }
