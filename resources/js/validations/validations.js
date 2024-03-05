@@ -1,6 +1,8 @@
-const inputButton = document.querySelector('.send');
 let isValid = true;
-inputButton.addEventListener('click', validName, isValid);
+// function validate(){
+const inputButton = document.querySelector('.send');
+inputButton.addEventListener('click', validate, isValid);
+// }
 
 function validName(event) {
     const inputName = document.querySelector('.val-name');
@@ -8,10 +10,22 @@ function validName(event) {
     console.log(currentName);
     const validRegex = /^[a-zA-Z\s]+$/;
     if (validRegex.test(currentName)) {
+        isValid = true;
         console.log("Il nome è valido.");
     } else {
         isValid = false;
-        event.preventDefault();
+
         console.log("Il nome non è valido. Assicurati di inserire solo lettere.");
     }
+}
+
+function validate(event) {
+    validName();
+    console.log(isValid);
+    if (isValid) {
+
+    } else {
+        event.preventDefault();
+    }
+
 }
