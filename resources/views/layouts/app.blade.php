@@ -94,6 +94,16 @@
             @yield('content')
         </main>
     </div>
+
+    @if (Route::currentRouteName() == 'register')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
+
+    @if (Route::currentRouteName() == 'login')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
 </body>
 
 </html>

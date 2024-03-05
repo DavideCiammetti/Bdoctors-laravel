@@ -37,9 +37,9 @@
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        placeholder="Rossi" value="{{ old('surname') }}" required autocomplete="surname"
-                                        autofocus>
+                                        class="val-surname form-control @error('surname') is-invalid @enderror"
+                                        name="surname" placeholder="Rossi" value="{{ old('surname') }}" required
+                                        autocomplete="surname" autofocus>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -56,9 +56,9 @@
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror" name="address"
-                                        placeholder="Via Roma" value="{{ old('address') }}" required autocomplete="address"
-                                        autofocus>
+                                        class="val-address form-control @error('address') is-invalid @enderror"
+                                        name="address" placeholder="Via Roma" value="{{ old('address') }}" required
+                                        autocomplete="address" autofocus>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -102,7 +102,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="val-email form-control @error('email') is-invalid @enderror" name="email"
                                         placeholder="e-mail@address.com" value="{{ old('email') }}" required
                                         autocomplete="email">
 
@@ -121,8 +121,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        class="val-password form-control @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -138,7 +138,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
+                                    <input id="password-confirm" type="password" class=" val-confirm-password form-control"
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>

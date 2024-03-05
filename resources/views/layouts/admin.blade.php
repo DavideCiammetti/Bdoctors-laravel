@@ -104,6 +104,14 @@
         </div>
 
     </div>
+
+
+    @if (Route::currentRouteName() == 'admin.doctors.edit')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
+
+
 </body>
 
 </html>
