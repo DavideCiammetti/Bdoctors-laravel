@@ -25,13 +25,19 @@ inputButton.addEventListener("click", validate, isValid);
 function validName() {
     let currentName = inputName.value;
     const validRegex = /^[a-zA-Z\s]+$/;
+
+    if (currentName.trim() === "") {
+        isValid = false;
+        console.log("Questo campo è obbligatorio");
+    } else {
+        isValid = true;
+    }
+
     if (!validRegex.test(currentName)) {
         isValid = false;
         console.log(
             "Il nome non è valido. Assicurati di inserire solo lettere."
         );
-    } else {
-        isValid = true;
     }
 
     if (currentName.length > 30) {
@@ -46,6 +52,11 @@ function validSurname() {
     // variabili
     let currentSurname = inputSurname.value;
     const validRegex = /^[a-zA-Z\s]+$/;
+
+    if (currentSurname.trim() === "") {
+        isValid = false;
+        console.log("Questo campo è obbligatorio");
+    }
 
     // controlli
     if (!validRegex.test(currentSurname)) {
@@ -68,6 +79,11 @@ function validAddress() {
     let currentAddress = inputAddress.value;
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
 
+    if (currentAddress.trim() === "") {
+        isValid = false;
+        console.log("Questo campo è obbligatorio");
+    }
+
     // Controllo max length
     if (currentAddress.length > 100) {
         isValid = false;
@@ -85,6 +101,11 @@ function validAddress() {
 function validEmail() {
     let currentEmail = inputEmail.value;
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (currentEmail.trim() === "") {
+        isValid = false;
+        console.log("Questo campo è obbligatorio");
+    }
 
     if (!mailformat.test(currentEmail)) {
         isValid = false;
