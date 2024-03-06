@@ -19,66 +19,70 @@ const inputImage = document.querySelector(".val-image");
 const inputCv = document.querySelector(".val-cv");
 
 //validazione immagine
-inputImage.addEventListener("change", function () {
-    const file = this.files[0]; // seleziono il file caricato
-    const maxSize = 400 * 1024; // 400 KB
-    // const maxSize = 4096 * 1024; // 4MB
+if (inputImage !== null) {
+    inputImage.addEventListener("change", function () {
+        const file = this.files[0]; // seleziono il file caricato
+        const maxSize = 400 * 1024; // 400 KB
+        // const maxSize = 4096 * 1024; // 4MB
 
-    if (file) {
-        //controllo tipo corretto
-        if (!file.type.startsWith("image/")) {
-            correctImage = false;
-            console.log(
-                "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
-            );
-        } else {
-            correctImage = true;
-        }
+        if (file) {
+            //controllo tipo corretto
+            if (!file.type.startsWith("image/")) {
+                correctImage = false;
+                console.log(
+                    "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
+                );
+            } else {
+                correctImage = true;
+            }
 
-        //controllo grandezza
-        if (file.size > maxSize) {
-            correctImage = false;
-            console.log("Immagine troppo grande, supera i 4MB - 4096KB");
-        } else {
-            correctImage = true;
+            //controllo grandezza
+            if (file.size > maxSize) {
+                correctImage = false;
+                console.log("Immagine troppo grande, supera i 4MB - 4096KB");
+            } else {
+                correctImage = true;
+            }
         }
-    }
-});
+    });
+}
 
 //validazione CV
-inputCv.addEventListener("change", function () {
-    const file = this.files[0]; // seleziono il file caricato
-    const maxSize = 400 * 1024; // 400 KB
-    // const maxSize = 4096 * 1024; // 4MB
-    const validTypes = [
-        "application/pdf",
-        "image/svg+xml",
-        "image/png",
-        "image/jpg",
-        "image/jpeg",
-        "image/webp",
-    ];
+if (inputCv !== null) {
+    inputCv.addEventListener("change", function () {
+        const file = this.files[0]; // seleziono il file caricato
+        const maxSize = 400 * 1024; // 400 KB
+        // const maxSize = 4096 * 1024; // 4MB
+        const validTypes = [
+            "application/pdf",
+            "image/svg+xml",
+            "image/png",
+            "image/jpg",
+            "image/jpeg",
+            "image/webp",
+        ];
 
-    if (file) {
-        //controllo tipo corretto
-        if (!validTypes.includes(file.type)) {
-            correctCv = false;
-            console.log(
-                "Inserire un file CV valido: pdf, jpg, jpeg, png, bmp, gif, svg, or webp"
-            );
-        } else {
-            correctCv = true;
-        }
+        if (file) {
+            //controllo tipo corretto
+            if (!validTypes.includes(file.type)) {
+                correctCv = false;
+                console.log(
+                    "Inserire un file CV valido: pdf, jpg, jpeg, png, bmp, gif, svg, or webp"
+                );
+            } else {
+                correctCv = true;
+            }
 
-        //controllo grandezza
-        if (file.size > maxSize) {
-            correctCv = false;
-            console.log("File troppo grande, supera i 4MB - 4096KB");
-        } else {
-            correctCv = true;
+            //controllo grandezza
+            if (file.size > maxSize) {
+                correctCv = false;
+                console.log("File troppo grande, supera i 4MB - 4096KB");
+            } else {
+                correctCv = true;
+            }
         }
-    }
-});
+    });
+}
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
