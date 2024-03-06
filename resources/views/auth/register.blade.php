@@ -79,10 +79,13 @@
                                         class="form-select  @error('specializations') is-invalid @enderror"
                                         aria-label="Default select example" name="specializations" required
                                         autocomplete="specializations" autofocus>
-                                        <option selected value="">Nessuna Specializzazione</option>
+                                        <option value="" @if (old('specializations') == '') selected @endif>Nessuna
+                                            Specializzazione</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
-                                            <option value="{{ $specialization->id }}">{{ $specialization->title }}
+                                            <option value="{{ $specialization->id }}"
+                                                @if (old('specializations') == $specialization->id) selected @endif>
+                                                {{ $specialization->title }}
                                             </option>
                                             }
                                         @endforeach

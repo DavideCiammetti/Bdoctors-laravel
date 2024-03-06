@@ -30,6 +30,8 @@ function validName() {
         console.log(
             "Il nome non è valido. Assicurati di inserire solo lettere."
         );
+    } else {
+        isValid = true;
     }
 
     if (currentName.length > 30) {
