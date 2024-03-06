@@ -110,7 +110,7 @@
                     {{-- Prestazioni  --}}
                     <div class="form-group pb-2">
                         <label for="services" class="mb-2">Prestazioni</label>
-                        <textarea type="text" name="services" id="services" class="form-control" cols="30" rows="10">{{ old('services', $user->doctor->services) }}</textarea>
+                        <textarea type="text" name="services" id="services" class="val-services form-control" cols="30" rows="10">{{ old('services', $user->doctor->services) }}</textarea>
                     </div>
 
                 </div>

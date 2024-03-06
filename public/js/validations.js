@@ -1,6 +1,5 @@
 console.log("ciao");
 let isValid = true;
-console.log(isValid);
 
 //elementi HTML input
 const inputName = document.querySelector(".val-name");
@@ -13,6 +12,8 @@ const inputPasswordLogin = document.querySelector(".val-password-login");
 const inputPhoneNumber = document.querySelector(".val-phone-number");
 const inputIsAvailable = document.querySelector(".val-avaiable");
 const inputNotAvailable = document.querySelector(".val-not-avaiable");
+const inputServices = document.querySelector(".val-services");
+
 /*
 const inputImage = document.querySelector(".val-image");
 const inputCv = document.querySelector(".val-cv");
@@ -20,9 +21,6 @@ const inputCv = document.querySelector(".val-cv");
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
-// inputButton.addEventListener("click", function (event) {
-//     validate(event);
-// });
 
 //Validazione Nome
 function validName() {
@@ -162,24 +160,39 @@ function validateAvailability() {
     }
 }
 
+//validazione prestazioni
+function validateServices() {
+    let currentServices = inputServices.innerHTML;
+
+    if (currentServices.length > 500) {
+        isValid = false;
+        console.log("Servizi troppo lunghi");
+    }
+}
+
 /*
 //validazione immagine profilo
 function validateImage() {
-    let currentImage = inputImage.files[0];
+    let currentImage = inputImage.files[0].value;
+    let currentImageValue = inputImage;
     const maxSize = 400 * 1024; // 400 KB
     // const maxSize = 4096 * 1024; // 4MB
+    console.log("file attualmente in input " + currentImage);
+    console.log("value del file in input " + currentImageValue);
 
-    if (!currentImage.type.startsWith("image/")) {
-        isValid = false;
-        console.log(
-            "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
-        );
-    }
+    // if (currentImage !== undefined || currentImage !== null) {
+    //     if (!currentImage.type.startsWith("image/")) {
+    //         isValid = false;
+    //         console.log(
+    //             "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
+    //         );
+    //     }
 
-    if (currentImage.size > maxSize) {
-        isValid = false;
-        console.log("Immagine troppo grande, supera i 4MB - 4096KB");
-    }
+    //     if (currentImage.size > maxSize) {
+    //         isValid = false;
+    //         console.log("Immagine troppo grande, supera i 4MB - 4096KB");
+    //     }
+    // }
 }
 
 //validazione cv
@@ -235,10 +248,15 @@ function validate(event) {
     if (inputIsAvailable !== null && inputNotAvailable !== null) {
         validateAvailability();
     }
+    if (inputServices !== null) {
+        validateServices();
+    }
+
     /*
     if (inputImage !== null) {
         validateImage();
     }
+   
     if (inputCv !== null) {
         validateCv();
     }
