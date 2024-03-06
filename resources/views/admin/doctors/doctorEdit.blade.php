@@ -3,7 +3,10 @@
 @section('content')
     <div id="doctor-edit" class="container pt-5">
         <div class="d-flex align-items-center justify-content-between mb-5">
-            <h1>Modifica Profilo</h1>
+            <div>
+                <h1>Modifica Profilo</h1>
+                <div>* I seguenti campi sono obbligatri</div>
+            </div>
         </div>
 
         <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST" enctype="multipart/form-data">
@@ -85,8 +88,8 @@
 
                     {{-- specializzazione  --}}
                     <div class="form-group mb-3">
-                        <label for="specializations"
-                            class="col-md-4 col-form-label text-md-right mb-2">{{ __('Specializzazioni') }}</label>
+                        <label for="specializations" class="col-md-4 col-form-label text-md-right mb-2">Specializzazioni
+                            *</label>
                         <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror"
                             aria-label="Default select example" name="specializations" required
                             autocomplete="specializations" autofocus>
@@ -149,8 +152,8 @@
                             <div class="input-group">
                                 <input
                                     class="val-image upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
-                                    type="file" id="doctor-img-edit" name="doctor_img"
-                                    value="{{ old('doctor_img', $user->doctor->doctor_img) }}">
+                                    type="file" id="doctor-img-edit" name="doctor_img" value="1">
+                                {{-- {{ old('doctor_img', $user->doctor->doctor_img) }} --}}
                             </div>
                         </div>
                     </div>

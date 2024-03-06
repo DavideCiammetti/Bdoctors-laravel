@@ -13,7 +13,6 @@ const inputPhoneNumber = document.querySelector(".val-phone-number");
 const inputIsAvailable = document.querySelector(".val-avaiable");
 const inputNotAvailable = document.querySelector(".val-not-avaiable");
 const inputServices = document.querySelector(".val-services");
-
 /*
 const inputImage = document.querySelector(".val-image");
 const inputCv = document.querySelector(".val-cv");
@@ -173,8 +172,8 @@ function validateServices() {
 /*
 //validazione immagine profilo
 function validateImage() {
-    let currentImage = inputImage.files[0].value;
-    let currentImageValue = inputImage;
+    let currentImage = inputImage.files[0];
+    let currentImageValue = inputImage.value;
     const maxSize = 400 * 1024; // 400 KB
     // const maxSize = 4096 * 1024; // 4MB
     console.log("file attualmente in input " + currentImage);
@@ -194,7 +193,8 @@ function validateImage() {
     //     }
     // }
 }
-
+*/
+/*
 //validazione cv
 function validateCv() {
     let currentCv = inputCv.files[0];
@@ -251,12 +251,12 @@ function validate(event) {
     if (inputServices !== null) {
         validateServices();
     }
-
     /*
     if (inputImage !== null) {
         validateImage();
     }
-   
+
+    
     if (inputCv !== null) {
         validateCv();
     }

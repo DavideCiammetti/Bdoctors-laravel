@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+
+                    <div class="card-header">Registrati</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -14,7 +15,7 @@
                             {{-- Nome --}}
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -33,7 +34,7 @@
                             {{-- Cognome --}}
                             <div class="mb-4 row">
                                 <label for="surnname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
@@ -52,7 +53,7 @@
                             {{-- Indirizzo --}}
                             <div class="mb-4 row">
                                 <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
@@ -71,14 +72,14 @@
                             {{-- Specializzazione --}}
                             <div class="mb-4 row">
                                 <label for="specializations"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione') }}*</label>
 
                                 <div class="col-md-6">
                                     <select id="specializations"
                                         class="form-select  @error('specializations') is-invalid @enderror"
                                         aria-label="Default select example" name="specializations" required
                                         autocomplete="specializations" autofocus>
-                                        <option selected value="">No specialization</option>
+                                        <option selected value="">Nessuna Specializzazione</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
                                             <option value="{{ $specialization->id }}">{{ $specialization->title }}
@@ -98,12 +99,12 @@
                             {{-- Email --}}
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="val-email form-control @error('email') is-invalid @enderror" name="email"
-                                        placeholder="e-mail@address.com" value="{{ old('email') }}" required
+                                        placeholder="mario@rossi.com" value="{{ old('email') }}" required
                                         autocomplete="email">
 
                                     @error('email')
@@ -135,7 +136,7 @@
                             {{-- Conferma Password --}}
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class=" val-confirm-password form-control"
@@ -147,12 +148,14 @@
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="send btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+                    <div class="card-footer">* I seguenti campi sono obbligatri</div>
                 </div>
             </div>
         </div>
