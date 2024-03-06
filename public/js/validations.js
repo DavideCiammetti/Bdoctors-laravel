@@ -1,4 +1,6 @@
+console.log("ciao");
 let isValid = true;
+console.log(isValid);
 
 //elementi HTML input
 const inputName = document.querySelector(".val-name");
@@ -11,33 +13,29 @@ const inputPasswordLogin = document.querySelector(".val-password-login");
 const inputPhoneNumber = document.querySelector(".val-phone-number");
 const inputIsAvailable = document.querySelector(".val-avaiable");
 const inputNotAvailable = document.querySelector(".val-not-avaiable");
+/*
 const inputImage = document.querySelector(".val-image");
 const inputCv = document.querySelector(".val-cv");
+*/
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
+// inputButton.addEventListener("click", function (event) {
+//     validate(event);
+// });
 
 //Validazione Nome
 function validName() {
     let currentName = inputName.value;
     const validRegex = /^[a-zA-Z\s]+$/;
-    if (validRegex.test(currentName)) {
-        isValid = true;
-        console.log("Il nome è valido.");
-    } else {
+    if (!validRegex.test(currentName)) {
         isValid = false;
-
         console.log(
             "Il nome non è valido. Assicurati di inserire solo lettere."
         );
     }
 
-    if (currentName.length < 30) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("Il nome è valido.");
-    } else {
+    if (currentName.length > 30) {
         isValid = false;
 
         console.log("Il nome è troppo lungo");
@@ -51,12 +49,7 @@ function validSurname() {
     const validRegex = /^[a-zA-Z\s]+$/;
 
     // controlli
-    if (validRegex.test(currentSurname)) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("Il cognome è valido.");
-    } else {
+    if (!validRegex.test(currentSurname)) {
         isValid = false;
 
         console.log(
@@ -64,12 +57,7 @@ function validSurname() {
         );
     }
 
-    if (currentSurname.length < 40) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("Il cognome è valido.");
-    } else {
+    if (currentSurname.length > 40) {
         isValid = false;
 
         console.log("Il cognome è troppo lungo");
@@ -79,27 +67,18 @@ function validSurname() {
 //funzione validazione indirizzo
 function validAddress() {
     let currentAddress = inputAddress.value;
-    const maxLength = 100;
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
-    let errorMessage = "indirizzo valido";
 
     // Controllo max length
-    if (currentAddress.length > maxLength) {
+    if (currentAddress.length > 100) {
         isValid = false;
-        errorMessage += "L'indirizzo supera i " + maxLength + " caratteri.";
+        console.log("Indirizzo troppo lungo");
     }
 
     //Controllo caratteri
     if (!validAddressRegex.test(currentAddress)) {
         isValid = false;
-        errorMessage += "L'indirizzo contiene caratteri non validi.";
-    }
-
-    //console log risultato
-    if (isValid) {
-        console.log("Indirizzo valido");
-    } else {
-        console.log(errorMessage);
+        console.log("L'indirizzo contiene caratteri non validi");
     }
 }
 
@@ -108,25 +87,15 @@ function validEmail() {
     let currentEmail = inputEmail.value;
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (mailformat.test(currentEmail)) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("La mail è valida.");
-    } else {
+    if (!mailformat.test(currentEmail)) {
         isValid = false;
         console.log("Inserire un formato email corretto");
     }
 
-    // if (currentEmail.length > 255) {
-    //     if (!isValid === false) {
-    //         isValid = true;
-    //     }
-    //     console.log("La è troppo lunga");
-    // } else {
-    //     isValid = false;
-    //     console.log("La mail è valida.");
-    // }
+    if (currentEmail.length > 255) {
+        isValid = false;
+        console.log("la mail è troppo lunga");
+    }
 }
 
 // validazione password
@@ -134,22 +103,12 @@ function validPassowrd() {
     let currentPassword = inputPassword.value;
     let currentConfirmPassword = inputConfirmPassword.value;
 
-    if (currentPassword === currentConfirmPassword) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("la password è valida");
-    } else {
+    if (currentPassword !== currentConfirmPassword) {
         console.log("la password deve essere uguale");
         isValid = false;
     }
 
-    if (currentPassword.length > 8 && currentConfirmPassword.length > 8) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("la password è valida");
-    } else {
+    if (currentPassword.length < 8 || currentConfirmPassword.length < 8) {
         console.log("la password deve avere almeno otto caratteri");
         isValid = false;
     }
@@ -159,12 +118,7 @@ function validPassowrd() {
 function validPasswordLogin() {
     let currentPasswordLogin = inputPasswordLogin.value;
 
-    if (currentPasswordLogin.length > 8) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("la password è valida");
-    } else {
+    if (currentPasswordLogin.length < 8) {
         console.log("la password deve avere almeno otto caratteri");
         isValid = false;
     }
@@ -175,15 +129,9 @@ function validPasswordLogin() {
 function validPhoneNumber() {
     // variabili
     let currentPhoneNumber = inputPhoneNumber.value;
-    const validRegex = /^[\d\+\/\- ]+$/;
-
+    const validRegex = /^[\d\+\/\-]*$/;
     // controlli
-    if (validRegex.test(currentPhoneNumber)) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("Il cellulare è valido.");
-    } else {
+    if (!validRegex.test(currentPhoneNumber)) {
         isValid = false;
 
         console.log(
@@ -191,12 +139,7 @@ function validPhoneNumber() {
         );
     }
 
-    if (currentPhoneNumber.length < 15) {
-        if (!isValid === false) {
-            isValid = true;
-        }
-        console.log("Il cellulare è valido.");
-    } else {
+    if (currentPhoneNumber.length > 15) {
         isValid = false;
 
         console.log("Il cellulare è troppo lungo");
@@ -219,6 +162,7 @@ function validateAvailability() {
     }
 }
 
+/*
 //validazione immagine profilo
 function validateImage() {
     let currentImage = inputImage.files[0];
@@ -240,7 +184,7 @@ function validateImage() {
 
 //validazione cv
 function validateCv() {
-    let currentCv = inputImage.files[0];
+    let currentCv = inputCv.files[0];
     const maxSize = 400 * 1024; // 400 KB
     // const maxSize = 4096 * 1024; // 4MB
     const validTypes = [
@@ -264,6 +208,7 @@ function validateCv() {
         console.log("File CV troppo grande, supera i 4MB - 4096KB");
     }
 }
+*/
 
 function validate(event) {
     if (inputName !== null) {
@@ -290,13 +235,16 @@ function validate(event) {
     if (inputIsAvailable !== null && inputNotAvailable !== null) {
         validateAvailability();
     }
+    /*
     if (inputImage !== null) {
         validateImage();
     }
     if (inputCv !== null) {
         validateCv();
     }
+    */
 
+    console.log(isValid);
     if (!isValid) {
         event.preventDefault();
         console.log("form bloccato");
