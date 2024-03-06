@@ -186,7 +186,8 @@
 
                             {{-- Input "Scegli file" --}}
                             <div class="input-group">
-                                <input class="upload-image my-input form-control @error('doctor_cv') is-invalid @enderror"
+                                <input
+                                    class="val-cv upload-image my-input form-control @error('doctor_cv') is-invalid @enderror"
                                     type="file" id="doctor-cv-edit" name="doctor_cv"
                                     value="{{ old('doctor_cv', $user->doctor->doctor_cv) }}">
                             </div>

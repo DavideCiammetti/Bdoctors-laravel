@@ -12,6 +12,7 @@ const inputPhoneNumber = document.querySelector(".val-phone-number");
 const inputIsAvailable = document.querySelector(".val-avaiable");
 const inputNotAvailable = document.querySelector(".val-not-avaiable");
 const inputImage = document.querySelector(".val-image");
+const inputCv = document.querySelector(".val-cv");
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
@@ -218,10 +219,11 @@ function validateAvailability() {
     }
 }
 
+//validazione immagine profilo
 function validateImage() {
     let currentImage = inputImage.files[0];
-    // const maxSize = 400 * 1024; // 400 KB
-    const maxSize = 4096 * 1024; // 4MB
+    const maxSize = 400 * 1024; // 400 KB
+    // const maxSize = 4096 * 1024; // 4MB
 
     if (!currentImage.type.startsWith("image/")) {
         isValid = false;
@@ -233,6 +235,33 @@ function validateImage() {
     if (currentImage.size > maxSize) {
         isValid = false;
         console.log("Immagine troppo grande, supera i 4MB - 4096KB");
+    }
+}
+
+//validazione cv
+function validateCv() {
+    let currentCv = inputImage.files[0];
+    const maxSize = 400 * 1024; // 400 KB
+    // const maxSize = 4096 * 1024; // 4MB
+    const validTypes = [
+        "application/pdf",
+        "image/svg+xml",
+        "image/png",
+        "image/jpg",
+        "image/jpeg",
+        "image/webp",
+    ];
+
+    if (!validTypes.includes(currentCv.type)) {
+        isValid = false;
+        console.log(
+            "Inserire un file CV valido: pdf, jpg, jpeg, png, bmp, gif, svg, or webp"
+        );
+    }
+
+    if (currentCv.size > maxSize) {
+        isValid = false;
+        console.log("File CV troppo grande, supera i 4MB - 4096KB");
     }
 }
 
@@ -263,6 +292,9 @@ function validate(event) {
     }
     if (inputImage !== null) {
         validateImage();
+    }
+    if (inputCv !== null) {
+        validateCv();
     }
 
     if (!isValid) {
