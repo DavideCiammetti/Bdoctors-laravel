@@ -22,16 +22,20 @@ const inputCv = document.querySelector(".val-cv");
 if (inputImage !== null) {
     inputImage.addEventListener("change", function () {
         const file = this.files[0]; // seleziono il file caricato
-        const maxSize = 400 * 1024; // 400 KB
-        // const maxSize = 4096 * 1024; // 4MB
+        // const maxSize = 400 * 1024; // 400 KB
+        const maxSize = 4096 * 1024; // 4MB
+
+        //messaggio errore
+        const errorMsg = document.querySelector(".image-error");
+        errorMsg.classList.add("d-none");
 
         if (file) {
             //controllo tipo corretto
             if (!file.type.startsWith("image/")) {
                 correctImage = false;
-                console.log(
-                    "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
-                );
+                errorMsg.classList.remove("d-none");
+                errorMsg.innerHTML =
+                    "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp";
             } else {
                 correctImage = true;
             }
@@ -39,7 +43,9 @@ if (inputImage !== null) {
             //controllo grandezza
             if (file.size > maxSize) {
                 correctImage = false;
-                console.log("Immagine troppo grande, supera i 4MB - 4096KB");
+                errorMsg.classList.remove("d-none");
+                errorMsg.innerHTML =
+                    "Immagine troppo grande, supera i 4MB - 4096KB";
             } else {
                 correctImage = true;
             }
@@ -51,8 +57,8 @@ if (inputImage !== null) {
 if (inputCv !== null) {
     inputCv.addEventListener("change", function () {
         const file = this.files[0]; // seleziono il file caricato
-        const maxSize = 400 * 1024; // 400 KB
-        // const maxSize = 4096 * 1024; // 4MB
+        // const maxSize = 400 * 1024; // 400 KB
+        const maxSize = 4096 * 1024; // 4MB
         const validTypes = [
             "application/pdf",
             "image/svg+xml",
@@ -62,13 +68,17 @@ if (inputCv !== null) {
             "image/webp",
         ];
 
+        //messaggio errore
+        const errorMsg = document.querySelector(".cv-error");
+        errorMsg.classList.add("d-none");
+
         if (file) {
             //controllo tipo corretto
             if (!validTypes.includes(file.type)) {
                 correctCv = false;
-                console.log(
-                    "Inserire un file CV valido: pdf, jpg, jpeg, png, bmp, gif, svg, or webp"
-                );
+                errorMsg.classList.remove("d-none");
+                errorMsg.innerHTML =
+                    "Inserire un file CV valido: pdf, jpg, jpeg, png, bmp, gif, svg, o webp";
             } else {
                 correctCv = true;
             }
@@ -76,7 +86,9 @@ if (inputCv !== null) {
             //controllo grandezza
             if (file.size > maxSize) {
                 correctCv = false;
-                console.log("File troppo grande, supera i 4MB - 4096KB");
+                errorMsg.classList.remove("d-none");
+                errorMsg.innerHTML =
+                    "File troppo grande, supera i 4MB - 4096KB";
             } else {
                 correctCv = true;
             }
@@ -92,22 +104,26 @@ function validName() {
     let currentName = inputName.value;
     const validRegex = /^[a-zA-Z\s]+$/;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".name-error");
+    errorMsg.classList.add("d-none");
+
     if (currentName.trim() === "") {
         isValid = false;
-        console.log("Questo campo è obbligatorio");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Questo campo è obbligatorio";
     }
 
     if (!validRegex.test(currentName)) {
         isValid = false;
-        console.log(
-            "Il nome non è valido. Assicurati di inserire solo lettere."
-        );
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il nome inserito non è valido";
     }
 
     if (currentName.length > 30) {
         isValid = false;
-
-        console.log("Il nome è troppo lungo");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il nome inserito non è troppo lungo";
     }
 }
 
@@ -117,24 +133,27 @@ function validSurname() {
     let currentSurname = inputSurname.value;
     const validRegex = /^[a-zA-Z\s]+$/;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".surname-error");
+    errorMsg.classList.add("d-none");
+
     if (currentSurname.trim() === "") {
         isValid = false;
-        console.log("Questo campo è obbligatorio");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Questo campo è obbligatorio";
     }
 
     // controlli
     if (!validRegex.test(currentSurname)) {
         isValid = false;
-
-        console.log(
-            "Il cognome non è valido. Assicurati di inserire solo lettere."
-        );
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il cognome inserito non è valido";
     }
 
     if (currentSurname.length > 40) {
         isValid = false;
-
-        console.log("Il cognome è troppo lungo");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il cognome è troppo lungo";
     }
 }
 
@@ -143,21 +162,28 @@ function validAddress() {
     let currentAddress = inputAddress.value;
     const validAddressRegex = /^[a-zA-Z0-9\s,.-/()\*]+$/;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".address-error");
+    errorMsg.classList.add("d-none");
+
     if (currentAddress.trim() === "") {
         isValid = false;
-        console.log("Questo campo è obbligatorio");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Questo campo è obbligatorio";
     }
 
     // Controllo max length
     if (currentAddress.length > 100) {
         isValid = false;
-        console.log("Indirizzo troppo lungo");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Indirizzo troppo lungo";
     }
 
     //Controllo caratteri
     if (!validAddressRegex.test(currentAddress)) {
         isValid = false;
-        console.log("L'indirizzo contiene caratteri non validi");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "L'indirizzo contiene caratteri non validi";
     }
 }
 
@@ -166,19 +192,26 @@ function validEmail() {
     let currentEmail = inputEmail.value;
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".email-error");
+    errorMsg.classList.add("d-none");
+
     if (currentEmail.trim() === "") {
         isValid = false;
-        console.log("Questo campo è obbligatorio");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Questo campo è obbligatorio";
     }
 
     if (!mailformat.test(currentEmail)) {
         isValid = false;
-        console.log("Inserire un formato email corretto");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Inserire un formato email corretto";
     }
 
     if (currentEmail.length > 255) {
         isValid = false;
-        console.log("la mail è troppo lunga");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "La mail è troppo lunga";
     }
 }
 
@@ -187,14 +220,20 @@ function validPassowrd() {
     let currentPassword = inputPassword.value;
     let currentConfirmPassword = inputConfirmPassword.value;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".password-error");
+    errorMsg.classList.add("d-none");
+
     if (currentPassword !== currentConfirmPassword) {
-        console.log("la password deve essere uguale");
         isValid = false;
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "La password deve essere uguale";
     }
 
     if (currentPassword.length < 8 || currentConfirmPassword.length < 8) {
-        console.log("la password deve avere almeno otto caratteri");
         isValid = false;
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "La password deve avere almeno otto caratteri";
     }
 }
 
@@ -202,9 +241,14 @@ function validPassowrd() {
 function validPasswordLogin() {
     let currentPasswordLogin = inputPasswordLogin.value;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".password-login-error");
+    errorMsg.classList.add("d-none");
+
     if (currentPasswordLogin.length < 8) {
-        console.log("la password deve avere almeno otto caratteri");
         isValid = false;
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "La passwordd deve avere almeno otto caratteri";
     }
 }
 
@@ -214,19 +258,22 @@ function validPhoneNumber() {
     // variabili
     let currentPhoneNumber = inputPhoneNumber.value;
     const validRegex = /^[\d\+\/\-]*$/;
+
+    //messaggio errore
+    const errorMsg = document.querySelector(".phone-number-error");
+    errorMsg.classList.add("d-none");
+
     // controlli
     if (!validRegex.test(currentPhoneNumber)) {
         isValid = false;
-
-        console.log(
-            "Il cellulare non è valido. Assicurati di solo numeri o +."
-        );
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il cellulare non è valido";
     }
 
     if (currentPhoneNumber.length > 15) {
         isValid = false;
-
-        console.log("Il cellulare è troppo lungo");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Il cellulare è troppo lungo";
     }
 }
 
@@ -235,14 +282,20 @@ function validateAvailability() {
     let currentIsAvailable = inputIsAvailable.value;
     let currentNotAvailable = inputNotAvailable.value;
 
+    //messaggio errore
+    const errorMsg = document.querySelector(".avaiable-error");
+    errorMsg.classList.add("d-none");
+
     if (currentIsAvailable !== "1") {
         isValid = false;
-        console.log("valore check 1 non valido");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "valore non valido";
     }
 
     if (currentNotAvailable !== "0") {
         isValid = false;
-        console.log("valore check 0 non valido");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "valore non valido";
     }
 }
 
@@ -250,9 +303,14 @@ function validateAvailability() {
 function validateServices() {
     let currentServices = inputServices.innerHTML;
 
-    if (currentServices.length > 500) {
+    //messaggio errore
+    const errorMsg = document.querySelector(".services-error");
+    errorMsg.classList.add("d-none");
+
+    if (currentServices.length > 5) {
         isValid = false;
-        console.log("Servizi troppo lunghi");
+        errorMsg.classList.remove("d-none");
+        errorMsg.innerHTML = "Campo troppo lungo";
     }
 }
 

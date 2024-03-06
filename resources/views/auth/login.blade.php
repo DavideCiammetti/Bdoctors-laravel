@@ -73,6 +73,11 @@
                             </div>
                         </form>
                     </div>
+
+                    <div class="card-footer">
+                        <div class="email-error text-warning"></div>
+                        <div class="password-login-error text-warning"></div>
+                    </div>
                 </div>
             </div>
         </div>

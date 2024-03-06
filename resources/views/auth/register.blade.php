@@ -158,7 +158,14 @@
                         </form>
                     </div>
 
-                    <div class="card-footer">* I seguenti campi sono obbligatri</div>
+                    <div class="card-footer">
+                        <div>* I seguenti campi sono obbligatri</div>
+                        <div class="name-error text-warning"></div>
+                        <div class="surname-error text-warning"></div>
+                        <div class="address-error text-warning"></div>
+                        <div class="email-error text-warning"></div>
+                        <div class="password-error text-warning"></div>
+                    </div>
                 </div>
             </div>
         </div>
