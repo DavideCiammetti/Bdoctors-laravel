@@ -20,47 +20,63 @@
 
                     {{-- nome  --}}
                     <div class="form-group mb-3">
-                        <label for="name" class="mb-2">Nome *</label>
+                        <label for="name" class="mb-2 form-label d-flex justify-content-between ">
+                            Nome *
+                            @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
                         <input type="text" name="name" id="name" class="val-name form-control"
                             value="{{ old('name', $user->name) }}">
-                        @error('name')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+
                     </div>
 
                     {{-- cognome  --}}
                     <div class="form-group mb-3">
-                        <label for="surname" class="mb-2">Cognome *</label>
+                        <label for="surname" class="mb-2 form-label d-flex justify-content-between ">
+                            Cognome *
+                            @error('surname')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
                         <input type="text" name="surname" id="surname" class="val-surname form-control"
                             value="{{ old('surname', $user->surname) }}">
-                        @error('surname')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+
                     </div>
 
                     {{-- indirizzo  --}}
                     <div class="form-group mb-3">
-                        <label for="address" class="mb-2">Indirizzo *</label>
+                        <label for="address" class="mb-2 form-label d-flex justify-content-between ">
+                            Indirizzo *
+                            @error('address')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
                         <input type="text" name="address" id="address" class="val-address form-control"
                             value="{{ old('address', $user->doctor->address) }}">
-                        @error('address')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+
                     </div>
 
                     {{-- numero di telefono  --}}
                     <div class="form-group mb-3">
-                        <label for="phone_number" class="mb-2">Numero di telefono</label>
+                        <label for="phone_number" class="mb-2 form-label d-flex justify-content-between ">
+                            Numero di telefono
+                            @error('phone_number')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
                         <input type="text" name="phone_number" id="phone_number" class="val-phone-number form-control"
                             value="{{ old('phone_number', $user->doctor->phone_number) }}">
-                        @error('phone_number')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                     </div>
 
                     {{-- disponibilità --}}
                     <div class="form-group mb-2">
-                        <label class="mb-2">Disponibilità</label>
+                        <label class="mb-2 form-label d-flex justify-content-between ">
+                            Disponibilità
+                            @error('is_avaiable')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
                         <div class="form-check">
                             <input type="radio" id="available" name="is_available" value="1"
                                 class="val-avaiable form-check-input"
@@ -75,21 +91,17 @@
                         </div>
                     </div>
 
-                    {{-- disponibilità 
-                    <div class="form-group pb-2">
-                        <label for="is_available">Disponibilità</label>
-                        <select name="is_available" id="is_available" class="form-control">
-                            <option value="1" {{ $user->doctor->is_available == 1 ? 'selected' : '' }}>Available
-                            </option>
-                            <option value="0" {{ $user->doctor->is_available == 0 ? 'selected' : '' }}>Not Available
-                            </option>
-                        </select>
-                    </div> --}}
-
                     {{-- specializzazione  --}}
                     <div class="form-group mb-3">
-                        <label for="specializations" class="col-md-4 col-form-label text-md-right mb-2">Specializzazioni
-                            *</label>
+                        <label for="specializations"
+                            class="col-md-4 col-form-label text-md-right mb-2 d-flex justify-content-between">
+                            Specializzazioni *
+                            @error('specializations')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
                         <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror"
                             aria-label="Default select example" name="specializations" required
                             autocomplete="specializations" autofocus>
@@ -103,16 +115,19 @@
                             @endforeach
                         </select>
 
-                        @error('specializations')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     </div>
 
                     {{-- Prestazioni  --}}
                     <div class="form-group pb-2">
-                        <label for="services" class="mb-2">Prestazioni</label>
+                        <label for="services" class="mb-2 d-flex justify-content-between">
+                            Prestazioni
+                            @error('services')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
                         <textarea type="text" name="services" id="services" class="val-services form-control" cols="30" rows="10">{{ old('services', $user->doctor->services) }}</textarea>
                     </div>
 
@@ -141,10 +156,6 @@
                                     @else
                                         Aggiungi Immagine
                                     @endif
-                                    {{-- errore url immagine --}}
-                                    @error('doctor_img')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </label>
                             </div>
 
@@ -156,6 +167,10 @@
                                 {{-- {{ old('doctor_img', $user->doctor->doctor_img) }} --}}
                             </div>
                         </div>
+                        {{-- errore url immagine --}}
+                        @error('doctor_img')
+                            <div class="card-footer text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
 
@@ -180,10 +195,6 @@
                                     @else
                                         Aggiungi un CV
                                     @endif
-                                    {{-- errore url immagine --}}
-                                    @error('doctor_cv')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </label>
                             </div>
 
@@ -195,6 +206,11 @@
                                     value="{{ old('doctor_cv', $user->doctor->doctor_cv) }}">
                             </div>
                         </div>
+
+                        {{-- errore url immagine --}}
+                        @error('doctor_img')
+                            <div class="card-footer text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
