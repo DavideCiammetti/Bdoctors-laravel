@@ -16,3 +16,15 @@ main {
         color: $green-800;
     }
 }
+
+//elementi input
+.my-input {
+    border-width: 1px;
+    box-shadow: none;
+    outline: none;
+    &:focus {
+        box-shadow: none;
+        outline: none;
+        border: 1px solid $green-500;
+    }
+}

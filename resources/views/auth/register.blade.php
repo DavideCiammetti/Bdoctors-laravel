@@ -19,9 +19,9 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="val-name form-control @error('name') is-invalid @enderror" name="name"
-                                        placeholder="Mario" value="{{ old('name') }}" required autocomplete="name"
-                                        autofocus>
+                                        class="val-name form-control my-input @error('name') is-invalid @enderror"
+                                        name="name" placeholder="Mario" value="{{ old('name') }}" required
+                                        autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
-                                        class="val-surname form-control @error('surname') is-invalid @enderror"
+                                        class="val-surname form-control my-input @error('surname') is-invalid @enderror"
                                         name="surname" placeholder="Rossi" value="{{ old('surname') }}" required
                                         autocomplete="surname" autofocus>
 
@@ -57,7 +57,7 @@
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                        class="val-address form-control @error('address') is-invalid @enderror"
+                                        class="val-address form-control my-input @error('address') is-invalid @enderror"
                                         name="address" placeholder="Via Roma" value="{{ old('address') }}" required
                                         autocomplete="address" autofocus>
 
@@ -76,7 +76,7 @@
 
                                 <div class="col-md-6">
                                     <select id="specializations"
-                                        class="form-select  @error('specializations') is-invalid @enderror"
+                                        class="form-select my-input  @error('specializations') is-invalid @enderror"
                                         aria-label="Default select example" name="specializations" required
                                         autocomplete="specializations" autofocus>
                                         <option value="" @if (old('specializations') == '') selected @endif>Nessuna
@@ -106,8 +106,8 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="val-email form-control @error('email') is-invalid @enderror" name="email"
-                                        placeholder="mario@rossi.com" value="{{ old('email') }}" required
+                                        class="val-email form-control my-input @error('email') is-invalid @enderror"
+                                        name="email" placeholder="mario@rossi.com" value="{{ old('email') }}" required
                                         autocomplete="email">
 
                                     @error('email')
@@ -125,7 +125,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="val-password form-control @error('password') is-invalid @enderror"
+                                        class="val-password form-control my-input @error('password') is-invalid @enderror"
                                         name="password" required autocomplete="new-password">
 
                                     @error('password')
@@ -142,8 +142,9 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}*</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class=" val-confirm-password form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password"
+                                        class=" val-confirm-password my-input form-control" name="password_confirmation"
+                                        required autocomplete="new-password">
                                 </div>
                             </div>
 

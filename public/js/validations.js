@@ -307,7 +307,7 @@ function validateServices() {
     const errorMsg = document.querySelector(".services-error");
     errorMsg.classList.add("d-none");
 
-    if (currentServices.length > 5) {
+    if (currentServices.length > 500) {
         isValid = false;
         errorMsg.classList.remove("d-none");
         errorMsg.innerHTML = "Campo troppo lungo";

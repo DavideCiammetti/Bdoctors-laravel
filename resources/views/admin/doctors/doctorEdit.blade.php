@@ -27,7 +27,7 @@
                             @enderror
                             <div class="name-error text-warning"></div>
                         </label>
-                        <input type="text" name="name" id="name" class="val-name form-control"
+                        <input type="text" name="name" id="name" class="val-name form-control my-input"
                             value="{{ old('name', $user->name) }}">
 
                     </div>
@@ -41,7 +41,7 @@
                             @enderror
                             <div class="surname-error text-warning"></div>
                         </label>
-                        <input type="text" name="surname" id="surname" class="val-surname form-control"
+                        <input type="text" name="surname" id="surname" class="val-surname form-control my-input"
                             value="{{ old('surname', $user->surname) }}">
                     </div>
 
@@ -54,7 +54,7 @@
                             @enderror
                             <div class="address-error text-warning"></div>
                         </label>
-                        <input type="text" name="address" id="address" class="val-address form-control"
+                        <input type="text" name="address" id="address" class="val-address form-control my-input"
                             value="{{ old('address', $user->doctor->address) }}">
 
                     </div>
@@ -69,7 +69,8 @@
                             <div class="phone-number-error text-warning"></div>
 
                         </label>
-                        <input type="text" name="phone_number" id="phone_number" class="val-phone-number form-control"
+                        <input type="text" name="phone_number" id="phone_number"
+                            class="val-phone-number form-control my-input"
                             value="{{ old('phone_number', $user->doctor->phone_number) }}">
                     </div>
 
@@ -85,13 +86,13 @@
                         </label>
                         <div class="form-check">
                             <input type="radio" id="available" name="is_available" value="1"
-                                class="val-avaiable form-check-input"
+                                class="val-avaiable form-check-input my-input"
                                 {{ $user->doctor->is_available == 1 ? 'checked' : '' }}>
                             <label for="available" class="form-check-label">Disponibile</label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="not_available" name="is_available" value="0"
-                                class="val-not-avaiable form-check-input"
+                                class="val-not-avaiable form-check-input my-input"
                                 {{ $user->doctor->is_available == 0 ? 'checked' : '' }}>
                             <label for="not_available" class="form-check-label">Non Disponibile</label>
                         </div>
@@ -106,7 +107,8 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </label>
-                        <select id="specializations" class="form-select  @error('specializations') is-invalid @enderror"
+                        <select id="specializations"
+                            class="form-select my-input  @error('specializations') is-invalid @enderror"
                             aria-label="Default select example" name="specializations" required
                             autocomplete="specializations" autofocus>
                             <option selected value="">Nessuna Specializzazione</option>
@@ -131,7 +133,8 @@
                             @enderror
                             <div class="services-error text-warning"></div>
                         </label>
-                        <textarea type="text" name="services" id="services" class="val-services form-control" cols="30" rows="10">{{ old('services', $user->doctor->services) }}</textarea>
+                        <textarea type="text" name="services" id="services" class="val-services form-control my-input" cols="30"
+                            rows="10">{{ old('services', $user->doctor->services) }}</textarea>
                     </div>
 
                 </div>
