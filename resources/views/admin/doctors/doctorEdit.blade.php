@@ -120,9 +120,7 @@
 
                     {{-- Foto Profilo  --}}
                     <div class="card mb-4">
-
-                        <div class="card-header">Foto</div>
-
+                        <div class="card-header">Foto Profilo</div>
                         <div class="card-body">
                             {{-- Immagine --}}
                             <div class="mb-3">
@@ -149,7 +147,8 @@
 
                             {{-- Input "Scegli file" --}}
                             <div class="input-group">
-                                <input class="upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
+                                <input
+                                    class="val-image upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
                                     type="file" id="doctor-img-edit" name="doctor_img"
                                     value="{{ old('doctor_img', $user->doctor->doctor_img) }}">
                             </div>

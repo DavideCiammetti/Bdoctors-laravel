@@ -11,6 +11,7 @@ const inputPasswordLogin = document.querySelector(".val-password-login");
 const inputPhoneNumber = document.querySelector(".val-phone-number");
 const inputIsAvailable = document.querySelector(".val-avaiable");
 const inputNotAvailable = document.querySelector(".val-not-avaiable");
+const inputImage = document.querySelector(".val-image");
 
 const inputButton = document.querySelector(".send");
 inputButton.addEventListener("click", validate, isValid);
@@ -217,6 +218,24 @@ function validateAvailability() {
     }
 }
 
+function validateImage() {
+    let currentImage = inputImage.files[0];
+    // const maxSize = 400 * 1024; // 400 KB
+    const maxSize = 4096 * 1024; // 4MB
+
+    if (!currentImage.type.startsWith("image/")) {
+        isValid = false;
+        console.log(
+            "Inserire un file Immagine valido: jpg, jpeg, png, bmp, gif, svg, or webp"
+        );
+    }
+
+    if (currentImage.size > maxSize) {
+        isValid = false;
+        console.log("Immagine troppo grande, supera i 4MB - 4096KB");
+    }
+}
+
 function validate(event) {
     if (inputName !== null) {
         validName();
@@ -241,6 +260,9 @@ function validate(event) {
     }
     if (inputIsAvailable !== null && inputNotAvailable !== null) {
         validateAvailability();
+    }
+    if (inputImage !== null) {
+        validateImage();
     }
 
     if (!isValid) {
