@@ -122,6 +122,42 @@
                         </select>
                     </div> --}}
 
+                    {{-- specializzazione --}}
+                    <div class="mb-3">
+                        <label class="form-label d-flex justify-content-between ">
+                            Specializzazioni
+                            {{-- errore --}}
+                            @error('specializations')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </label>
+
+                        <div class="input-group">
+                            @foreach ($specializations as $specialization)
+                                <div class="form-check form-check-inline">
+                                    @if ($errors->any())
+                                        <input class="my-input form-check-input" type="checkbox"
+                                            id="specialization-{{ $specialization->id }}"
+                                            value="{{ $specialization->id }}" name="specializations[]"
+                                            {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                        {{-- mando un array --}}
+                                        <label class="form-check-label"
+                                            for="specialization-{{ $specialization->id }}">{{ $specialization->title }}</label>
+                                    @else
+                                        <input class="my-input form-check-input" type="checkbox"
+                                            id="specialization-{{ $specialization->id }}"
+                                            value="{{ $specialization->id }}" name="specializations[]"
+                                            {{ $doctor->specializations->contains($specialization->id) ? 'checked' : '' }}>
+                                        {{-- mando un array --}}
+                                        <label class="form-check-label"
+                                            for="specialization-{{ $specialization->id }}">{{ $specialization->title }}</label>
+                                    @endif
+
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                     {{-- Prestazioni  --}}
                     <div class="form-group pb-2">
                         <label for="services" class="mb-2 d-flex justify-content-between">

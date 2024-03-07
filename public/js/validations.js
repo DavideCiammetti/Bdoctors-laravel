@@ -263,7 +263,7 @@ function validPasswordLogin() {
 function validPhoneNumber() {
     // variabili
     let currentPhoneNumber = inputPhoneNumber.value;
-    const validRegex = /^[\d\+\/\-]*$/;
+    const validRegex = /^[\d\+\/\- ]*$/;
 
     //messaggio errore
     const errorMsg = document.querySelector(".phone-number-error");
