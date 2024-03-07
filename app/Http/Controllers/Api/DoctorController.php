@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Doctor;
+use App\Models\Guest\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -16,14 +18,18 @@ class DoctorController extends Controller
     {
         // key
         request()->validate([
-            'key' => ['nullable', 'string', 'min:3']
+            'key' => ['nullable', 'string', 'min:3'],
         ]);
 
-        // condizione per ottenere i dottori
         if (request()->key) {
-            $doctors = Doctor::with('user', 'specializations')
+            $doctors = Doctor::with('user', 'specializations', 'reviews', 'sponsorships', 'votes')
                 ->whereHas('specializations', function ($customQuery) {
-                    $customQuery->where('title', 'LIKE', '%' . request()->key . '%'); // cerca la key nel campo title tabella specializzazione
+                    $customQuery->where('title', 'LIKE', '%' . request()->key . '%');
+                })
+                ->orWhereHas('user', function ($customQuery) {
+                    $customQuery->where('name', 'LIKE', '%' . request()->key . '%');
+                }) ->orWhereHas('user', function ($customQuery) {
+                    $customQuery->where('surname', 'LIKE', '%' . request()->key . '%');
                 })
                 ->get(); // tutti i dottori filtrati per specializzazione con relazione tabella user - specializzazione 
         } else {
@@ -33,13 +39,13 @@ class DoctorController extends Controller
         // risposta json
         return response()->json([
             'status' => true,
-            'results' => $doctors
-        ]);
+            'results' => $doctors,
+        ]);        
     }
 
 
 
-    
+
     /**
      * Pagina di dettaglio del dottore tramite slug
      */
