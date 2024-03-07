@@ -13,10 +13,10 @@
             @csrf
             @method('PUT')
 
-            <div class="row">
+            <div class="row justify-content-between ">
 
                 {{-- Campi testuali --}}
-                <div class="col-md-8">
+                <div class="col-md-7">
 
                     {{-- nome  --}}
                     <div class="form-group mb-3">
@@ -174,7 +174,7 @@
                 </div>
 
                 {{-- Foto e CV --}}
-                <div class="col-md-4">
+                <div class="col-md-4 mt-4 d-flex flex-column align-items-between justify-content-center ">
 
                     {{-- Foto Profilo  --}}
                     <div class="card mb-4">
@@ -216,7 +216,7 @@
 
 
                     {{-- CV --}}
-                    <div class="card mb-4 cv">
+                    <div class="card mb-4 ">
 
                         <div class="card-header">CV</div>
 
