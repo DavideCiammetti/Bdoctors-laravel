@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+
     /**
      * Index con ricerca per singola specializzazione
      */
@@ -15,7 +16,7 @@ class DoctorController extends Controller
     {
         // key
         request()->validate([
-            'key' => ['nullable']
+            'key' => ['nullable', 'string', 'min:3']
         ]);
 
         // condizione per ottenere i dottori
@@ -36,6 +37,9 @@ class DoctorController extends Controller
         ]);
     }
 
+
+
+    
     /**
      * Pagina di dettaglio del dottore tramite slug
      */
