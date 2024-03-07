@@ -6,6 +6,27 @@
 #admin-header {
     background-color: $green-600;
     height: 4.375rem;
+
+    #user-icon {
+        overflow: hidden;
+        background-color: $green-600;
+        border: none;
+
+        .fa-user {
+            background-color: white;
+            color: $green-800;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
 }
 
 #sidebarMenu {
