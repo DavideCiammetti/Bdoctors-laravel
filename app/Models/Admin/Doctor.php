@@ -8,10 +8,12 @@ use App\Models\Guest\Vote;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Doctor extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $guarded = ['slug', 'doctor_img', 'doctor_cv', 'specializations'];
 
@@ -42,7 +44,7 @@ class Doctor extends Model
     // collegamento sponsorships
     public function sponsorships()
     {
-        return $this->belongsToMany(Sponsoriship::class);
+        return $this->belongsToMany(Sponsorship::class);
     }
 
     // collegamento votes

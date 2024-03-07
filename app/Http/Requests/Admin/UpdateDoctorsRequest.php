@@ -24,17 +24,18 @@ class UpdateDoctorsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slug'=> ['nullable'],
-            'doctor_img'=> ['nullable','image', 'max:4096'],
-            'user_id'=> ['nullable', 'exists:users,id'],
-            'specializations'=> ['required','exists:specializations,id',Rule::in($this->SpecializationsId())],
+            'slug' => ['nullable'],
+            'doctor_img' => ['nullable', 'image', 'max:4096'],
+            'user_id' => ['nullable', 'exists:users,id'],
+            'specializations' => 'required|exists:specializations,id',
+            // 'specializations'=> ['required','exists:specializations,id',Rule::in($this->SpecializationsId())],
             'doctor_cv' => ['nullable', 'mimes:pdf,svg,png,jpg,jpeg,webp', 'max:4096'],
-            'is_available' => ['nullable',Rule::in('0','1')],
+            'is_available' => ['nullable', Rule::in('0', '1')],
             'services' => ['nullable'],
             'address' => ['max:100', 'required'],
-            'name' => ['max:30', 'required','regex:/^[a-zA-Z\-\,\.\s]+$/'],
-            'surname' => ['max:40', 'required','regex:/^[a-zA-Z\-\,\.\s]+$/'],
-            'phone_number' => ['max:15', 'nullable','string','regex:/^[\d\+\/\- ]+$/'],
+            'name' => ['max:30', 'required', 'regex:/^[a-zA-Z\-\,\.\s]+$/'],
+            'surname' => ['max:40', 'required', 'regex:/^[a-zA-Z\-\,\.\s]+$/'],
+            'phone_number' => ['max:15', 'nullable', 'string', 'regex:/^[\d\+\/\- ]+$/'],
         ];
     }
 
@@ -46,8 +47,9 @@ class UpdateDoctorsRequest extends FormRequest
         ];
     }
 
-    public function SpecializationsId(){
+    public function SpecializationsId()
+    {
         $specializations = Specialization::all();
-        return $specializationIds = Specialization::pluck('id')->toArray(); 
+        return $specializationIds = Specialization::pluck('id')->toArray();
     }
 }

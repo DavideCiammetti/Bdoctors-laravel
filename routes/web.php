@@ -27,14 +27,13 @@ Route::get('/', function () {
 
 
 
-Route::middleware(['auth','verified'])->name('admin.')->prefix('admin')->group(function(){
-    
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
+
     Route::get('/', [DashboardControllers::class, 'index'])->name('dashboard');
     // route resource controller doctors
-    Route::resource('doctors',DoctorsController::class);
+    Route::resource('doctors', DoctorsController::class);
     // cancella account
     Route::post('user', [UserController::class, 'destroy'])->name('user.destroy');
-  
 });
 
 
@@ -45,4 +44,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

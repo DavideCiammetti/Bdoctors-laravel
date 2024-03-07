@@ -17,8 +17,8 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        class="val-email form-control my-input @error('email') is-invalid @enderror"
+                                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -34,8 +34,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
+                                        class="val-password-login form-control my-input @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="send btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
 
@@ -72,6 +72,11 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="email-error text-warning"></div>
+                        <div class="password-login-error text-warning"></div>
                     </div>
                 </div>
             </div>

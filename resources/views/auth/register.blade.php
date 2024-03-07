@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+
+                    <div class="card-header">Registrati</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
@@ -14,13 +15,13 @@
                             {{-- Nome --}}
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
-                                        class="val-name form-control @error('name') is-invalid @enderror" name="name"
-                                        placeholder="Mario" value="{{ old('name') }}" required autocomplete="name"
-                                        autofocus>
+                                        class="val-name form-control my-input @error('name') is-invalid @enderror"
+                                        name="name" placeholder="Mario" value="{{ old('name') }}" required
+                                        autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -33,13 +34,13 @@
                             {{-- Cognome --}}
                             <div class="mb-4 row">
                                 <label for="surnname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        placeholder="Rossi" value="{{ old('surname') }}" required autocomplete="surname"
-                                        autofocus>
+                                        class="val-surname form-control my-input @error('surname') is-invalid @enderror"
+                                        name="surname" placeholder="Rossi" value="{{ old('surname') }}" required
+                                        autocomplete="surname" autofocus>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -52,13 +53,13 @@
                             {{-- Indirizzo --}}
                             <div class="mb-4 row">
                                 <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Address') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
-                                        class="form-control @error('address') is-invalid @enderror" name="address"
-                                        placeholder="Via Roma" value="{{ old('address') }}" required autocomplete="address"
-                                        autofocus>
+                                        class="val-address form-control my-input @error('address') is-invalid @enderror"
+                                        name="address" placeholder="Via Roma" value="{{ old('address') }}" required
+                                        autocomplete="address" autofocus>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -71,17 +72,20 @@
                             {{-- Specializzazione --}}
                             <div class="mb-4 row">
                                 <label for="specializations"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Specialization') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazione') }}*</label>
 
                                 <div class="col-md-6">
                                     <select id="specializations"
-                                        class="form-select  @error('specializations') is-invalid @enderror"
+                                        class="form-select my-input  @error('specializations') is-invalid @enderror"
                                         aria-label="Default select example" name="specializations" required
                                         autocomplete="specializations" autofocus>
-                                        <option selected value="">No specialization</option>
+                                        <option value="" @if (old('specializations') == '') selected @endif>Nessuna
+                                            Specializzazione</option>
                                         @foreach ($specializations as $key => $specialization)
                                             {
-                                            <option value="{{ $specialization->id }}">{{ $specialization->title }}
+                                            <option value="{{ $specialization->id }}"
+                                                @if (old('specializations') == $specialization->id) selected @endif>
+                                                {{ $specialization->title }}
                                             </option>
                                             }
                                         @endforeach
@@ -98,12 +102,12 @@
                             {{-- Email --}}
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}*</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        placeholder="e-mail@address.com" value="{{ old('email') }}" required
+                                        class="val-email form-control my-input @error('email') is-invalid @enderror"
+                                        name="email" placeholder="mario@rossi.com" value="{{ old('email') }}" required
                                         autocomplete="email">
 
                                     @error('email')
@@ -121,8 +125,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        class="val-password form-control my-input @error('password') is-invalid @enderror"
+                                        name="password" required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -135,11 +139,12 @@
                             {{-- Conferma Password --}}
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}*</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}*</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password"
+                                        class=" val-confirm-password my-input form-control" name="password_confirmation"
+                                        required autocomplete="new-password">
                                 </div>
                             </div>
 
@@ -147,11 +152,20 @@
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="send btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="card-footer">
+                        <div>* I seguenti campi sono obbligatri</div>
+                        <div class="name-error text-warning"></div>
+                        <div class="surname-error text-warning"></div>
+                        <div class="address-error text-warning"></div>
+                        <div class="email-error text-warning"></div>
+                        <div class="password-error text-warning"></div>
                     </div>
                 </div>
             </div>

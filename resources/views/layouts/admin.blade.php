@@ -44,7 +44,7 @@
                     <a class="nav-link text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('Esci') }}
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -56,7 +56,7 @@
                     <a class="nav-link text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('destroy').submit();">
-                        {{ __('Delete') }}
+                        {{ __('Elimina Account') }}
                     </a>
                     <form id="destroy" action="{{ route('admin.user.destroy') }}" method="POST" class="d-none">
                         @csrf
@@ -82,7 +82,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.show' ? 'current-route' : '' }}"
                                     href="{{ route('admin.doctors.show', $doctor->id) }}">
-                                    <i class="fa-solid fa-circle-info fa-lg fa-fw"></i> Your Details
+                                    <i class="fa-solid fa-circle-info fa-lg fa-fw"></i> Il Tuo Profilo
                                 </a>
                             </li>
 
@@ -90,7 +90,7 @@
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'current-route' : '' }}"
                                     href="{{ route('admin.doctors.edit', $doctor->id) }}">
-                                    <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i> Edit Profile
+                                    <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i> Modifica Profilo
                                 </a>
                             </li>
                         </ul>
@@ -104,6 +104,14 @@
         </div>
 
     </div>
+
+
+    @if (Route::currentRouteName() == 'admin.doctors.edit')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
+
+
 </body>
 
 </html>

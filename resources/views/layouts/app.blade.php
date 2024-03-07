@@ -57,11 +57,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -94,6 +94,16 @@
             @yield('content')
         </main>
     </div>
+
+    @if (Route::currentRouteName() == 'register')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
+
+    @if (Route::currentRouteName() == 'login')
+        <script src="{{ asset('js/validations.js') }}"></script>
+    @endif
+
 </body>
 
 </html>

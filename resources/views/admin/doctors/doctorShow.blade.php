@@ -76,12 +76,12 @@
                     </ul>
                 </div>
 
-                {{-- Servizi --}}
+                {{-- Prestazioni --}}
                 <div class="card mb-5 p-3">
-                    <h3>Servizi</h3>
+                    <h3>Prestazioni</h3>
                     <ul class="list-group">
                         <li class="list-group-item d-flex align-items-center list-item">
-                            <div>{{ $user->doctor?->services ?: 'Nessun Servizio' }}</div>
+                            <div>{{ $user->doctor?->services ?: 'Nessuna prestazione' }}</div>
                         </li>
                     </ul>
                 </div>
@@ -90,8 +90,6 @@
             {{-- CV --}}
             <div class="col-md-4">
                 @if ($doctor->doctor_cv)
-                    {{-- <img src="{{ asset('storage/' . $doctor->doctor_cv) }}" class="profile-cv rounded-3"
-                        alt="{{ $user->name }} {{ $user->surname }} CV"> --}}
                     <div class="profile-cv rounded-3">
                         <iframe src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV" title="Doctor CV"
                             style="height:100%; width:100%"></iframe>
