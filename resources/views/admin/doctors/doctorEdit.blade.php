@@ -99,7 +99,7 @@
                     </div>
 
                     {{-- specializzazione  --}}
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="specializations"
                             class="col-md-4 col-form-label text-md-right mb-2 d-flex justify-content-between">
                             Specializzazioni *
@@ -120,9 +120,7 @@
                                 }
                             @endforeach
                         </select>
-
-
-                    </div>
+                    </div> --}}
 
                     {{-- Prestazioni  --}}
                     <div class="form-group pb-2">
