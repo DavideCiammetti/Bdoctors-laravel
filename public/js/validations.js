@@ -47,7 +47,10 @@ if (inputImage !== null) {
                 errorMsg.innerHTML =
                     "Immagine troppo grande, supera i 4MB - 4096KB";
             } else {
-                correctImage = true;
+                if (correctImage === false) {
+                } else {
+                    correctImage = true;
+                }
             }
         }
     });
@@ -90,7 +93,10 @@ if (inputCv !== null) {
                 errorMsg.innerHTML =
                     "File troppo grande, supera i 4MB - 4096KB";
             } else {
-                correctCv = true;
+                if (correctCv === false) {
+                } else {
+                    correctCv = true;
+                }
             }
         }
     });
@@ -343,6 +349,8 @@ function validate(event) {
         validateServices();
     }
 
+    console.log("img: " + correctImage);
+    console.log("cv: " + correctCv);
     if (correctCv === false || correctImage === false) {
         isValid = false;
     }
