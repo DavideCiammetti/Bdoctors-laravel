@@ -9,6 +9,31 @@
             </div>
         </div>
 
+        {{-- Campi mancanti --}}
+        <div class="mb-5">
+            @if (!$user->doctor->phone_number || !$user->doctor->doctor_img || !$user->doctor->doctor_cv || !$user->doctor->services)
+                <h2 class="mb-3">Ciao {{ $user->name }} {{ $user->surname }}. Sembra che il tuo profilo non sia completo
+                </h2>
+                <h3 class="mb-3">
+                    I seguenti campi non sono stati compilati
+                </h3>
+                <h5>
+                    @if (!$user->doctor->phone_number)
+                        Numero di telefono -
+                    @endif
+                    @if (!$user->doctor->services)
+                        Prestazioni -
+                    @endif
+                    @if (!$user->doctor->doctor_img)
+                        Immagine Profilo -
+                    @endif
+                    @if (!$user->doctor->doctor_cv)
+                        CV
+                    @endif
+                </h5>
+            @endif
+        </div>
+
         <form action="{{ route('admin.doctors.update', $doctor) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
