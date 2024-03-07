@@ -118,6 +118,8 @@ function validName() {
         isValid = false;
         errorMsg.classList.remove("d-none");
         errorMsg.innerHTML = "Questo campo è obbligatorio";
+    } else {
+        isValid = true;
     }
 
     if (!validRegex.test(currentName)) {
