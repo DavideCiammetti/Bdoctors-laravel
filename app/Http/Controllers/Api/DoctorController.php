@@ -28,7 +28,7 @@ class DoctorController extends Controller
                 })
                 ->orWhereHas('user', function ($customQuery) {
                     $customQuery->where('name', 'LIKE', '%' . request()->key . '%');
-                }) ->orWhereHas('user', function ($customQuery) {
+                })->orWhereHas('user', function ($customQuery) {
                     $customQuery->where('surname', 'LIKE', '%' . request()->key . '%');
                 })
                 ->get(); // tutti i dottori filtrati per specializzazione con relazione tabella user - specializzazione 
@@ -40,7 +40,7 @@ class DoctorController extends Controller
         return response()->json([
             'status' => true,
             'results' => $doctors,
-        ]);        
+        ]);
     }
 
 
@@ -52,7 +52,7 @@ class DoctorController extends Controller
     public function show(string $slug)
     {
         // dettaglio dottore con relazione tabella - user, specializzazioni, recensioni
-        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews')->first();
+        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews', 'votes')->first();
 
         // risposta json
         return response()->json([
