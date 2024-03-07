@@ -27,9 +27,10 @@ Route::get('/', function () {
 
 
 
-Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'verified', 'first.registration.check'])->name('admin.')->prefix('admin')->group(function () {
 
     Route::get('/', [DashboardControllers::class, 'index'])->name('dashboard');
+    // Route::get('/doctors/{doctor}/edit', [DoctorsController::class, 'edit'])->name('doctors.edit');
     // route resource controller doctors
     Route::resource('doctors', DoctorsController::class);
     // cancella account

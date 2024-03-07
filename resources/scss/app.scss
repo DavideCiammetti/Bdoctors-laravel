@@ -6,6 +6,27 @@
 #admin-header {
     background-color: $green-600;
     height: 4.375rem;
+
+    #user-icon {
+        overflow: hidden;
+        background-color: $green-600;
+        border: none;
+
+        .fa-user {
+            background-color: white;
+            color: $green-800;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
 }
 
 #sidebarMenu {
@@ -29,11 +50,11 @@
 //Doctor Show
 #doctor-show {
     .profile-img {
-        // width: 300px;
-        // height: 350px;
-        width: 90%;
-        height: 100%;
-        object-fit: contain;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
     }
 
     .profile-cv {
@@ -42,8 +63,19 @@
     }
 
     .img-placeholder {
+        width: 250px;
+        height: 250px;
         background-color: $green-200;
-        color: $green-950;
+        color: $green-900;
+        text-decoration: none;
+        border-radius: 50%;
+    }
+
+    .cv-placeholder {
+        width: 300px;
+        height: 350px;
+        background-color: $green-200;
+        color: $green-900;
         text-decoration: none;
     }
 
