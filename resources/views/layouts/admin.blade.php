@@ -96,7 +96,7 @@
                             {{-- Link Show --}}
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.show' ? 'current-route' : '' }}"
-                                    href="{{ route('admin.doctors.show', $doctor->id) }}">
+                                    href="{{ route('admin.doctors.show', $user->doctor->id) }}">
                                     <i class="fa-solid fa-circle-info fa-lg fa-fw"></i> Il Tuo Profilo
                                 </a>
                             </li>
@@ -104,8 +104,16 @@
                             {{-- Link Edit --}}
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'current-route' : '' }}"
-                                    href="{{ route('admin.doctors.edit', $doctor->id) }}">
+                                    href="{{ route('admin.doctors.edit', $user->doctor->id) }}">
                                     <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i> Modifica Profilo
+                                </a>
+                            </li>
+
+                            {{-- Link Pagamento --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.payment') }}">
+                                    <i class="fa-solid fa-cart-shopping fa-lg fa-fw"></i> Sponsorizzazioni
                                 </a>
                             </li>
                         </ul>

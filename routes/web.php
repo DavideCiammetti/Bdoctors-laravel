@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BraintreeController;
 use App\Http\Controllers\Admin\DashboardControllers;
 use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\UserController;
@@ -33,6 +34,10 @@ Route::middleware(['auth', 'verified', 'first.registration.check'])->name('admin
     // Route::get('/doctors/{doctor}/edit', [DoctorsController::class, 'edit'])->name('doctors.edit');
     // route resource controller doctors
     Route::resource('doctors', DoctorsController::class);
+
+    //Braintree
+    Route::get('/payment', [BraintreeController::class, 'checkout'])->name('doctor.payment');
+    Route::post('/checkout', [BraintreeController::class, 'processPayment'])->name('doctor.payment.checkout');
     // cancella account
     Route::post('user', [UserController::class, 'destroy'])->name('user.destroy');
 });
