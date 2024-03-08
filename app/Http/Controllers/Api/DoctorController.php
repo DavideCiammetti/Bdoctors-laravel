@@ -25,13 +25,12 @@ class DoctorController extends Controller
             $doctors = Doctor::with('user', 'specializations', 'reviews', 'sponsorships', 'votes')
                 ->whereHas('specializations', function ($customQuery) {
                     $customQuery->where('title', 'LIKE', '%' . request()->key . '%');
-                })
-                ->orWhereHas('user', function ($customQuery) {
-                    $customQuery->where('name', 'LIKE', '%' . request()->key . '%');
-                })->orWhereHas('user', function ($customQuery) {
-                    $customQuery->where('surname', 'LIKE', '%' . request()->key . '%');
-                })
-                ->get(); // tutti i dottori filtrati per specializzazione con relazione tabella user - specializzazione 
+                })  ->get(); // tutti i dottori filtrati per specializzazione con relazione tabella user - specializzazione 
+                // ->orWhereHas('user', function ($customQuery) {
+                //     $customQuery->where('name', 'LIKE', '%' . request()->key . '%');
+                // })->orWhereHas('user', function ($customQuery) {
+                //     $customQuery->where('surname', 'LIKE', '%' . request()->key . '%');
+                // })
         } else {
             $doctors = Doctor::with('user', 'specializations')->get(); // tutti i dottori con relazione tabella user - specializzazione
         }
