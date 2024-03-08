@@ -15,7 +15,7 @@ class Doctor extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $guarded = ['slug', 'doctor_img', 'doctor_cv', 'specializations'];
+    protected $guarded = ['doctor_img', 'doctor_cv', 'specializations'];
 
     // relazione 1-1 doctor
     public function user()
