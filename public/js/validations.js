@@ -52,6 +52,8 @@ if (inputImage !== null) {
                     correctImage = true;
                 }
             }
+        } else {
+            correctImage = true;
         }
     });
 }
@@ -98,6 +100,8 @@ if (inputCv !== null) {
                     correctCv = true;
                 }
             }
+        } else {
+            correctCv = true;
         }
     });
 }
