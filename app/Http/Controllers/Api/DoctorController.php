@@ -60,4 +60,37 @@ class DoctorController extends Controller
             'results' => $doctor
         ]);
     }
+
+    /**
+     * Pagina di ricerca avanzata
+     */
+    public function advancedSearch(string $slug)
+    {
+        request()->validate([
+            'key' => ['nullable', 'string', 'min:3'],
+            'vote' => ['nullable', 'string', 'min:3'],
+            'specialization' => ['nullable', 'string', 'min:3'],
+            'review' => ['nullable', 'string', 'min:3'],
+        ]);
+
+        if (request()->key) {
+            $doctors = Doctor::with('user', 'specializations', 'reviews', 'sponsorships', 'votes')
+                ->whereHas('specializations', function ($customQuery) {
+                    $customQuery->where('title', 'LIKE', '%' . request()->key . '%');
+                })
+                ->orWhereHas('reviews', function ($customQuery) {
+                    $customQuery->where('name', 'LIKE', '%' . request()->key . '%');
+                    $customQuery->where(request()->review, 'COUNT(doctor_id)');
+                })
+                ->get(); // tutti i dottori filtrati per specializzazione con relazione tabella user - specializzazione 
+        } else {
+            $doctors = Doctor::with('user', 'specializations')->get(); // tutti i dottori con relazione tabella user - specializzazione
+        }
+
+        // risposta json
+        return response()->json([
+            'status' => true,
+            'results' => $doctors,
+        ]);
+    }
 }
