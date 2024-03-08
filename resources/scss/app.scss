@@ -2,6 +2,14 @@
 @import "./partials/palette.scss";
 @import "./partials/common.scss";
 
+//Login e Register
+#navbar-access {
+    background-color: $green-600;
+}
+#main-access {
+    background-color: white;
+}
+
 //Admin style
 #admin-header {
     background-color: $green-600;

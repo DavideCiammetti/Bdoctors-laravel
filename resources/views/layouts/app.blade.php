@@ -23,11 +23,11 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav id="navbar-access" class="navbar navbar-expand-md shadow-lg">
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/login') }}">
                     <div class="logo_laravel">
-                        <h1>Bdoctors</h1>
+                        <h1 class="text-white">BDoctors</h1>
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
@@ -39,11 +39,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Accedi') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
@@ -72,7 +72,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main id="main-access">
             @yield('content')
         </main>
     </div>
