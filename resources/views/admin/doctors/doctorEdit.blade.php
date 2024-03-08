@@ -50,7 +50,7 @@
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="name-error text-warning"></div>
+                            <div class="name-error text-danger"></div>
                         </label>
                         <input type="text" name="name" id="name" class="val-name form-control my-input"
                             value="{{ old('name', $user->name) }}">
@@ -64,7 +64,7 @@
                             @error('surname')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="surname-error text-warning"></div>
+                            <div class="surname-error text-danger"></div>
                         </label>
                         <input type="text" name="surname" id="surname" class="val-surname form-control my-input"
                             value="{{ old('surname', $user->surname) }}">
@@ -77,7 +77,7 @@
                             @error('address')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="address-error text-warning"></div>
+                            <div class="address-error text-danger"></div>
                         </label>
                         <input type="text" name="address" id="address" class="val-address form-control my-input"
                             value="{{ old('address', $user->doctor->address) }}">
@@ -91,7 +91,7 @@
                             @error('phone_number')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="phone-number-error text-warning"></div>
+                            <div class="phone-number-error text-danger"></div>
 
                         </label>
                         <input type="text" name="phone_number" id="phone_number"
@@ -106,7 +106,7 @@
                             @error('is_avaiable')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="avaiable-error text-warning"></div>
+                            <div class="avaiable-error text-danger"></div>
 
                         </label>
                         <div class="form-check">
@@ -190,7 +190,7 @@
                             @error('services')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <div class="services-error text-warning"></div>
+                            <div class="services-error text-danger"></div>
                         </label>
                         <textarea type="text" name="services" id="services" class="val-services form-control my-input" cols="30"
                             rows="10">{{ old('services', $user->doctor->services) }}</textarea>
@@ -228,15 +228,21 @@
                             <div class="input-group">
                                 <input
                                     class="val-image upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
-                                    type="file" id="doctor-img-edit" name="doctor_img" value="1">
+                                    type="file" id="doctor-img-edit" name="doctor_img"
+                                    value="{{ old('doctor_img', $user->doctor->doctor_img) }}">
                                 {{-- {{ old('doctor_img', $user->doctor->doctor_img) }} --}}
                             </div>
                         </div>
-                        {{-- errore url immagine --}}
-                        @error('doctor_img')
-                            <div class="card-footer text-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="image-error card-footer text-warning"></div>
+
+                        <div class="card-footer">
+                            {{-- errore url immagine --}}
+                            @error('doctor_img')
+                                <div class="card-footer text-danger">{{ $message }}</div>
+                            @enderror
+
+                            <div class="image-error text-danger"></div>
+                        </div>
+
                     </div>
 
 
@@ -273,11 +279,15 @@
                             </div>
                         </div>
 
-                        {{-- errore url immagine --}}
-                        @error('doctor_img')
-                            <div class="card-footer text-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="cv-error card-footer text-warning"></div>
+                        {{-- errore cv  --}}
+                        <div class="card-footer">
+                            Il file non può superare i 4MB
+                            @error('doctor_cv')
+                                <div class=" text-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="cv-error text-danger"></div>
+                        </div>
+
                     </div>
                 </div>
 

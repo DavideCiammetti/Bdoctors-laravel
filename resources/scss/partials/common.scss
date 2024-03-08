@@ -16,6 +16,16 @@ main {
         color: $green-800;
     }
 }
+.btn-access {
+    background-color: $green-500;
+    color: $green-900;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $green-800;
+        color: $green-500;
+    }
+}
 
 //elementi input
 .my-input {

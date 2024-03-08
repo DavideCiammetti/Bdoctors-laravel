@@ -23,9 +23,13 @@
                                         name="name" placeholder="Mario" value="{{ old('name') }}" required
                                         autocomplete="name" autofocus>
 
+                                    {{-- errori --}}
+                                    <div class="name-error text-danger"></div>
+
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
+
                                         </span>
                                     @enderror
                                 </div>
@@ -41,6 +45,9 @@
                                         class="val-surname form-control my-input @error('surname') is-invalid @enderror"
                                         name="surname" placeholder="Rossi" value="{{ old('surname') }}" required
                                         autocomplete="surname" autofocus>
+
+                                    {{-- errori --}}
+                                    <div class="surname-error text-danger"></div>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -60,6 +67,9 @@
                                         class="val-address form-control my-input @error('address') is-invalid @enderror"
                                         name="address" placeholder="Via Roma" value="{{ old('address') }}" required
                                         autocomplete="address" autofocus>
+
+                                    {{-- errori --}}
+                                    <div class="address-error text-danger"></div>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -110,6 +120,9 @@
                                         name="email" placeholder="mario@rossi.com" value="{{ old('email') }}" required
                                         autocomplete="email">
 
+                                    {{-- errori --}}
+                                    <div class="email-error text-danger"></div>
+
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -127,6 +140,9 @@
                                     <input id="password" type="password"
                                         class="val-password form-control my-input @error('password') is-invalid @enderror"
                                         name="password" required autocomplete="new-password">
+
+                                    {{-- errori --}}
+                                    <div class="password-error text-danger"></div>
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -151,7 +167,7 @@
                             {{-- Bottone di invio --}}
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="send btn btn-primary">
+                                    <button type="submit" class="send btn btn-access">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>
@@ -161,11 +177,6 @@
 
                     <div class="card-footer">
                         <div>* I seguenti campi sono obbligatri</div>
-                        <div class="name-error text-warning"></div>
-                        <div class="surname-error text-warning"></div>
-                        <div class="address-error text-warning"></div>
-                        <div class="email-error text-warning"></div>
-                        <div class="password-error text-warning"></div>
                     </div>
                 </div>
             </div>
