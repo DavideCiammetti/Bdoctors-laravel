@@ -9,6 +9,13 @@
 
 
             <h1 class="mb-3">Compra una Sponsorizzazione</h1>
+
+            @if (session('error_message'))
+                <div class="alert alert-success">
+                    session('error_message')
+                </div>
+            @endif
+
             <h5 class="mb-4">Con la nostra sponsorizzazione apparirai prima nelle ricerce dei pazienti e sarai sempre
                 in
                 prima

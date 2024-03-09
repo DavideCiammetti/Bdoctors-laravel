@@ -96,7 +96,7 @@ class BraintreeController extends Controller
                 $sponsorship => ['end_date' => $endDate],
             ]);
 
-            return redirect()->route('admin.doctor.payment')->with('success_message', 'Payment successful!');
+            return redirect()->route('admin.dashboard')->with('success_message', 'Payment successful!');
         } else {
 
             $errorMessages = $result->message;

@@ -41,7 +41,21 @@
                                 </h5>
                             @endif
                         </div>
+
+
+
+
                     </div>
+
+                    @if (session('success_message'))
+                        <div class="card-footer">
+                            <div class="alert alert-success mb-0">
+                                {{ session('success_message') }}
+                            </div>
+                        </div>
+                    @endif
+
+
                 </div>
             </div>
         </div>
