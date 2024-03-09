@@ -52,9 +52,7 @@ class BraintreeController extends Controller
     {
 
         $request->validate([
-
             'sponsorships' => ['required', Rule::in($this->SponsorshipsIds())],
-
         ]);
 
         //variabili

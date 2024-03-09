@@ -1,27 +1,62 @@
 @extends('layouts.admin')
-
-@section('content')
-    <div>
+{{-- <div>
         {{ session('success_message') }}
         {{ session('error_message') }}
-    </div>
+    </div> --}}
+@section('content')
     <div class="wrapper">
-        <div class="checkout container">
+        <div class="checkout container pt-5">
 
-            <header>
-                <h1>Hi, <br>Let's test a transaction</h1>
-                <p>
-                    Make a test payment with Braintree using PayPal or a card
-                </p>
-            </header>
 
-            <form method="post" id="payment-form" action='{{ route('admin.doctor.payment.checkout') }}'>
+            <h1 class="mb-3">Compra una Sponsorizzazione</h1>
+            <h5 class="mb-4">Con la nostra sponsorizzazione apparirai prima nelle ricerce dei pazienti e sarai sempre
+                in
+                prima
+                pagina nella
+                sezione dei dottori consigliati.
+            </h5>
+
+            <h2 class="mb-4">Scopri i nostri Piani:</h2>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-header">Piano Base</div>
+                        <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 24 ore</div>
+                        <div class="card-footer">2,99€</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center ">
+                        <div class="card-header">Piano Standard</div>
+                        <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 72 ore</div>
+                        <div class="card-footer">5,99€</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center ">
+                        <div class="card-header">Piano Premium</div>
+                        <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 144 ore</div>
+                        <div class="card-footer">9,99€</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-4">
+                <h5 class="text-danger">Attenzione!</h5>
+                <h5> Le sponsorizzazioni non sono attualmente comulabili.</h5>
+                <h5>Vedrai
+                    nella tua Dashbard la scadenza.</h5>
+            </div>
+
+            <h2>Acquista Sponsorizzazione</h2>
+            <form class="mb-5" method="post" id="payment-form" action='{{ route('admin.doctor.payment.checkout') }}'>
                 @csrf
 
                 <section>
                     {{-- Specializzazione --}}
-                    <div class="mb-4">
-                        <label for="sponsorships">{{ __('Sponsorizzazioni') }}</label>
+                    <div>
+                        <label for="sponsorships"></label>
 
 
                         <select id="sponsorships" class="form-select my-input  @error('sponsorships') is-invalid @enderror"
@@ -45,13 +80,7 @@
                         @enderror
 
                     </div>
-                    {{-- <label for="amount">
-                        <span class="input-label">Amount</span>
-                        <div class="input-wrapper amount-wrapper">
-                            <input id="amount" name="amount" type="tel" min="1" placeholder="Amount"
-                                value="10">
-                        </div>
-                    </label> --}}
+
 
                     <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>
@@ -59,8 +88,10 @@
                 </section>
 
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
-                <button class="button" type="submit"><span>Test Transaction</span></button>
+                <button class="btn btn-link mt-2" type="submit"><span>Acquista</span></button>
             </form>
+
+
         </div>
     </div>
 
