@@ -25,8 +25,9 @@ class BraintreeController extends Controller
     public function checkout()
     {
         $user = Auth::user();
-        // $clientToken = $this->gateway->clientToken()->generate();
-        return view('admin.doctors.payment', compact('user'));
+
+        $clientToken = $this->gateway->clientToken()->generate();
+        return view('admin.doctors.payment', compact('user', 'clientToken'));
     }
 
     public function processPayment(Request $request)
@@ -36,16 +37,19 @@ class BraintreeController extends Controller
 
         // Create a transaction
         $result = $this->gateway->transaction()->sale([
-            'amount' => '10.00', // replace with the actual amount
+            'amount' => $request->amount, // replace with the actual amount
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true,
             ],
         ]);
 
+
+
         if ($result->success) {
             // Payment was successful
-            // You can save the transaction details in your database or perform other actions
+
+
 
             return redirect()->route('admin.doctor.payment')->with('success_message', 'Payment successful!');
         } else {
