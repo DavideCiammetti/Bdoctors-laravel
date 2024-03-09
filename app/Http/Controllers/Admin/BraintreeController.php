@@ -8,13 +8,20 @@ use Braintree\Gateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class BraintreeController extends Controller
 {
+    /**
+     * Inizializzo la variabile  gateway per tutta la classe
+     */
     protected $gateway;
 
+    /**
+     * Construct della classe, creo il mio Braintree\Gateway 
+     */
     public function __construct()
     {
-        // Initialize Braintree gateway with your credentials - collegato a services.php
+        // Inizzializzo un Gateway per Braintree - collegato a services.php
         $this->gateway = new Gateway([
             'environment' => config('services.braintree.env'),
             'merchantId' => config('services.braintree.merchant_id'),
@@ -23,6 +30,9 @@ class BraintreeController extends Controller
         ]);
     }
 
+    /**
+     * Chiama la view di pagamento a cui passo lo user, le sponsorizzazioni e il clientToken per Braintree
+     */
     public function checkout()
     {
         //variabili
@@ -33,6 +43,9 @@ class BraintreeController extends Controller
         return view('admin.doctors.payment', compact('user', 'clientToken', 'sponsorships'));
     }
 
+    /**
+     * Chiamato al pagamento, verifica la transazione e assegan al dottore la spoinsorizzione  
+     */
     public function processPayment(Request $request)
     {
 
@@ -40,35 +53,42 @@ class BraintreeController extends Controller
         $user = Auth::user();
         $doctor = $user->doctor;
         $sponsorship = json_decode($request->sponsorships, true);
+
         //fine sponsorizzazione
-        $endDate = now(config("app.timezone"))->addHours($sponsorship['duration']);
-        // @dd($endDate);
-        // Get nonce from the payment form
+        if ($sponsorship['duration'] === '24:00:00') {
+            $endDate = now(config("app.timezone"))->addHours(24);
+        }
+        if ($sponsorship['duration'] === '72:00:00') {
+            $endDate = now(config("app.timezone"))->addHours(72);
+        }
+        if ($sponsorship['duration'] === '144:00:00') {
+            $endDate = now(config("app.timezone"))->addHours(144);
+        }
+
+
+        // Inizializzo il nonce preso da form
         $nonce = $request->input('payment_method_nonce');
 
-
-
-        // Create a transaction
+        // Creo la transazione
         $result = $this->gateway->transaction()->sale([
-            'amount' => $sponsorship['price'], // replace with the actual amount
+            'amount' => $sponsorship['price'],
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true,
             ],
         ]);
 
-
-
+        //Controllo sulla transazione - relativo messaggio in sessione
         if ($result->success) {
 
-            //pagamento ok quindi assegno al dottore la sponsorizzazione
+            //assegno al dottore la sponsorizzazione
             $doctor->sponsorships()->sync([
                 $sponsorship['id'] => ['end_date' => $endDate],
             ]);
 
             return redirect()->route('admin.doctor.payment')->with('success_message', 'Payment successful!');
         } else {
-            // Payment failed
+
             $errorMessages = $result->message;
 
             return redirect()->route('admin.doctor.payment')->with('error_message', $errorMessages);
