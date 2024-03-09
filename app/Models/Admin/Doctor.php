@@ -44,7 +44,7 @@ class Doctor extends Model
     // collegamento sponsorships
     public function sponsorships()
     {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsorship::class)->withPivot('end_date');
     }
 
     // collegamento votes
