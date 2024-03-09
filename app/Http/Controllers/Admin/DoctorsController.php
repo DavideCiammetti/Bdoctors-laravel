@@ -85,7 +85,7 @@ class DoctorsController extends Controller
         $user = Auth::user();
         $specializations = Specialization::all();
         // return view('admin.doctors.doctorEdit', compact('doctor','user','specializations', 'errors'));
-        return view('admin.doctors.doctorEdit', compact('doctor','user','specializations'));
+        return view('admin.doctors.doctorEdit', compact('doctor', 'user', 'specializations'));
     }
 
     /**
@@ -96,12 +96,14 @@ class DoctorsController extends Controller
         $user = Auth::user();
         $data = $request->validated();
 
+        dd($data);
+
         // Aggiornamento dei dati dell'utente associato al dottore
         $user->update([
             'name' => $data['name'],
             'surname' => $data['surname'],
         ]);
-        
+
         // gestione slug
         do {
             $uniqueSlugId = microtime(true) * 10000;
@@ -117,7 +119,7 @@ class DoctorsController extends Controller
             }
             $doctor->doctor_img = Storage::put('uploads', $data['doctor_img']);
         }
-        
+
         // gestione cv 
         if (isset($data['doctor_cv'])) {
             //cancella cv vecchio
@@ -134,7 +136,7 @@ class DoctorsController extends Controller
 
         // Aggiornamento dei restanti dati del dottore
         $doctor->update($data);
-       
+
         return redirect()->route('admin.doctors.show', $doctor);
     }
 

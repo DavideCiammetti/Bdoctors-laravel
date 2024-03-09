@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div>
+        {{ session('success_message') }}
+        {{ session('error_message') }}
+    </div>
     <div class="wrapper">
         <div class="checkout container">
 
@@ -15,13 +19,39 @@
                 @csrf
 
                 <section>
-                    <label for="amount">
+                    {{-- Specializzazione --}}
+                    <div class="mb-4">
+                        <label for="sponsorships">{{ __('Sponsorizzazioni') }}</label>
+
+
+                        <select id="sponsorships" class="form-select my-input  @error('sponsorships') is-invalid @enderror"
+                            aria-label="Default select example" name="sponsorships" required autocomplete="sponsorships"
+                            autofocus>
+                            <option value="">Nessuna
+                                Sponsorizzazione</option>
+                            @foreach ($sponsorships as $key => $sponsorship)
+                                {
+                                <option value="{{ $sponsorship }}">
+                                    {{ $sponsorship->title }}
+                                </option>
+                                }
+                            @endforeach
+                        </select>
+
+                        @error('sponsorships')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                    </div>
+                    {{-- <label for="amount">
                         <span class="input-label">Amount</span>
                         <div class="input-wrapper amount-wrapper">
                             <input id="amount" name="amount" type="tel" min="1" placeholder="Amount"
                                 value="10">
                         </div>
-                    </label>
+                    </label> --}}
 
                     <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>

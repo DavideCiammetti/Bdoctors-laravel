@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Sponsorship;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,20 +25,32 @@ class BraintreeController extends Controller
 
     public function checkout()
     {
+        //variabili
         $user = Auth::user();
+        $sponsorships = Sponsorship::all();
 
         $clientToken = $this->gateway->clientToken()->generate();
-        return view('admin.doctors.payment', compact('user', 'clientToken'));
+        return view('admin.doctors.payment', compact('user', 'clientToken', 'sponsorships'));
     }
 
     public function processPayment(Request $request)
     {
+
+        //variabili
+        $user = Auth::user();
+        $doctor = $user->doctor;
+        $sponsorship = json_decode($request->sponsorships, true);
+        //fine sponsorizzazione
+        $endDate = now(config("app.timezone"))->addHours($sponsorship['duration']);
+        // @dd($endDate);
         // Get nonce from the payment form
         $nonce = $request->input('payment_method_nonce');
 
+
+
         // Create a transaction
         $result = $this->gateway->transaction()->sale([
-            'amount' => $request->amount, // replace with the actual amount
+            'amount' => $sponsorship['price'], // replace with the actual amount
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true,
@@ -47,9 +60,11 @@ class BraintreeController extends Controller
 
 
         if ($result->success) {
-            // Payment was successful
 
-
+            //pagamento ok quindi assegno al dottore la sponsorizzazione
+            $doctor->sponsorships()->sync([
+                $sponsorship['id'] => ['end_date' => $endDate],
+            ]);
 
             return redirect()->route('admin.doctor.payment')->with('success_message', 'Payment successful!');
         } else {
