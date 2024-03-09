@@ -7,6 +7,8 @@ use App\Models\Admin\Sponsorship;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+
 
 
 class BraintreeController extends Controller
@@ -48,6 +50,12 @@ class BraintreeController extends Controller
      */
     public function processPayment(Request $request)
     {
+
+        $request->validate([
+
+            'sponsorships' => ['required', Rule::in($this->SponsorshipsIds())],
+
+        ]);
 
         //variabili
         $user = Auth::user();
@@ -97,5 +105,11 @@ class BraintreeController extends Controller
 
             return redirect()->route('admin.doctor.payment')->with('error_message', $errorMessages);
         }
+    }
+
+    public function SponsorshipsIds()
+    {
+        $sponsorships = Sponsorship::all();
+        return $sponsorshipsIds = Sponsorship::pluck('id')->toArray();
     }
 }
