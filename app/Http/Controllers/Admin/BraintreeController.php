@@ -52,26 +52,30 @@ class BraintreeController extends Controller
         //variabili
         $user = Auth::user();
         $doctor = $user->doctor;
-        $sponsorship = json_decode($request->sponsorships, true);
+
+        //sponsorship e i suoi dati
+        $sponsorship = $request->sponsorships;
+        $sponsorshipPrice = Sponsorship::findOrFail($sponsorship)->price;
+        //calcolo ore totali
+        $sponsorshipDuration = Sponsorship::findOrFail($sponsorship)->duration;
+        list($hours, $minutes, $seconds) = explode(":", $sponsorshipDuration);
+
+        $hours = (int)$hours;
+        $minutes = (int)$minutes;
+        $seconds = (int)$seconds;
+
+        $totalHours = $hours + ($minutes / 60) + ($seconds / 3600);
 
         //fine sponsorizzazione
-        if ($sponsorship['duration'] === '24:00:00') {
-            $endDate = now(config("app.timezone"))->addHours(24);
-        }
-        if ($sponsorship['duration'] === '72:00:00') {
-            $endDate = now(config("app.timezone"))->addHours(72);
-        }
-        if ($sponsorship['duration'] === '144:00:00') {
-            $endDate = now(config("app.timezone"))->addHours(144);
-        }
 
+        $endDate = now(config("app.timezone"))->addHours($totalHours);
 
         // Inizializzo il nonce preso da form
         $nonce = $request->input('payment_method_nonce');
 
         // Creo la transazione
         $result = $this->gateway->transaction()->sale([
-            'amount' => $sponsorship['price'],
+            'amount' => $sponsorshipPrice,
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true,
@@ -83,7 +87,7 @@ class BraintreeController extends Controller
 
             //assegno al dottore la sponsorizzazione
             $doctor->sponsorships()->sync([
-                $sponsorship['id'] => ['end_date' => $endDate],
+                $sponsorship => ['end_date' => $endDate],
             ]);
 
             return redirect()->route('admin.doctor.payment')->with('success_message', 'Payment successful!');

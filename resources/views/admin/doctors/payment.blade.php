@@ -31,7 +31,7 @@
                                 Sponsorizzazione</option>
                             @foreach ($sponsorships as $key => $sponsorship)
                                 {
-                                <option value="{{ $sponsorship }}">
+                                <option value="{{ $sponsorship->id }}">
                                     {{ $sponsorship->title }}
                                 </option>
                                 }
