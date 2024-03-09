@@ -50,7 +50,7 @@
                     @if (session('success_message'))
                         <div class="card-footer">
                             <div class="alert alert-success mb-0">
-                                {{ session('success_message') }}
+                                Pagamento avvenuto con successo.
                             </div>
                         </div>
                     @endif
