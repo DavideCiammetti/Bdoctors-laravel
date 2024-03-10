@@ -8,7 +8,8 @@
             {{-- Immagine profilo --}}
             <div class="d-flex align-items-center">
                 @if ($user->doctor->doctor_img)
-                    <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}" class="profile-img"
+                    <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}"
+                        class="profile-img @if ($user->doctor->sponsorships->first()) border border-warning @endif"
                         alt="{{ $user->name }} {{ $user->surname }} Img">
                 @else
                     <a class="profile-img img-placeholder d-flex flex-column justify-content-center align-items-center"

@@ -66,7 +66,7 @@
 
                             <div class="card-body">
                                 @if ($user->doctor->sponsorships->first())
-                                    <h5>{{ $user->doctor->sponsorships[0]->title }}</h5>
+                                    <h5 class="text-warning">{{ $user->doctor->sponsorships[0]->title }}</h5>
                                     <p>Grazie alla Sponsorizzazione sarai più visibile sul sito e apparirai sempre
                                         prima nelle ricerche dei clienti.</p>
                                     <h6>Scadenza: {{ $sponsorship[0]->pivot->end_date }}</h6>
