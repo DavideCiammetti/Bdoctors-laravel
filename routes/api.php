@@ -23,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('doctors', [DoctorController::class, 'index']);
 // show
 Route::get('doctors/{slug}', [DoctorController::class, 'show']);
+// sponspored
+Route::get('sponsor', [DoctorController::class, 'sponsor']);
