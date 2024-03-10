@@ -14,6 +14,28 @@ class DashboardControllers extends Controller
         $user = Auth::user();
         $doctor = Doctor::where('user_id', $user->id)->first();
         $sponsorship = $doctor->sponsorships;
-        return view('dashboard', compact('user', 'doctor', 'sponsorship'));
+
+        if ($doctor->votes) {
+            $averageVote = $this->averageVote($doctor);
+        }
+
+
+        return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote'));
+    }
+
+    public function averageVote($doctor)
+    {
+        if ($doctor->votes) {
+            $votes = $doctor->votes;
+            $sommaId = 0;
+
+            foreach ($votes as $vote) {
+                $sommaId += $vote->id;
+            }
+
+            $averageVote = round($sommaId / count($votes));
+
+            return $averageVote;
+        }
     }
 }

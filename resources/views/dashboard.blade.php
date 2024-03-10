@@ -90,6 +90,22 @@
                             <div class="card-header">
                                 <h3>Valutazione</h3>
                             </div>
+                            <div class="card-body">
+                                <h5>Scopri cosa pensano di te i tuoi pazienti</h5>
+                                @if ($doctor->votes)
+                                    <h6>Hai ricevuto {{ count($doctor->votes) }} voti</h6>
+                                    <h6>La tua media voti</h6>
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ($averageVote > $i)
+                                            <i class="fa-solid fa-star"></i>
+                                        @else
+                                            <i class="fa-regular fa-star"></i>
+                                        @endif
+                                    @endfor
+                                @else
+                                    <h5>Nessun paziente ti ha ancora dato un voto</h5>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
