@@ -74,7 +74,7 @@ class BraintreeController extends Controller
 
         //fine sponsorizzazione
 
-        $endDate = now(config("app.timezone"))->addHours($totalHours);
+        $endDate = now(config("app.timezone"))->addHours($totalHours + 1);
 
         // Inizializzo il nonce preso da form
         $nonce = $request->input('payment_method_nonce');
