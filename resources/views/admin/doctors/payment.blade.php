@@ -21,6 +21,8 @@
                 prima
                 pagina nella
                 sezione dei dottori consigliati.
+                Se vuoi estendere la tua sponsorizzazione puoi acquistare nuovamente uno dei nostri piani e la data di
+                scadenza sarà automaticamente prolungata.
             </h5>
 
             <h2 class="mb-4">Scopri i nostri Piani:</h2>
@@ -49,12 +51,6 @@
                 </div>
             </div>
 
-            <div class="text-center mb-4">
-                <h5 class="text-danger">Attenzione!</h5>
-                <h5> Le sponsorizzazioni non sono attualmente comulabili.</h5>
-                <h5>Vedrai
-                    nella tua Dashbard la scadenza.</h5>
-            </div>
 
             <h2>Acquista Sponsorizzazione</h2>
             <form class="mb-5" method="post" id="payment-form" action='{{ route('admin.doctor.payment.checkout') }}'>

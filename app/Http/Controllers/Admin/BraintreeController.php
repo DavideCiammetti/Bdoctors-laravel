@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Sponsorship;
 use Braintree\Gateway;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -73,8 +74,12 @@ class BraintreeController extends Controller
         $totalHours = $hours + ($minutes / 60) + ($seconds / 3600);
 
         //fine sponsorizzazione
+        if ($user->doctor->sponsorships->first()) {
+            $endDate = Carbon::parse($doctor->sponsorships[0]->pivot->end_date)->addHours($totalHours);
+        } else {
+            $endDate = now(config("app.timezone"))->addHours($totalHours + 1);
+        }
 
-        $endDate = now(config("app.timezone"))->addHours($totalHours + 1);
 
         // Inizializzo il nonce preso da form
         $nonce = $request->input('payment_method_nonce');
