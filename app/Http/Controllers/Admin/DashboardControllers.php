@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardControllers extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
         $doctor = Doctor::where('user_id', $user->id)->first();
-        return view('dashboard', compact('user', 'doctor'));
+        $sponsorship = $doctor->sponsorships;
+        return view('dashboard', compact('user', 'doctor', 'sponsorship'));
     }
 }

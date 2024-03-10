@@ -96,8 +96,6 @@ class DoctorsController extends Controller
         $user = Auth::user();
         $data = $request->validated();
 
-        dd($data);
-
         // Aggiornamento dei dati dell'utente associato al dottore
         $user->update([
             'name' => $data['name'],

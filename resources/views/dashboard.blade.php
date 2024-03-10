@@ -2,10 +2,15 @@
 
 @section('content')
     <div id="dashboard" class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-4">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+        <div class="row justify-content-between pt-5">
+            {{-- Welcome --}}
+            <div class="col-md-6">
+                {{-- Centro Notifiche --}}
+                <div class="card mb-4">
+
+                    <div class="card-header">
+                        <h3>Le tue Notifiche</h3>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -15,7 +20,7 @@
                         @endif
 
 
-                        <h1 class="mb-4">Bentornato {{ $user->name }} {{ $user->surname }} </h1>
+                        <h2 class="mb-4">Bentornato {{ $user->name }} {{ $user->surname }} </h2>
 
                         @if (!$user->doctor->phone_number || !$user->doctor->doctor_img || !$user->doctor->doctor_cv || !$user->doctor->services)
                             <h2 class="mb-3">Sembra che il tuo profilo
@@ -39,12 +44,6 @@
                                 @endif
                             </h5>
                         @endif
-
-                        @if ($user->doctor->sponsorships->first())
-                            {{ $user->doctor->sponsorships[0]->title }}
-                        @endif
-
-
                     </div>
 
                     @if (session('success_message'))
@@ -54,8 +53,55 @@
                             </div>
                         </div>
                     @endif
+                </div>
 
+                {{-- Abbonamento e Voto --}}
+                <div class="row">
+                    {{-- Abbonamento --}}
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Abbonamento</h3>
+                            </div>
 
+                            <div class="card-body">
+                                @if ($user->doctor->sponsorships->first())
+                                    <h5>{{ $user->doctor->sponsorships[0]->title }}</h5>
+                                    {{ $sponsorship[0]->pivot->end_date }}
+                                @else
+                                    Il tuo profilo non è sponsorizzato
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {{-- Media Voto --}}
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Valutazione</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Messaggi --}}
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Messaggi recenti</h3>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Recensioni --}}
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recensioni recenti</h3>
+                    </div>
                 </div>
             </div>
         </div>

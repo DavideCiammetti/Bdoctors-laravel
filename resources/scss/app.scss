@@ -53,6 +53,10 @@
 //dashboard
 #dashboard {
     height: calc(100vh - 4.375rem);
+
+    .card-header {
+        color: $green-500;
+    }
 }
 
 //Doctor Show

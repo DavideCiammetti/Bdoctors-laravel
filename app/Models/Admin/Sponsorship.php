@@ -12,6 +12,6 @@ class Sponsorship extends Model
     // collegamneto doctors
     public function doctors()
     {
-        return $this->belongsToMany(Doctor::class);
+        return $this->belongsToMany(Doctor::class)->withPivot('end_date');
     }
 }
