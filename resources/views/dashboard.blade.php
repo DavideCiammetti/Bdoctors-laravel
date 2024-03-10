@@ -61,15 +61,23 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Abbonamento</h3>
+                                <h3>Sponsorizzazione</h3>
                             </div>
 
                             <div class="card-body">
                                 @if ($user->doctor->sponsorships->first())
                                     <h5>{{ $user->doctor->sponsorships[0]->title }}</h5>
-                                    {{ $sponsorship[0]->pivot->end_date }}
+                                    <p>Grazie alla Sponsorizzazione sarai più visibile sul sito e apparirai sempre
+                                        prima nelle ricerche dei clienti.</p>
+                                    <h6>Scadenza: {{ $sponsorship[0]->pivot->end_date }}</h6>
                                 @else
-                                    Il tuo profilo non è sponsorizzato
+                                    <h5>Nessuna Sponsorizzazione</h5>
+                                    <p>Grazie alla Sponsorizzazione sarai più visibile sul sito e apparirai sempre
+                                        prima nelle ricerche dei clienti.</p>
+                                    <h6> <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
+                                            href="{{ route('admin.doctor.payment') }}">
+                                            Abbonati ora
+                                        </a></h6>
                                 @endif
                             </div>
                         </div>
