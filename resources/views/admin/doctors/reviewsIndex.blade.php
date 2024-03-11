@@ -9,25 +9,25 @@
                 <thead>
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col">Messaggio</th>
+                        <th scope="col">Recensione</th>
                         <th scope="col">Cellulare</th>
                         <th scope="col">E-mail</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($messages as $message)
+                    @foreach ($reviews as $review)
                         <tr>
                             <th scope="row">
-                                @if ($message->name && $message->surname)
-                                    {{ $message->name }} {{ $message->surname }}
+                                @if ($review->name && $review->surname)
+                                    {{ $review->name }} {{ $review->surname }}
                                 @else
                                     Anonimo
                                 @endif
                             </th>
-                            <td>{{ $message->message }}</td>
-                            <td>{{ $message?->phone_number ?: '-' }}</td>
-                            <td>{{ $message->email }}</td>
+                            <td>{{ $review->content }}</td>
+                            <td>{{ $review?->phone_number ?: '-' }}</td>
+                            <td>{{ $review->email }}</td>
                         </tr>
                     @endforeach
                 </tbody>

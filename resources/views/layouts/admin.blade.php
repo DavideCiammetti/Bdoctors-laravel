@@ -133,6 +133,14 @@
                                     <i class="fa-solid fa-message fa-lg fa-fw"></i> Messaggi
                                 </a>
                             </li>
+
+                            {{-- Lista Recensioni --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.reviews' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.reviews') }}">
+                                    <i class="fa-solid fa-comments fa-lg fa-fw"></i> Recensioni
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

@@ -15,11 +15,12 @@ class DashboardControllers extends Controller
         $doctor = Doctor::where('user_id', $user->id)->first();
         $sponsorship = $doctor->sponsorships;
         $messages = $user->doctor->messages;
+        $reviews = $user->doctor->reviews;
 
         $averageVote = $this->averageVote($doctor);
 
 
-        return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote', 'messages'));
+        return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote', 'messages', 'reviews'));
     }
 
     public function averageVote($doctor)

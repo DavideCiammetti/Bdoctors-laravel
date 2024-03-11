@@ -154,6 +154,30 @@
                     <div class="card-header">
                         <h3>Recensioni recenti</h3>
                     </div>
+                    <div class="card-body">
+
+                        @if (count($user->doctor->reviews) > 0)
+                            <ul class="list-group">
+                                @foreach ($reviews as $key => $review)
+                                    @if ($key <= 4)
+                                        <li class="list-group-item">
+                                            {{ $review->content }}
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @else
+                            <h4>Nessuna Recensione ricevuta</h4>
+                        @endif
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="mb-0">
+                            <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.reviews' ? 'current-route' : '' }}"
+                                href="{{ route('admin.doctor.reviews') }}">
+                                Recensioni Ricevute
+                            </a>
+                        </h6>
+                    </div>
                 </div>
             </div>
         </div>

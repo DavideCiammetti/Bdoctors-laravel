@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BraintreeController;
 use App\Http\Controllers\Admin\DashboardControllers;
 use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\MessagesController;
+use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,9 @@ Route::middleware(['auth', 'verified', 'first.registration.check'])->name('admin
 
     //Messaggi
     Route::get('/messages', [MessagesController::class, 'index'])->name('doctor.messages');
+
+    //recensioni
+    Route::get('/reviews', [ReviewsController::class, 'index'])->name('doctor.reviews');
 
     // cancella account
     Route::post('user', [UserController::class, 'destroy'])->name('user.destroy');
