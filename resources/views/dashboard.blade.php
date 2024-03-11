@@ -20,7 +20,7 @@
                         @endif
 
 
-                        <h2 class="mb-4">Bentornato {{ $user->name }} {{ $user->surname }} </h2>
+                        <h2 class="mb-4">Ciao {{ $user->name }} {{ $user->surname }} </h2>
 
                         @if (!$user->doctor->phone_number || !$user->doctor->doctor_img || !$user->doctor->doctor_cv || !$user->doctor->services)
                             <h2 class="mb-3">Sembra che il tuo profilo
@@ -42,6 +42,11 @@
                                 @if (!$user->doctor->doctor_cv)
                                     CV
                                 @endif
+                            </h5>
+                        @endif
+
+                        @if (count($user->doctor->votes) < 5 && !$user->doctor->sponsorships->first())
+                            <h5>Hai ricevuto pochi voti, prova il nostro servizio di Sponsorizzazione a partire da 2.99€
                             </h5>
                         @endif
                     </div>

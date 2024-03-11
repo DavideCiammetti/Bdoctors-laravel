@@ -19,7 +19,7 @@ class ClearExpiredSponsorships extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'clear expired date for sponsorships';
 
     /**
      * Execute the console command.
