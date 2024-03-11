@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BraintreeController;
 use App\Http\Controllers\Admin\DashboardControllers;
 use App\Http\Controllers\Admin\DoctorsController;
+use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,10 @@ Route::middleware(['auth', 'verified', 'first.registration.check'])->name('admin
     //Braintree
     Route::get('/payment', [BraintreeController::class, 'checkout'])->name('doctor.payment');
     Route::post('/checkout', [BraintreeController::class, 'processPayment'])->name('doctor.payment.checkout');
+
+    //Messaggi
+    Route::get('/messages', [MessagesController::class, 'index'])->name('doctor.messages');
+
     // cancella account
     Route::post('user', [UserController::class, 'destroy'])->name('user.destroy');
 });

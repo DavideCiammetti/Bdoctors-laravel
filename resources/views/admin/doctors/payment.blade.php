@@ -1,8 +1,4 @@
 @extends('layouts.admin')
-{{-- <div>
-        {{ session('success_message') }}
-        {{ session('error_message') }}
-    </div> --}}
 @section('content')
     <div class="wrapper">
         <div class="checkout container pt-5">
@@ -11,7 +7,7 @@
             <h1 class="mb-3">Compra una Sponsorizzazione</h1>
 
             @if (session('error_message'))
-                <div class="alert alert-success">
+                <div class="alert alert-danger ">
                     {{ session('error_message') }}
                 </div>
             @endif

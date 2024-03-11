@@ -124,6 +124,15 @@
                                     <i class="fa-solid fa-cart-shopping fa-lg fa-fw"></i> Sponsorizzazioni
                                 </a>
                             </li>
+
+
+                            {{-- Lista Messaggi --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.messages' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.messages') }}">
+                                    <i class="fa-solid fa-message fa-lg fa-fw"></i> Messaggi
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
