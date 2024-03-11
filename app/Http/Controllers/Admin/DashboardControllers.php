@@ -15,9 +15,8 @@ class DashboardControllers extends Controller
         $doctor = Doctor::where('user_id', $user->id)->first();
         $sponsorship = $doctor->sponsorships;
 
-        if ($doctor->votes) {
-            $averageVote = $this->averageVote($doctor);
-        }
+
+        $averageVote = $this->averageVote($doctor);
 
 
         return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote'));
@@ -25,7 +24,7 @@ class DashboardControllers extends Controller
 
     public function averageVote($doctor)
     {
-        if ($doctor->votes) {
+        if (count($doctor->votes) > 0) {
             $votes = $doctor->votes;
             $sommaId = 0;
 
@@ -34,8 +33,9 @@ class DashboardControllers extends Controller
             }
 
             $averageVote = round($sommaId / count($votes));
-
-            return $averageVote;
+        } else {
+            $averageVote = 0;
         }
+        return $averageVote;
     }
 }
