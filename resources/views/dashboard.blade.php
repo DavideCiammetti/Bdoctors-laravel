@@ -55,7 +55,7 @@
                     @endif
                 </div>
 
-                {{-- Abbonamento e Voto --}}
+                {{-- Sponsorizzazioni e Voto --}}
                 <div class="row">
                     {{-- Abbonamento --}}
                     <div class="col-6">
@@ -74,10 +74,12 @@
                                     <h5>Nessuna Sponsorizzazione</h5>
                                     <p>Grazie alla Sponsorizzazione sarai più visibile sul sito e apparirai sempre
                                         prima nelle ricerche dei clienti.</p>
-                                    <h6> <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
+                                    <h6 class="mb-0">
+                                        <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
                                             href="{{ route('admin.doctor.payment') }}">
                                             Abbonati ora
-                                        </a></h6>
+                                        </a>
+                                    </h6>
                                 @endif
                             </div>
                         </div>
@@ -113,6 +115,30 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Messaggi recenti</h3>
+                    </div>
+                    <div class="card-body">
+
+                        @if (count($user->doctor->messages) > 0)
+                            <ul class="list-group">
+                                @foreach ($messages as $key => $message)
+                                    @if ($key <= 4)
+                                        <li class="list-group-item">
+                                            {{ $message->message }}
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        @else
+                            <h4>Nessuno Messaggio ricevuto</h4>
+                        @endif
+                    </div>
+                    <div class="card-footer">
+                        <h6 class="mb-0">
+                            <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.messages' ? 'current-route' : '' }}"
+                                href="{{ route('admin.doctor.messages') }}">
+                                Messaggi Ricevuti
+                            </a>
+                        </h6>
                     </div>
                 </div>
             </div>

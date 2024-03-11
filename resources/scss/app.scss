@@ -100,3 +100,8 @@
         color: $green-50;
     }
 }
+
+#messages,
+#payment {
+    min-height: calc(100vh - 4.375rem);
+}

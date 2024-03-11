@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="wrapper">
+    <div id="payment" class="wrapper">
         <div class="checkout container pt-5">
 
 
