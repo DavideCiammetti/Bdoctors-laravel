@@ -26,7 +26,7 @@ class Doctor extends Model
     // collegamento specializations
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class);
+        return $this->belongsToMany(Specialization::class, 'doctor_specialization');
     }
 
     // collegamento messages

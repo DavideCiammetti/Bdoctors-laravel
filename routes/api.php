@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\MessagesController;
+use App\Http\Controllers\Api\ReviewsController;
+use App\Models\Guest\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +26,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('doctors', [DoctorController::class, 'index']);
 // show
 Route::get('doctors/{slug}', [DoctorController::class, 'show']);
+
+// invio di recenzioni dall'utente
+Route::post('reviews', [ReviewsController::class, 'store'])->name('reviews.store');
+// invio messaggi dall'utente
+Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');

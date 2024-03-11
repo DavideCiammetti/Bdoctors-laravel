@@ -10,6 +10,8 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     // collegamento doctors
     public function doctors()
     {
