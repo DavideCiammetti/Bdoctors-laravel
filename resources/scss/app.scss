@@ -52,7 +52,7 @@
 
 //dashboard
 #dashboard {
-    height: calc(100vh - 4.375rem);
+    min-height: calc(100vh - 4.375rem);
 
     .card-header {
         color: $green-500;

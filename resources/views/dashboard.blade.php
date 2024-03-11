@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="dashboard" class="container">
-        <div class="row justify-content-between pt-5">
+        <div class="row justify-content-between py-5">
             {{-- Welcome --}}
             <div class="col-md-6">
                 {{-- Centro Notifiche --}}
