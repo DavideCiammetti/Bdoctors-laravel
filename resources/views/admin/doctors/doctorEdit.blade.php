@@ -123,30 +123,6 @@
                         </div>
                     </div>
 
-                    {{-- specializzazione  --}}
-                    {{-- <div class="form-group mb-3">
-                        <label for="specializations"
-                            class="col-md-4 col-form-label text-md-right mb-2 d-flex justify-content-between">
-                            Specializzazioni *
-                            @error('specializations')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </label>
-                        <select id="specializations"
-                            class="form-select my-input  @error('specializations') is-invalid @enderror"
-                            aria-label="Default select example" name="specializations" required
-                            autocomplete="specializations" autofocus>
-                            <option selected value="">Nessuna Specializzazione</option>
-                            @foreach ($specializations as $specialization)
-                                {
-                                <option value="{{ $specialization->id }}"
-                                    {{ old('specialization->id', $user->doctor->specializations[0]['id']) == $specialization->id ? 'selected' : '' }}>
-                                    {{ $specialization->title }}</option>
-                                }
-                            @endforeach
-                        </select>
-                    </div> --}}
-
                     {{-- specializzazione --}}
                     <div class="mb-3">
                         <label class="form-label d-flex justify-content-between ">
@@ -230,7 +206,6 @@
                                     class="val-image upload-image my-input form-control @error('doctor_img') is-invalid @enderror"
                                     type="file" id="doctor-img-edit" name="doctor_img"
                                     value="{{ old('doctor_img', $user->doctor->doctor_img) }}">
-                                {{-- {{ old('doctor_img', $user->doctor->doctor_img) }} --}}
                             </div>
                         </div>
 
@@ -254,7 +229,8 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 @if ($user->doctor->doctor_cv)
-                                    <iframe src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV"
+                                    <iframe style="height:100%; width:100%"
+                                        src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV"
                                         title="Doctor CV"></iframe>
                                 @endif
                             </div>

@@ -35,47 +35,55 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
             </div>
 
-            {{-- link di utility --}}
-            <div class="btn-group dropstart">
-                <button type="button" id="user-icon" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if ($user->doctor->doctor_img)
-                        <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}" alt="Immagine del medico">
-                    @else
-                        <i class="fa-solid fa-user d-flex align-items-center justify-content-center "></i>
-                    @endif
 
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        {{-- Logout --}}
-                        <div class="nav-item text-nowrap ms-2">
-                            <a class="nav-link " href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
+
+            <div class="d-flex align-items-center ">
+                @if ($user->doctor->sponsorships->first())
+                    <i class="fa-solid fa-star text-warning me-2"></i>
+                @endif
+                {{-- link di utility --}}
+                <div class="btn-group dropstart">
+                    <button type="button" id="user-icon" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if ($user->doctor->doctor_img)
+                            <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}" alt="Immagine del medico">
+                        @else
+                            <i class="fa-solid fa-user d-flex align-items-center justify-content-center "></i>
+                        @endif
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            {{-- Logout --}}
+                            <div class="nav-item text-nowrap ms-2">
+                                <a class="nav-link " href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                                {{ __('Esci') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                    <li>
-                        {{-- delete account --}}
-                        <div class="nav-item text-nowrap ms-2">
-                            <a class="nav-link text-danger" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
+                                    {{ __('Esci') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        <li>
+                            {{-- delete account --}}
+                            <div class="nav-item text-nowrap ms-2">
+                                <a class="nav-link text-danger" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                     document.getElementById('destroy').submit();">
-                                {{ __('Elimina Account') }}
-                            </a>
-                            <form id="destroy" action="{{ route('admin.user.destroy') }}" method="POST"
-                                class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                </ul>
+                                    {{ __('Elimina Account') }}
+                                </a>
+                                <form id="destroy" action="{{ route('admin.user.destroy') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         </header>
@@ -96,7 +104,7 @@
                             {{-- Link Show --}}
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.show' ? 'current-route' : '' }}"
-                                    href="{{ route('admin.doctors.show', $doctor->id) }}">
+                                    href="{{ route('admin.doctors.show', $user->doctor->id) }}">
                                     <i class="fa-solid fa-circle-info fa-lg fa-fw"></i> Il Tuo Profilo
                                 </a>
                             </li>
@@ -104,8 +112,33 @@
                             {{-- Link Edit --}}
                             <li class="nav-item">
                                 <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctors.edit' ? 'current-route' : '' }}"
-                                    href="{{ route('admin.doctors.edit', $doctor->id) }}">
+                                    href="{{ route('admin.doctors.edit', $user->doctor->id) }}">
                                     <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i> Modifica Profilo
+                                </a>
+                            </li>
+
+                            {{-- Link Pagamento --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.payment') }}">
+                                    <i class="fa-solid fa-cart-shopping fa-lg fa-fw"></i> Sponsorizzazioni
+                                </a>
+                            </li>
+
+
+                            {{-- Lista Messaggi --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.messages' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.messages') }}">
+                                    <i class="fa-solid fa-message fa-lg fa-fw"></i> Messaggi
+                                </a>
+                            </li>
+
+                            {{-- Lista Recensioni --}}
+                            <li class="nav-item">
+                                <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.reviews' ? 'current-route' : '' }}"
+                                    href="{{ route('admin.doctor.reviews') }}">
+                                    <i class="fa-solid fa-comments fa-lg fa-fw"></i> Recensioni
                                 </a>
                             </li>
                         </ul>

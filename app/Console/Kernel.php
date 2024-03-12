@@ -8,11 +8,21 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
+     * The Artisan commands provided by your application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        \App\Console\Commands\ClearExpiredSponsorships::class,
+    ];
+
+    /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('sponsorships:clear-expired')->hourly();
     }
 
     /**
@@ -20,7 +30,9 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
+
+        $this->load(__DIR__ . '/../vendor/laravel/framework/src/Illuminate/Foundation/Console');
 
         require base_path('routes/console.php');
     }

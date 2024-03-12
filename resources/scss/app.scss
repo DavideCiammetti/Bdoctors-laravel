@@ -52,7 +52,15 @@
 
 //dashboard
 #dashboard {
-    height: calc(100vh - 4.375rem);
+    min-height: calc(100vh - 4.375rem);
+
+    .card-header {
+        color: $green-500;
+    }
+
+    .fa-solid.fa-star {
+        color: $green-400;
+    }
 }
 
 //Doctor Show
@@ -90,5 +98,23 @@
     .list-item {
         background-color: $green-700;
         color: $green-50;
+    }
+}
+
+#messages,
+#payment,
+#reviews {
+    min-height: calc(100vh - 4.375rem);
+}
+
+#messages,
+#reviews {
+    .bg-green-dark {
+        background-color: $green-600;
+        color: white;
+    }
+    .bg-green-light {
+        background-color: white;
+        color: $green-600;
     }
 }
