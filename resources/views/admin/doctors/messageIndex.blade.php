@@ -10,7 +10,7 @@
                     <div class="accordion-item">
 
                         <h6 class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
-                            <div class="d-flex justify-content-between w-100 px-4 ">
+                            <div class="d-flex justify-content-between w-100 px-4">
                                 {{-- Nome e cognome meaaggio --}}
                                 <div class="w-25">{{ $message->name }} {{ $message->surname }}</div>
 
@@ -28,13 +28,14 @@
                                     {{ $message->email }}
                                 </div>
                             </div>
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="btn collapsed text-white " type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseThree{{ $message->id }}" aria-expanded="false"
                                 aria-controls="flush-collapseThree">
+                                <i class="fa-solid fa-chevron-down"></i>
                             </button>
 
                         </h6>
-                        <div id="flush-collapseThree{{ $message->id }}" class="accordion-collapse collapse"
+                        <div id="flush-collapseThree{{ $message->id }}" class="accordion-collapse collapse "
                             data-bs-parent="#accordionFlushExample" style="">
                             <div class="accordion-body">{{ $message->message }}</div>
                         </div>

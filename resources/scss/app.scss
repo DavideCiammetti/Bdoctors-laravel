@@ -117,4 +117,15 @@
         background-color: white;
         color: $green-600;
     }
+    .btn {
+        border: $green-600;
+
+        &:hover {
+            border: $green-600;
+        }
+    }
+    .accordion-body {
+        background-color: $green-200;
+        color: $green-950;
+    }
 }
