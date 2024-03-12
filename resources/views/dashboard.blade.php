@@ -62,7 +62,7 @@
 
                 {{-- Sponsorizzazioni e Voto --}}
                 <div class="row">
-                    {{-- Abbonamento --}}
+                    {{-- Sponsorizzazione --}}
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header">
@@ -82,7 +82,7 @@
                                     <h6 class="mb-0">
                                         <a class="nav-link btn-link btn  {{ Route::currentRouteName() == 'admin.doctor.payment' ? 'current-route' : '' }}"
                                             href="{{ route('admin.doctor.payment') }}">
-                                            Abbonati ora
+                                            Acquista una Sponsorizzazione
                                         </a>
                                     </h6>
                                 @endif
