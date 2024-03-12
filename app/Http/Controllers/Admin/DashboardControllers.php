@@ -19,8 +19,23 @@ class DashboardControllers extends Controller
 
         $averageVote = $this->averageVote($doctor);
 
+        $italianMonths = [
+            'January' => 'Gennaio',
+            'February' => 'Febbraio',
+            'March' => 'Marzo',
+            'April' => 'Aprile',
+            'May' => 'Maggio',
+            'June' => 'Giugno',
+            'July' => 'Luglio',
+            'August' => 'Agosto',
+            'September' => 'Settembre',
+            'October' => 'Ottobre',
+            'November' => 'Novembre',
+            'December' => 'Dicembre',
+        ];
 
-        return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote', 'messages', 'reviews'));
+
+        return view('dashboard', compact('user', 'doctor', 'sponsorship', 'averageVote', 'messages', 'reviews', 'italianMonths'));
     }
 
     public function averageVote($doctor)

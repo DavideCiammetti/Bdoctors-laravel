@@ -42,3 +42,8 @@ main {
 .accordion-button {
     width: 5%;
 }
+
+.alert-green {
+    background-color: $green-100;
+    border: 1px solid $green-300;
+}
