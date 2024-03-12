@@ -13,6 +13,21 @@ class ReviewsController extends Controller
         $user = Auth::user();
         $reviews = $user->doctor->reviews;
 
-        return view('admin.doctors.reviewsIndex', compact('user', 'reviews'));
+        $italianMonths = [
+            'January' => 'Gennaio',
+            'February' => 'Febbraio',
+            'March' => 'Marzo',
+            'April' => 'Aprile',
+            'May' => 'Maggio',
+            'June' => 'Giugno',
+            'July' => 'Luglio',
+            'August' => 'Agosto',
+            'September' => 'Settembre',
+            'October' => 'Ottobre',
+            'November' => 'Novembre',
+            'December' => 'Dicembre',
+        ];
+
+        return view('admin.doctors.reviewsIndex', compact('user', 'reviews', 'italianMonths'));
     }
 }
