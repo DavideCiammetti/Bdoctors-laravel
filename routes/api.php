@@ -31,3 +31,5 @@ Route::get('doctors/{slug}', [DoctorController::class, 'show']);
 Route::post('reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 // invio messaggi dall'utente
 Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');
+// sponspored
+Route::get('sponsor', [DoctorController::class, 'sponsor']);
