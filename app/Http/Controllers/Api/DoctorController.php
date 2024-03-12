@@ -136,37 +136,16 @@ class DoctorController extends Controller
             'logopedista' => ['nullable', 'string', 'min:3'],
 
             // voti
-            "ottimo" => ['nullable'],
-            "buono" => ['nullable'],
-            "discreto" => ['nullable'],
-            "sufficiente" => ['nullable'],
-            "scarso" => ['nullable'],
+            "voteValue" => ['nullable', 'integer'],
 
             // recensioni
-            'minDieci' => ['nullable'],
-            'maxDieci' => ['nullable'],
+            'reviewValue' => ['nullable', 'integer'],
         ]);
 
         // Array per memorizzare i risultati
         $results = [];
 
         if (request()) {
-            /**
-             * Filtro per nome, cognome o specializzazione
-             */
-            // 
-            if (request()->key) {
-                $results[] = Doctor::with('user', 'specializations', 'reviews', 'sponsorships', 'votes')
-                    ->whereHas('specializations', function ($query) {
-                        $query->where('title', 'LIKE', '%' . request()->key . '%');
-                    })
-                    ->orWhereHas('user', function ($query) {
-                        $query->where('name', 'LIKE', '%' . request()->key . '%')
-                            ->orWhere('surname', 'LIKE', '%' . request()->key . '%');
-                    })
-                    ->get();
-            }
-
             /**
              * Filtra i dottori per specializzazione.
              */
@@ -180,81 +159,27 @@ class DoctorController extends Controller
             /**
              * Filtra i dottori in base al voto specificato.
              */
-            // ottimo
-            if (request()->ottimo) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
+            if (request()->voteValue) {
+                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships', 'specializations')
                     ->select('doctors.*', 'users.*')
                     ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
                     ->join('users', 'users.id', '=', 'doctors.user_id')
                     ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) = ?', [1])
-                    ->get();
-            }
-            // discreto
-            if (request()->discreto) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
-                    ->select('doctors.*', 'users.*')
-                    ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
-                    ->join('users', 'users.id', '=', 'doctors.user_id')
-                    ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) = ?', [2])
-                    ->get();
-            }
-            // buono
-            if (request()->buono) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
-                    ->select('doctors.*', 'users.*')
-                    ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
-                    ->join('users', 'users.id', '=', 'doctors.user_id')
-                    ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) = ?', [3])
-                    ->get();
-            }
-            // sufficiente
-            if (request()->sufficiente) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
-                    ->select('doctors.*', 'users.*')
-                    ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
-                    ->join('users', 'users.id', '=', 'doctors.user_id')
-                    ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) = ?', [4])
-                    ->get();
-            }
-            // scarso
-            if (request()->scarso) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
-                    ->select('doctors.*', 'users.*')
-                    ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
-                    ->join('users', 'users.id', '=', 'doctors.user_id')
-                    ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) = ?', [5])
+                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) >= ?', [request()->voteValue])
                     ->get();
             }
 
             /**
              * Filtra i dottori in base al voto specificato.
              */
-            // num recensioni < 10
-            if (request()->minDieci) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
+            if (request()->reviewValue) {
+                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships', 'specializations')
                     ->select('doctors.*')
                     ->whereExists(function ($query) {
                         $query->select(DB::raw('COUNT(reviews.id)'))
                             ->from('reviews')
                             ->whereColumn('doctors.id', 'reviews.doctor_id')
-                            ->havingRaw('COUNT(reviews.id) < ?', [10]);
-                    })
-                    ->get();
-            }
-            // recensioni > 10
-            if (request()->maxDieci) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships')
-                    ->select('doctors.*')
-                    ->whereExists(function ($query) {
-                        $query->select(DB::raw('COUNT(reviews.id)'))
-                            ->from('reviews')
-                            ->whereColumn('doctors.id', 'reviews.doctor_id')
-                            ->havingRaw('COUNT(reviews.id) > ?', [10]);
+                            ->havingRaw('COUNT(reviews.id) >= ?', [request()->reviewValue]);
                     })
                     ->get();
             }
