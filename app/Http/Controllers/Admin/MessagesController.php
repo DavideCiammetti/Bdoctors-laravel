@@ -14,6 +14,21 @@ class MessagesController extends Controller
         $user = Auth::user();
         $messages = $user->doctor->messages;
 
-        return view('admin.doctors.messageIndex', compact('user', 'messages'));
+        $italianMonths = [
+            'January' => 'Gennaio',
+            'February' => 'Febbraio',
+            'March' => 'Marzo',
+            'April' => 'Aprile',
+            'May' => 'Maggio',
+            'June' => 'Giugno',
+            'July' => 'Luglio',
+            'August' => 'Agosto',
+            'September' => 'Settembre',
+            'October' => 'Ottobre',
+            'November' => 'Novembre',
+            'December' => 'Dicembre',
+        ];
+
+        return view('admin.doctors.messageIndex', compact('user', 'messages', 'italianMonths'));
     }
 }

@@ -9,10 +9,9 @@
                 <thead>
                     <tr>
                         <th scope="col" class="bg-green-dark"></th>
-                        <th scope="col" class="bg-green-dark">Messaggio</th>
                         <th scope="col" class="bg-green-dark">Cellulare</th>
                         <th scope="col" class="bg-green-dark">E-mail</th>
-
+                        <th scope="col" class="bg-green-dark">Data</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,9 +24,11 @@
                                     Anonimo
                                 @endif
                             </th>
-                            <td>{{ $message->message }}</td>
+                            {{-- <td>{{ $message->message }}</td> --}}
                             <td>{{ $message?->phone_number ?: '-' }}</td>
                             <td>{{ $message->email }}</td>
+                            <td>{{ str_replace(array_keys($italianMonths), array_values($italianMonths), $message->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
