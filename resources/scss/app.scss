@@ -2,6 +2,29 @@
 @import "./partials/palette.scss";
 @import "./partials/common.scss";
 
+//welcome
+#welcome {
+    .col-md-6 {
+        .card {
+            height: 264.5px;
+        }
+    }
+
+    .card-header {
+        color: white;
+        background-color: $green-600;
+    }
+    .img-container {
+        width: 100%;
+        height: 100%;
+        .img-welcome {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
+
 //Login e Register
 #navbar-access {
     background-color: $green-600;

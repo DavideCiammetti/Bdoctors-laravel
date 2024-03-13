@@ -4,7 +4,7 @@
     <div id="doctor-show" class="container py-5">
 
         {{-- Profilo --}}
-        <div class="d-flex align-items-center justify-content-between mb-5">
+        <div class="mb-5">
             {{-- Immagine profilo --}}
             <div class="d-flex align-items-center">
                 @if ($user->doctor->doctor_img)
@@ -25,22 +25,12 @@
                     <h1>{{ $user->surname }}</h1>
                 </div>
             </div>
-
-            {{-- Bottoni utility --}}
-            <div>
-                <a class="btn btn-link" href="{{ route('admin.dashboard') }}">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
-                <a class="btn btn-link ms-3" href="{{ route('admin.doctors.edit', $doctor->id) }}">
-                    <i class="fa-solid fa-pen-to-square fa-lg fa-fw"></i>
-                </a>
-            </div>
         </div>
 
         {{-- Lista proprietà --}}
         <div class="row flex-md-wrap">
             {{-- Info testuali --}}
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 {{-- Specializzazioni --}}
                 <div class="mb-4">
                     <h2 class="mb-3">Le tue Specializzazioni</h2>
@@ -90,7 +80,7 @@
             </div>
 
             {{-- CV --}}
-            <div class="col-md-6 d-flex align-items-center justify-content-center ">
+            <div class="col-lg-6 d-flex align-items-center justify-content-center ">
                 @if ($doctor->doctor_cv)
                     <div class="profile-cv rounded-3">
                         <iframe src="{{ asset('storage/' . $user->doctor->doctor_cv) }}" alt="Doctor CV" title="Doctor CV"
