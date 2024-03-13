@@ -3,3 +3,4 @@ import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**"]);
 // import './validations/validations'
+import './graph/acquisitions';

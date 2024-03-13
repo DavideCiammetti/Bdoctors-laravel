@@ -158,8 +158,7 @@
         <script src="{{ asset('js/validations.js') }}"></script>
     @endif
 
-
-
+    <script type="module" src="../../js/graph/acquisitions.js"></script>
 </body>
 
 </html>
