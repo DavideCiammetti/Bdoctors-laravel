@@ -156,40 +156,17 @@ class DoctorController extends Controller
                 }
             }
 
-            /**
-             * Filtra i dottori in base al voto specificato.
-             */
-            if (request()->voteValue) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships', 'specializations')
-                    ->select('doctors.*', 'users.*')
-                    ->join('doctor_vote', 'doctors.id', '=', 'doctor_vote.doctor_id')
-                    ->join('users', 'users.id', '=', 'doctors.user_id')
-                    ->groupBy('doctors.id')
-                    ->havingRaw('FLOOR(AVG(doctor_vote.vote_id)) >= ?', [request()->voteValue])
-                    ->get();
-            }
-
-            /**
-             * Filtra i dottori in base al voto specificato.
-             */
-            if (request()->reviewValue) {
-                $results[] = Doctor::with('user', 'reviews', 'votes', 'sponsorships', 'specializations')
-                    ->select('doctors.*')
-                    ->whereExists(function ($query) {
-                        $query->select(DB::raw('COUNT(reviews.id)'))
-                            ->from('reviews')
-                            ->whereColumn('doctors.id', 'reviews.doctor_id')
-                            ->havingRaw('COUNT(reviews.id) >= ?', [request()->reviewValue]);
-                    })
-                    ->get();
-            }
-
             // Unione dei risultati
             // --- collect($results) racchiude l'array in una collection
             // --- flatten() trasforma l'array multidimensionale in monodimensionale
             // --- unique('id') rimuove eventuali duplicati all'interno dell'array
             // --- restituisce tutti i valori dell'array come una nuova collection
             $mergedResults = collect($results)->flatten()->unique('id')->values();
+
+            // Ordina i risultati in base alla data di fine della sponsorizzazione
+            $mergedResults = $mergedResults->sortByDesc(function ($doctor) {
+                return optional($doctor->sponsorships->sortByDesc('end_date')->first())->end_date;
+            });
         }
 
         // Risposta JSON
