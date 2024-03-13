@@ -18,7 +18,7 @@ main {
 }
 .btn-access {
     background-color: $green-500;
-    color: $green-900;
+    color: white;
     text-decoration: none;
 
     &:hover {
@@ -37,4 +37,13 @@ main {
         outline: none;
         border: 1px solid $green-500;
     }
+}
+
+.accordion-button {
+    width: 5%;
+}
+
+.alert-green {
+    background-color: $green-100;
+    border: 1px solid $green-300;
 }

@@ -108,7 +108,8 @@
 }
 
 #messages,
-#reviews {
+#reviews,
+#dashboard {
     .bg-green-dark {
         background-color: $green-600;
         color: white;
@@ -116,5 +117,16 @@
     .bg-green-light {
         background-color: white;
         color: $green-600;
+    }
+    .btn {
+        border: $green-600;
+
+        &:hover {
+            border: $green-600;
+        }
+    }
+    .accordion-body {
+        background-color: $green-200;
+        color: $green-950;
     }
 }
