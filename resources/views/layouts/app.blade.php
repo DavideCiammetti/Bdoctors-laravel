@@ -27,7 +27,7 @@
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/login') }}">
                     <div class="logo_laravel">
-                        <h1 class="text-white">BDoctors</h1>
+                        <h1 class="text-white">BDoctors Pro</h1>
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
