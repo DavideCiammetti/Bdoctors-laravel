@@ -41,7 +41,7 @@
             <div class="row justify-content-between ">
 
                 {{-- Campi testuali --}}
-                <div class="col-md-7">
+                <div class="col-lg-7">
 
                     {{-- nome  --}}
                     <div class="form-group mb-3">
@@ -175,7 +175,7 @@
                 </div>
 
                 {{-- Foto e CV --}}
-                <div class="col-md-4 mt-4 d-flex flex-column align-items-between justify-content-center ">
+                <div class="col-lg-4 mt-4 d-flex flex-column align-items-between justify-content-center ">
 
                     {{-- Foto Profilo  --}}
                     <div class="card mb-4">
