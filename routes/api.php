@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\apiGraph\GraphController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\ReviewsController;
@@ -34,3 +35,8 @@ Route::post('messages', [MessagesController::class, 'store'])->name('messages.st
 Route::get('sponsor', [DoctorController::class, 'sponsor']);
 // advanced search
 Route::get('doctorsadvanced', [DoctorController::class, 'advancedSearch']);
+
+Route::middleware(['web', 'auth', 'api'])->group(function () {
+    // messages per graph
+Route::get('graph', [GraphController::class, 'index']);
+});

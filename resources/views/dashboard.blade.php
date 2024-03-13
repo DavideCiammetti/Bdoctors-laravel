@@ -180,6 +180,7 @@
                     </div>
                 </div>
             </div>
+            <div style="width: 900px;"><canvas id="acquisitions"></canvas></div>
         </div>
     </div>
 @endsection
