@@ -7,7 +7,7 @@ async function fetchDataAndCreateChart() {
     const newData = response.data.results;
     const newResponse = response.data.reviews;
 
-    if (newData.length === 0 || newResponse.length === 0 ) {
+    if (newData.length === 0 && newResponse.length === 0 ) {
       console.log('Non ci sono messaggi');
       return;
     }
