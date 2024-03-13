@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\apiGraph\GraphController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\MessagesController;
 use App\Http\Controllers\Api\ReviewsController;
+use App\Http\Controllers\Api\VotesController;
 use App\Models\Guest\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::get('doctors/{slug}', [DoctorController::class, 'show']);
 Route::post('reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 // invio messaggi dall'utente
 Route::post('messages', [MessagesController::class, 'store'])->name('messages.store');
+// invio voto da utente
+Route::post('votes', [VotesController::class, 'store'])->name('votes.store');
 // sponspored
 Route::get('sponsor', [DoctorController::class, 'sponsor']);
 // advanced search
