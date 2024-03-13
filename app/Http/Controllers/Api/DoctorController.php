@@ -99,7 +99,7 @@ class DoctorController extends Controller
             ->join('doctor_sponsorship', 'doctors.id', '=', 'doctor_sponsorship.doctor_id')
             ->orderByRaw("FIELD(doctor_sponsorship.sponsorship_id, " . implode(',', Sponsorship::orderBy('id', 'desc')->pluck('id')->toArray()) . ")")
             ->orderByRaw("(SELECT MIN(title) FROM specializations WHERE specializations.id IN (SELECT specialization_id FROM doctor_specialization WHERE doctor_id = doctors.id))") // ordina per il titolo più basso tra tutte le specializzazioni associate a ciascun dottore
-            ->paginate(5);
+            ->paginate(3);
 
         return response()->json([
             'status' => true,
