@@ -13,7 +13,7 @@ class VotesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $votes = ['Ottimo', 'Buono', 'Discreto', 'Sufficiente', 'Scarso'];
+        $votes = ['Scarso', 'Sufficiente', 'Discreto', 'Buono', 'Ottimo'];
 
         foreach ($votes as $vote) {
             $new_vote = new Vote();
