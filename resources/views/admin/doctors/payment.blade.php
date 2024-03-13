@@ -24,21 +24,21 @@
             <h2 class="mb-4">Scopri i nostri Piani:</h2>
 
             <div class="row mb-4">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="card text-center">
                         <div class="card-header">Piano Base</div>
                         <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 24 ore</div>
                         <div class="card-footer">2,99€</div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="card text-center ">
                         <div class="card-header">Piano Standard</div>
                         <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 72 ore</div>
                         <div class="card-footer">5,99€</div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="card text-center ">
                         <div class="card-header">Piano Premium</div>
                         <div class="card-body">Acquistando questo Piano sarai messo in evidenza per 144 ore</div>
