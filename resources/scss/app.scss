@@ -4,9 +4,15 @@
 
 //welcome
 #welcome {
+    .col-md-6 {
+        .card {
+            height: 264.5px;
+        }
+    }
+
     .card-header {
-        color: $green-500;
-        background-color: $green-900;
+        color: white;
+        background-color: $green-600;
     }
     .img-container {
         width: 100%;

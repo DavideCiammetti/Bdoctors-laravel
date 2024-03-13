@@ -13,7 +13,7 @@
                         <p>
                             Se sei un professionista del settore sanitario e desideri ottimizzare la gestione dei tuoi
                             appuntamenti,
-                            migliorare la tua visibilità e offrire un servizio impeccabile ai tuoi pazienti, Bddoctors Pro è
+                            migliorare la tua visibilità e offrire un servizio impeccabile ai tuoi pazienti, BDoctors Pro è
                             la
                             soluzione che fa al caso tuo. Unisciti alla nostra community di oltre 30 dottori già iscritti e
                             collegati con più di 80.000 pazienti in tutta Italia. Con Bddoctors Pro, potrai gestire in modo
@@ -26,17 +26,17 @@
             </div>
 
             {{-- Profilo --}}
-            <div class="col-md-6 mb-3 h-100">
+            <div class="col-md-6 mb-3 ">
                 {{-- Descrizione --}}
                 <div class="card">
                     <div class="card-header">
                         <h2>Metti in risalto il tuo Profilo</h2>
                     </div>
                     <div class="card-body d-flex">
-                        <p class="d-flex align-items-center justify-content-center mb-0">
-                            Metti in rilievo il tuo profilo: Bddoctors Pro ti offre l'opportunità di distinguerti nel
+                        <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
+                            BDoctors Pro ti offre l'opportunità di distinguerti nel
                             settore sanitario, collegandoti con una vasta rete di pazienti e migliorando la tua visibilità
-                            professionale in modo rapido e efficace
+                            professionale in modo rapido e efficace.
                         </p>
                         {{-- Immagine --}}
                         <div class="img-container">
@@ -49,21 +49,21 @@
             </div>
 
             {{-- Paziente --}}
-            <div class="col-md-6 mb-3 h-100">
+            <div class="col-md-6 mb-3">
                 {{-- Descrizione --}}
                 <div class="card">
                     <div class="card-header">
                         <h2>Contatto diretto col Paziente</h2>
                     </div>
                     <div class="card-body d-flex">
-                        <p class="d-flex align-items-center justify-content-center mb-0">
-                            Contatto diretto col paziente: Con Bddoctors Pro, accedi a strumenti avanzati per comunicare
+                        <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
+                            Con BDoctors Pro, accedi a strumenti avanzati per comunicare
                             direttamente con i tuoi pazienti, garantendo un servizio personalizzato e tempestivo per
-                            soddisfare al meglio le loro esigenze
+                            soddisfare al meglio le loro esigenze.
                         </p>
                         {{-- Immagine --}}
                         <div class="img-container">
-                            <img class="img-welcome" src="{{ asset('img/Paziente welcome.jpg') }}" alt="Profilo img">
+                            <img class="img-welcome " src="{{ asset('img/Paziente welcome.jpg') }}" alt="Profilo img">
                         </div>
                     </div>
                 </div>
@@ -71,11 +71,48 @@
 
             </div>
 
-            <div class="col-md-6">
-                <h2>Diventa un membro Sponsorizzato</h2>
+            {{-- Sponsorizzazione --}}
+            <div class="col-md-6 mb-3">
+                {{-- Descrizione --}}
+                <div class="card ">
+                    <div class="card-header">
+                        <h2>Diventa un membro Sponsorizzato</h2>
+                    </div>
+                    <div class="card-body d-flex">
+                        <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
+                            Diventa membro sponsorizzato per essere in cima alla ricerca e in primo piano sulla prima
+                            pagina. Espandi la tua esposizione e attrai nuovi pazienti con facilità.
+                        </p>
+                        {{-- Immagine --}}
+                        <div class="img-container">
+                            <img class="img-welcome" src="{{ asset('img/Sponsorizzazione welcome.jpg') }}"
+                                alt="Profilo img">
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="col-md-6">
-                <h2>Divertiti con le statistiche</h2>
+
+            {{-- Statistiche --}}
+            <div class="col-md-6 mb-3">
+                {{-- Descrizione --}}
+                <div class="card ">
+                    <div class="card-header">
+                        <h2>Divertiti con le statistiche</h2>
+                    </div>
+                    <div class="card-body d-flex">
+                        <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
+                            Con BDoctors Pro, monitora il tuo progresso attraverso statistiche mensili su voti, messaggi e
+                            recensioni. Ottieni preziose informazioni per migliorare il tuo servizio e soddisfare al meglio
+                            le esigenze dei pazienti.
+                        </p>
+                        {{-- Immagine --}}
+                        <div class="img-container">
+                            <img class="img-welcome" src="{{ asset('img/Statistiche welcome.jpg') }}" alt="Profilo img">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
