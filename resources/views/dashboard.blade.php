@@ -38,8 +38,7 @@
             @endif
 
             {{-- Welcome --}}
-            <div class="col-md-6">
-
+            <div class="col-lg-6 mb-4">
                 <div class="card mb-4 h-100">
 
                     <div class="card-header">
@@ -64,7 +63,7 @@
             </div>
 
             {{-- Sponsorizzazione --}}
-            <div class="col-md-3">
+            <div class="col-lg-3 mb-4">
                 <div class="card h-100">
                     <div class="card-header">
                         <h3>Sponsorizzazione</h3>
@@ -97,7 +96,7 @@
             </div>
 
             {{-- Media Voto --}}
-            <div class="col-md-3">
+            <div class="col-lg-3 mb-4">
                 <div class="card h-100">
                     <div class="card-header">
                         <h3>Valutazione</h3>
@@ -119,130 +118,131 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        {{-- Messaggi --}}
-        <div class="col-md-12 mb-5">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center ">
-                    <h3 class="mb-0">Messaggi recenti</h3>
-                    <div>
-                        <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.messages' ? 'current-route' : '' }}"
-                            href="{{ route('admin.doctor.messages') }}">
-                            <i class="fa-solid fa-message fa-lg fa-fw"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    @if (count($user->doctor->messages) > 0)
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            @foreach ($messages as $key => $message)
-                                @if ($key + 1 <= 5)
-                                    <div class="accordion-item">
-                                        <h6
-                                            class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
-                                            <div class="d-flex justify-content-between w-100 px-4">
-                                                {{-- Nome e cognome meaaggio --}}
-                                                <div class="w-25">{{ $message->name }} {{ $message->surname }}</div>
-
-                                                {{-- Data di invio --}}
-                                                <div class="w-25">
-                                                    {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $message->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
-                                                </div>
-
-                                                <div class="w-25">
-                                                    {{ $message->phone_number }}
-                                                </div>
 
 
-                                                <div class="w-25">
-                                                    {{ $message->email }}
-                                                </div>
-                                            </div>
-                                            <button class="btn collapsed text-white " type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#flush-collapseThree{{ $message->id }}"
-                                                aria-expanded="false" aria-controls="flush-collapseThree">
-                                                <i class="fa-solid fa-chevron-down"></i>
-                                            </button>
-
-                                        </h6>
-                                        <div id="flush-collapseThree{{ $message->id }}"
-                                            class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
-                                            style="">
-                                            <div class="accordion-body">{{ $message->message }}</div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
+            {{-- Messaggi --}}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center ">
+                        <h3 class="mb-0">Messaggi recenti</h3>
+                        <div>
+                            <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.messages' ? 'current-route' : '' }}"
+                                href="{{ route('admin.doctor.messages') }}">
+                                <i class="fa-solid fa-message fa-lg fa-fw"></i>
+                            </a>
                         </div>
-                    @else
-                        <h4>Nessuno Messaggio ricevuto</h4>
-                    @endif
+                    </div>
+                    <div class="card-body">
+
+                        @if (count($user->doctor->messages) > 0)
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                @foreach ($messages as $key => $message)
+                                    @if ($key + 1 <= 5)
+                                        <div class="accordion-item">
+                                            <h6
+                                                class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
+                                                <div class="d-flex justify-content-between w-100 px-4">
+                                                    {{-- Nome e cognome meaaggio --}}
+                                                    <div class="w-25">{{ $message->name }} {{ $message->surname }}</div>
+
+                                                    {{-- Data di invio --}}
+                                                    <div class="w-25">
+                                                        {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $message->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
+                                                    </div>
+
+                                                    <div class="w-25">
+                                                        {{ $message->phone_number }}
+                                                    </div>
+
+
+                                                    <div class="w-25">
+                                                        {{ $message->email }}
+                                                    </div>
+                                                </div>
+                                                <button class="btn collapsed text-white " type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseThree{{ $message->id }}"
+                                                    aria-expanded="false" aria-controls="flush-collapseThree">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+
+                                            </h6>
+                                            <div id="flush-collapseThree{{ $message->id }}"
+                                                class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
+                                                style="">
+                                                <div class="accordion-body">{{ $message->message }}</div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <h4>Nessuno Messaggio ricevuto</h4>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
 
-        {{-- Recensionu --}}
-        <div class="col-md-12 mb-5">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center ">
-                    <h3 class="mb-0">Recensioni recenti</h3>
-                    <div>
-                        <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.reviews' ? 'current-route' : '' }}"
-                            href="{{ route('admin.doctor.reviews') }}">
-                            <i class="fa-solid fa-comments fa-lg fa-fw"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    @if (count($user->doctor->reviews) > 0)
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            @foreach ($reviews as $key => $review)
-                                @if ($key + 1 <= 5)
-                                    <div class="accordion-item">
-                                        <h6
-                                            class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
-                                            <div class="d-flex justify-content-between w-100 px-4">
-                                                {{-- Nome e cognome meaaggio --}}
-                                                <div class="w-25">{{ $review->name }} {{ $review->surname }}</div>
-
-                                                {{-- Data di invio --}}
-                                                <div class="w-25">
-                                                    {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $review->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
-                                                </div>
-
-                                                <div class="w-25">
-                                                    {{ $review->phone_number }}
-                                                </div>
-
-
-                                                <div class="w-25">
-                                                    {{ $review->email }}
-                                                </div>
-                                            </div>
-                                            <button class="btn collapsed text-white " type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#flush-collapseThree{{ $review->id }}"
-                                                aria-expanded="false" aria-controls="flush-collapseThree">
-                                                <i class="fa-solid fa-chevron-down"></i>
-                                            </button>
-
-                                        </h6>
-                                        <div id="flush-collapseThree{{ $review->id }}"
-                                            class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
-                                            style="">
-                                            <div class="accordion-body">{{ $review->content }}</div>
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
+            {{-- Recensioni --}}
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center ">
+                        <h3 class="mb-0">Recensioni recenti</h3>
+                        <div>
+                            <a class="nav-link  {{ Route::currentRouteName() == 'admin.doctor.reviews' ? 'current-route' : '' }}"
+                                href="{{ route('admin.doctor.reviews') }}">
+                                <i class="fa-solid fa-comments fa-lg fa-fw"></i>
+                            </a>
                         </div>
-                    @else
-                        <h4>Nessuno Messaggio ricevuto</h4>
-                    @endif
+                    </div>
+                    <div class="card-body">
+
+                        @if (count($user->doctor->reviews) > 0)
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                @foreach ($reviews as $key => $review)
+                                    @if ($key + 1 <= 5)
+                                        <div class="accordion-item">
+                                            <h6
+                                                class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
+                                                <div class="d-flex justify-content-between w-100 px-4">
+                                                    {{-- Nome e cognome meaaggio --}}
+                                                    <div class="w-25">{{ $review->name }} {{ $review->surname }}</div>
+
+                                                    {{-- Data di invio --}}
+                                                    <div class="w-25">
+                                                        {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $review->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
+                                                    </div>
+
+                                                    <div class="w-25">
+                                                        {{ $review->phone_number }}
+                                                    </div>
+
+
+                                                    <div class="w-25">
+                                                        {{ $review->email }}
+                                                    </div>
+                                                </div>
+                                                <button class="btn collapsed text-white " type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseThree{{ $review->id }}"
+                                                    aria-expanded="false" aria-controls="flush-collapseThree">
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+
+                                            </h6>
+                                            <div id="flush-collapseThree{{ $review->id }}"
+                                                class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
+                                                style="">
+                                                <div class="accordion-body">{{ $review->content }}</div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @else
+                            <h4>Nessuno Messaggio ricevuto</h4>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
