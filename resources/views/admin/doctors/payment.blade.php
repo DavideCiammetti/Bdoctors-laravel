@@ -21,6 +21,20 @@
                 scadenza sarà automaticamente prolungata.
             </h5>
 
+            <div class="alert alert-green">
+                @if ($user->doctor->sponsorships->first())
+                    <h5>Sponsorizzazione attiva: <span
+                            class="text-warning">{{ $user->doctor->sponsorships[0]->title }}</span></h5>
+
+                    <h6 class="mb-0">
+                        Scadenza:
+                        {{ \Carbon\Carbon::parse($sponsorship[0]->pivot->end_date)->locale('it')->formatLocalized('%e %b %Y %H:%M') }}
+                    </h6>
+                @else
+                    <h5 class="mb-0">Sponsorizzazione attiva: <span class="text-warning">Nessuna</span></h5>
+                @endif
+            </div>
+
             <h2 class="mb-4">Scopri i nostri Piani:</h2>
 
             <div class="row mb-4">
