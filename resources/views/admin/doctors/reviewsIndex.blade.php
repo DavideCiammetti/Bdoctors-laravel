@@ -2,16 +2,19 @@
 
 @section('content')
     <div id="reviews" class="container pt-5">
-        <h1 class="mb-4">Lista Recensioni</h1>
+        <div class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4">
+            <h1>Lista Recensioni</h1>
+            <h5>Hai {{ count($user->doctor->reviews) }} Recensioni</h5>
+        </div>
 
         @if (count($user->doctor->reviews) > 0)
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 @foreach ($reviews as $review)
                     <div class="accordion-item">
                         <h6 class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
-                            <div class="d-flex justify-content-lg-between justify-content-around w-100 px-4">
+                            <div class="d-flex justify-content-between w-100 ps-3">
                                 {{-- Nome e cognome  --}}
-                                <div class="w-25">
+                                <div class="w-50">
                                     @if ($review->name && $review->surname)
                                         {{ $review->name }} {{ $review->surname }}
                                     @else
@@ -20,7 +23,7 @@
                                 </div>
 
                                 {{-- Data di invio --}}
-                                <div class="w-25 text-center ">
+                                <div class="w-50 text-center ">
                                     {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $review->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
                                 </div>
                             </div>
