@@ -158,7 +158,14 @@
         <script src="{{ asset('js/validations.js') }}"></script>
     @endif
 
-    <script type="module" src="../../js/graph/acquisitions.js"></script>
+    @if (Route::currentRouteName() == 'admin.doctor.payment')
+        <script src="{{ asset('js/payment.js') }}"></script>
+    @endif
+
+    @if (Route::currentRouteName() === 'admin.dashboard')
+        <script type="module" src="../../js/graph/acquisitions.js"></script>
+    @endif
+
 </body>
 
 </html>

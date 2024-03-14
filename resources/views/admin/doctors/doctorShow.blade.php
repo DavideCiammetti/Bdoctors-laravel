@@ -4,9 +4,9 @@
     <div id="doctor-show" class="container py-5">
 
         {{-- Profilo --}}
-        <div class="mb-5">
+        <div class="mb-3 mb-md-5">
             {{-- Immagine profilo --}}
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center flex-column flex-md-row">
                 @if ($user->doctor->doctor_img)
                     <img src="{{ asset('storage/' . $user->doctor->doctor_img) }}"
                         class="profile-img @if ($user->doctor->sponsorships->first()) border border-warning @endif"
@@ -20,15 +20,14 @@
                 @endif
 
                 {{-- Nome e Cognome --}}
-                <div class="ms-5">
-                    <h1>{{ $user->name }}</h1>
-                    <h1>{{ $user->surname }}</h1>
+                <div class="ms-md-5 mt-3 mt-md-0 ">
+                    <h1 id="doctor-show-name">{{ $user->name }} {{ $user->surname }}</h1>
                 </div>
             </div>
         </div>
 
         {{-- Lista proprietà --}}
-        <div class="row flex-md-wrap">
+        <div class="row flex-md-wrap text-center text-md-start">
             {{-- Info testuali --}}
             <div class="col-lg-6">
                 {{-- Specializzazioni --}}
@@ -67,7 +66,7 @@
                 </div>
 
                 {{-- Disponibilità --}}
-                <div>
+                <div class="mb-3 mb-md-0 ">
                     <h2 class="mb-3">Disponibilità</h2>
                     <h5>
                         @if ($user->doctor->is_available === 1)

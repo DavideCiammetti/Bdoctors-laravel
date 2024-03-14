@@ -41,9 +41,10 @@ class BraintreeController extends Controller
         //variabili
         $user = Auth::user();
         $sponsorships = Sponsorship::all();
+        $sponsorship = $user->doctor->sponsorships;
 
         $clientToken = $this->gateway->clientToken()->generate();
-        return view('admin.doctors.payment', compact('user', 'clientToken', 'sponsorships'));
+        return view('admin.doctors.payment', compact('user', 'clientToken', 'sponsorships', 'sponsorship'));
     }
 
     /**

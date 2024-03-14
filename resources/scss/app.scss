@@ -88,6 +88,9 @@
 
 //Doctor Show
 #doctor-show {
+    #doctor-show-name {
+        font-size: 3.125rem;
+    }
     .profile-img {
         width: 250px;
         height: 250px;
@@ -121,6 +124,32 @@
     .list-item {
         background-color: $green-700;
         color: $green-50;
+    }
+}
+
+//payment
+#payment {
+    .btn-payment {
+        background-color: white;
+        color: $green-500;
+        text-decoration: none;
+        border: 1px solid $green-500;
+
+        &:hover {
+            background-color: $green-500;
+            color: white;
+        }
+    }
+
+    .selected-card {
+        color: white;
+
+        .card-header {
+            background-color: $green-700;
+        }
+        .card-body {
+            background-color: $green-600;
+        }
     }
 }
 
