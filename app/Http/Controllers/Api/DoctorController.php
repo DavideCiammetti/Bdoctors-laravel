@@ -162,16 +162,26 @@ class DoctorController extends Controller
             // --- restituisce tutti i valori dell'array come una nuova collection
             $mergedResults = collect($results)->flatten()->unique('id')->values();
 
-            // Ordina i risultati in base alla data di fine della sponsorizzazione
-            $mergedResults = $mergedResults->sortByDesc(function ($doctor) {
-                return optional($doctor->sponsorships->sortByDesc('end_date')->first())->end_date;
-            });
+            // Divido i dottori in due gruppi: quelli con sponsorizzazione e quelli senza
+            $sponsoredDoctors = [];
+            $notSponsoredDoctors = [];
+
+            foreach ($mergedResults as $doctor) {
+                if ($doctor->sponsorships->isNotEmpty()) {
+                    $sponsoredDoctors[] = $doctor;
+                } else {
+                    $notSponsoredDoctors[] = $doctor;
+                }
+            }
+
+            // Unisco i due gruppi di dottori in un unico array
+            $orderedResults = array_merge($sponsoredDoctors, $notSponsoredDoctors);
         }
 
         // Risposta JSON
         return response()->json([
             'status' => true,
-            'results' => $mergedResults,
+            'results' => $orderedResults,
         ]);
     }
 
