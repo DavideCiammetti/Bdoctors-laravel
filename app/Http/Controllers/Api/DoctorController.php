@@ -30,6 +30,7 @@ class DoctorController extends Controller
                     'users.*',
                     DB::raw('GROUP_CONCAT(DISTINCT specializations.title) as specialization_titles'),
                     DB::raw('GROUP_CONCAT(DISTINCT votes.id) as votes_id'),
+                    DB::raw('GROUP_CONCAT(DISTINCT reviews.id) as reviews_id'),
                     'sponsorships.price'
                 )
                 ->leftJoin('doctor_specialization', 'doctor_specialization.doctor_id', '=', 'doctor.id')
@@ -40,6 +41,7 @@ class DoctorController extends Controller
                 // votes
                 ->leftJoin('doctor_vote', 'doctor_vote.doctor_id', '=', 'doctor.id')
                 ->leftJoin('votes', 'doctor_vote.vote_id', '=', 'votes.id')
+                ->leftJoin('reviews', 'reviews.doctor_id', '=', 'doctor.id')
                 ->whereIn('doctor.id', function ($query) {
                     $query->select('doctor_id')
                         ->from('doctor_specialization')
@@ -53,8 +55,8 @@ class DoctorController extends Controller
             foreach ($doctors as $doctor) {
                 $doctor->specializations = explode(',', $doctor->specialization_titles);
                 $doctor->votes = explode(',', $doctor->votes_id);
+                $doctor->reviews = explode(',', $doctor->reviews_id);
             }
-
         } else {
             $doctors = Doctor::with('user', 'specializations')->get(); // tutti i dottori con relazione tabella user - specializzazione
         }
