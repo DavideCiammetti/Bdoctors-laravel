@@ -142,7 +142,7 @@
                                                 class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
                                                 <div
                                                     class="d-flex justify-content-lg-between justify-content-around w-100 px-4">
-                                                    {{-- Nome e cognome meaaggio --}}
+
                                                     {{-- Nome e cognome  --}}
                                                     <div class="w-25">
                                                         @if ($message->name && $message->surname)
@@ -157,13 +157,7 @@
                                                         {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $message->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
                                                     </div>
 
-                                                    <div class="w-25 text-center d-none d-lg-block">
-                                                        {{ $message->phone_number }}
-                                                    </div>
 
-                                                    <div class="w-25 text-center d-none d-lg-block">
-                                                        {{ $message->email }}
-                                                    </div>
                                                 </div>
                                                 <button class="btn collapsed text-white " type="button"
                                                     data-bs-toggle="collapse"
@@ -177,16 +171,16 @@
                                                 class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
                                                 style="">
                                                 <div class="accordion-body">
-                                                    {{ $message->message }}
                                                     {{-- Numero di telefoni --}}
-                                                    <div class="d-block d-lg-none">
+                                                    <div class="fw-bold">
                                                         Telefono: {{ $message?->phone_number ?: '-' }}
                                                     </div>
 
                                                     {{-- Email --}}
-                                                    <div class="d-block d-lg-none">
+                                                    <div class="fw-bold mb-1">
                                                         Email: {{ $message?->email ?: '-' }}
                                                     </div>
+                                                    {{ $message->message }}
                                                 </div>
                                             </div>
                                         </div>
@@ -232,18 +226,8 @@
                                                     </div>
 
                                                     {{-- Data di invio --}}
-                                                    <div class="w-25">
+                                                    <div class="w-25 text-center ">
                                                         {{ str_replace(array_keys($italianMonths), array_values($italianMonths), $review->created_at->isoFormat('DD MMMM YYYY', 'it')) }}
-                                                    </div>
-
-                                                    {{-- Numero di telefoni --}}
-                                                    <div class="w-25 d-none d-lg-block">
-                                                        {{ $review->phone_number }}
-                                                    </div>
-
-                                                    {{-- Email --}}
-                                                    <div class="w-25 d-none d-lg-block">
-                                                        {{ $review->email }}
                                                     </div>
                                                 </div>
                                                 <button class="btn collapsed text-white " type="button"
@@ -258,16 +242,16 @@
                                                 class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
                                                 style="">
                                                 <div class="accordion-body">
-                                                    {{ $review->content }}
                                                     {{-- Numero di telefoni --}}
-                                                    <div class="d-block d-lg-none">
+                                                    <div class="fw-bold">
                                                         Telefono: {{ $review?->phone_number ?: '-' }}
                                                     </div>
 
                                                     {{-- Email --}}
-                                                    <div class="d-block d-lg-none">
+                                                    <div class="fw-bold mb-1">
                                                         Email: {{ $review?->email ?: '-' }}
                                                     </div>
+                                                    {{ $review->content }}
                                                 </div>
                                             </div>
                                         </div>
@@ -275,7 +259,7 @@
                                 @endforeach
                             </div>
                         @else
-                            <h3>Nessuno Messaggio ricevuto</h3>
+                            <h3>Nessuna Recensione ricevuta</h3>
                         @endif
                     </div>
                 </div>
