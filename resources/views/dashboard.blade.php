@@ -42,7 +42,7 @@
                 <div class="card mb-4 h-100">
 
                     <div class="card-header">
-                        <h4>Dashboard</h4>
+                        <h3 class="mb-0">Dashboard</h3>
                     </div>
 
                     <div class="card-body py-1">
@@ -66,7 +66,7 @@
             <div class="col-lg-3 mb-4">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h3>Sponsorizzazione</h3>
+                        <h3 class="mb-0">Sponsorizzazione</h3>
                     </div>
 
                     <div class="card-body d-flex flex-column justify-content-center">
@@ -99,7 +99,7 @@
             <div class="col-lg-3 mb-4">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h3>Valutazione</h3>
+                        <h3 class="mb-0">Valutazione</h3>
                     </div>
                     <div class="card-body d-flex flex-column justify-content-center">
                         <h5>Scopri cosa pensano di te i tuoi pazienti</h5>
