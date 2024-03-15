@@ -11,7 +11,7 @@ class ReviewsController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $reviews = $user->doctor->reviews;
+        $reviews = $user->doctor->reviews->reverse();
 
         $italianMonths = [
             'January' => 'Gennaio',

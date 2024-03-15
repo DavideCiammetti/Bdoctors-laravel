@@ -12,7 +12,7 @@ class MessagesController extends Controller
     {
         //variabili
         $user = Auth::user();
-        $messages = $user->doctor->messages;
+        $messages = $user->doctor->messages->reverse();
 
         $italianMonths = [
             'January' => 'Gennaio',

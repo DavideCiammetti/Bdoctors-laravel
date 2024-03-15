@@ -14,8 +14,8 @@ class DashboardControllers extends Controller
         $user = Auth::user();
         $doctor = Doctor::where('user_id', $user->id)->first();
         $sponsorship = $doctor->sponsorships;
-        $messages = $user->doctor->messages;
-        $reviews = $user->doctor->reviews;
+        $messages = $user->doctor->messages->reverse();
+        $reviews = $user->doctor->reviews->reverse();
 
         $averageVote = $this->averageVote($doctor);
 
