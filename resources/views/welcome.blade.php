@@ -7,7 +7,7 @@
             <div class="col-md-12 mb-4 text-center ">
                 <div class="card">
                     <div class="card-header">
-                        <h1>Bdoctors Pro</h1>
+                        <h1 class="mb-0">Bdoctors Pro</h1>
                     </div>
                     <div class="card-body">
                         <p>
@@ -30,7 +30,7 @@
                 {{-- Descrizione --}}
                 <div class="card">
                     <div class="card-header">
-                        <h2>Metti in risalto il tuo Profilo</h2>
+                        <h2 class="mb-0">Metti in risalto il tuo Profilo</h2>
                     </div>
                     <div class="card-body d-flex">
                         <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
@@ -53,7 +53,7 @@
                 {{-- Descrizione --}}
                 <div class="card">
                     <div class="card-header">
-                        <h2>Contatto diretto col Paziente</h2>
+                        <h2 class="mb-0">Contatto diretto col Paziente</h2>
                     </div>
                     <div class="card-body d-flex">
                         <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
@@ -76,7 +76,7 @@
                 {{-- Descrizione --}}
                 <div class="card ">
                     <div class="card-header">
-                        <h2>Diventa un membro Sponsorizzato</h2>
+                        <h2 class="mb-0">Diventa un membro Sponsorizzato</h2>
                     </div>
                     <div class="card-body d-flex">
                         <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
@@ -99,7 +99,7 @@
                 {{-- Descrizione --}}
                 <div class="card ">
                     <div class="card-header">
-                        <h2>Divertiti con le statistiche</h2>
+                        <h2 class="mb-0">Divertiti con le statistiche</h2>
                     </div>
                     <div class="card-body d-flex">
                         <p class="d-flex align-items-center justify-content-center mb-0 pe-5">
