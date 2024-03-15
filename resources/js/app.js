@@ -17,3 +17,14 @@ if (window.location.pathname === "/admin") {
             console.error("Error importing file:", error);
         });
 }
+
+if (window.location.pathname === "/admin") {
+    import("./graph/votes")
+        .then((module) => {
+            console.log("File imported successfully");
+            // You can do additional setup here if needed
+        })
+        .catch((error) => {
+            console.error("Error importing file:", error);
+        });
+}

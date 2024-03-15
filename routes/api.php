@@ -41,5 +41,6 @@ Route::get('doctorsadvanced', [DoctorController::class, 'advancedSearch']);
 
 Route::middleware(['web', 'auth', 'api'])->group(function () {
     // messages per graph
-Route::get('graph', [GraphController::class, 'index']);
+    Route::get('graph', [GraphController::class, 'index']);
+    Route::get('graph/votes', [GraphController::class, 'indexVotes']);
 });
