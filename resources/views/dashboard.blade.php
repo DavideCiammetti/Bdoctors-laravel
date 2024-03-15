@@ -261,7 +261,21 @@
                     </div>
                 </div>
             </div>
-            <div style="width: 900px;"><canvas id="acquisitions"></canvas></div>
+
+            {{-- grafico --}}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Andamento Messaggi e Recensioni nel Tempo</h3>
+                        <h5>ultimi 12 mesi</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 

@@ -19,6 +19,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- chart --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -162,9 +164,7 @@
         <script src="{{ asset('js/payment.js') }}"></script>
     @endif
 
-    @if (Route::currentRouteName() === 'admin.dashboard')
-        <script type="module" src="../../js/graph/acquisitions.js"></script>
-    @endif
+
 
 </body>
 

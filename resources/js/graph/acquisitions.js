@@ -1,91 +1,87 @@
-import Chart from 'chart.js/auto'
-import axios from 'axios';
+// JavaScript code goes here
+import axios from "axios";
 
-async function fetchDataAndCreateChart() {
-  try {
-    const response = await axios.get("http://127.0.0.1:8000/api/graph");
-    const newData = response.data.results;
-    const newResponse = response.data.reviews;
+// Fetch data from the API
+async function fetchData() {
+    try {
+        const response = await axios.get("http://127.0.0.1:8000/api/graph");
+        const doctorMessages = response.data.results;
+        const doctorReviews = response.data.reviews;
 
-    if (newData.length === 0 && newResponse.length === 0 ) {
-      console.log('Non ci sono messaggi');
-      return;
-    }
-
-    const dataMessage = newData.map(element => ({
-      month: convertToMonth(element.month),
-      count: element.message_count
-    }));
-
-    const dataReview = newResponse.map(element => ({
-      month: convertToMonth(element.month),
-      count: element.reviews_count
-    }));
-
-    createChart(dataMessage, dataReview);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Chiamare la funzione principale
-fetchDataAndCreateChart();
-
-function createChart(dataMessage, dataReview) {
-  (async function() {
-
-    const allMonths = [
-      'gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
-      'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'
-    ];
-
-    // Aggiungi i mesi mancanti al grafico
-    const missingMonths = allMonths.filter(month => !dataMessage.some(entry => entry.month === month));
-    missingMonths.forEach(month => {
-      dataMessage.push({ month, count: 0 });
-    });
-    const missingMonthsRev = allMonths.filter(month => !dataReview.some(entry => entry.month === month));
-    missingMonthsRev.forEach(month => {
-      dataReview.push({ month, count: 0 });
-    });
-
-    // Ordina l'array in base all'ordine dei mesi
-    dataMessage.sort((a, b) => allMonths.indexOf(a.month) - allMonths.indexOf(b.month));
-    dataReview.sort((a, b) => allMonths.indexOf(a.month) - allMonths.indexOf(b.month));
-
-
-    new Chart(
-      document.getElementById('acquisitions'),
-      {
-        type: 'bar',
-        data: {
-          labels: dataMessage.map(row => row.month),
-          labels: dataReview.map(row=> row.month),
-          datasets: [
-            {
-              label: 'Numero di messaggi per mese',
-              data: dataMessage.map(row => row.count),
-              backgroundColor: 'rgba(75, 192, 192, 0.2)', // colore di sfondo per il primo dataset
-              borderColor: 'rgba(75, 192, 192, 1)', // colore del bordo per il primo dataset
-              borderWidth: 1, // larghezza del bordo per il primo dataset
-            },
-            {
-              label: 'Numero recensioni per mese',
-              data: dataReview.map(row => row.count),
-              backgroundColor: 'rgba(255, 99, 132, 0.2)', // colore di sfondo per il secondo dataset
-              borderColor: 'rgba(255, 99, 132, 1)', // colore del bordo per il secondo dataset
-              borderWidth: 1, // larghezza del bordo per il secondo dataset
-            }
-          ]
+        // Function to count occurrences of messages and reviews per month
+        function countOccurrencesByMonth(data) {
+            const counts = {};
+            data.forEach((item) => {
+                const month = item.month; // Assuming month is in the format 'YYYY-MM'
+                if (!counts[month]) counts[month] = { messages: 0, reviews: 0 };
+                counts[month].messages += item.message_count;
+            });
+            return counts;
         }
-      }
-    );
-  })();
-}
-function convertToMonth(dateString) {
-  const date = new Date(dateString);
-  const options = { month: 'long' };
-  return new Intl.DateTimeFormat('it-IT', options).format(date);
+
+        // Merge counts from messages and reviews
+        const counts = Object.assign(
+            {},
+            countOccurrencesByMonth(doctorMessages)
+        );
+        doctorReviews.forEach((item) => {
+            const month = item.month;
+            if (!counts[month]) counts[month] = { messages: 0, reviews: 0 };
+            counts[month].reviews += item.reviews_count;
+        });
+
+        // Draw the graph using Chart.js library
+        const today = new Date();
+        const currentMonth = `${today.getFullYear()}-${(today.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")}`;
+        const months = [];
+        for (let i = 11; i >= 0; i--) {
+            const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+            months.push(
+                `${date.getFullYear()}-${(date.getMonth() + 1)
+                    .toString()
+                    .padStart(2, "0")}`
+            );
+        }
+
+        const messageData = [];
+        const reviewData = [];
+        months.forEach((month) => {
+            messageData.push(counts[month]?.messages || 0);
+            reviewData.push(counts[month]?.reviews || 0);
+        });
+
+        const ctx = document.getElementById("myChart").getContext("2d");
+        const myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: "Messaggi",
+                        data: messageData,
+                        backgroundColor: "rgba(255, 99, 132, 0.5)", // Red
+                    },
+                    {
+                        label: "Recensioni",
+                        data: reviewData,
+                        backgroundColor: "rgba(54, 162, 235, 0.5)", // Blue
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10, // Maximum value for y-axis
+                    },
+                },
+            },
+        });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
 }
 
-
+fetchData();
