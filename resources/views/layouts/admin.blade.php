@@ -19,6 +19,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- Title font --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
     {{-- chart --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Usando Vite -->
@@ -31,7 +36,7 @@
         <header id="admin-header" class="navbar sticky-top flex-md-nowrap p-2 shadow">
             {{-- logo torna home --}}
             <div class="row justify-content-between">
-                <a class="navbar-brand col-md-3 col-lg-2 text-white me-0 px-3" href="/">Bdoctors Pro</a>
+                <a class="title navbar-brand col-md-3 col-lg-2 text-white me-0 px-3" href="/">Bdoctors Pro</a>
                 <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
