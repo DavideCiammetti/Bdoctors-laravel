@@ -263,10 +263,10 @@
             </div>
 
             {{-- grafico mes e rec --}}
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="card h-100">
-                    <div class="card-header">
-                        <h3>Andamento Messaggi e Recensioni nel Tempo</h3>
+                    <div class="card-header graph-h">
+                        <h3>Andamento Messaggi e Recensioni</h3>
                         <h5>ultimi 12 mesi</h5>
                     </div>
                     <div class="card-body">
@@ -279,8 +279,8 @@
             {{-- grafico voti --}}
             <div class="col-lg-6">
                 <div class="card h-100">
-                    <div class="card-header">
-                        <h3>Andamento Voti nel Tempo</h3>
+                    <div class="card-header graph-h d-flex align-items-center ">
+                        <h3>Andamento Voti</h3>
 
                     </div>
                     <div class="card-body">
