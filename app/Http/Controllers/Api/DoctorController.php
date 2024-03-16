@@ -76,7 +76,7 @@ class DoctorController extends Controller
     public function show(string $slug)
     {
         // dettaglio dottore con relazione tabella - user, specializzazioni, recensioni
-        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews', 'votes')->first();
+        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews', 'votes','sponsorships')->first();
 
         // risposta json
         return response()->json([
