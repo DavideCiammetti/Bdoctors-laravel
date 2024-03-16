@@ -28,10 +28,11 @@ class DoctorController extends Controller
                 ->select(
                     'doctor.*',
                     'users.*',
+                    'doctor_sponsorship.end_date',
                     DB::raw('GROUP_CONCAT(DISTINCT specializations.title) as specialization_titles'),
+                    DB::raw('GROUP_CONCAT(DISTINCT doctor_sponsorship.end_date) as sponsorships_end_date'),
                     DB::raw('GROUP_CONCAT(DISTINCT votes.id) as votes_id'),
                     DB::raw('GROUP_CONCAT(DISTINCT reviews.id) as reviews_id'),
-                    'sponsorships.price'
                 )
                 ->leftJoin('doctor_specialization', 'doctor_specialization.doctor_id', '=', 'doctor.id')
                 ->leftJoin('specializations', 'doctor_specialization.specialization_id', '=', 'specializations.id')
@@ -48,12 +49,19 @@ class DoctorController extends Controller
                         ->join('specializations', 'doctor_specialization.specialization_id', '=', 'specializations.id')
                         ->where('specializations.title', 'LIKE', '%' . request()->key . '%');
                 })
-                ->groupBy('doctor.id', 'users.id', 'sponsorships.price')
-                ->orderBy('sponsorships.price', 'desc')
+                ->groupBy('doctor.id', 'users.id', 'doctor_sponsorship.end_date')
+                ->orderBy('doctor_sponsorship.end_date', 'desc')
                 ->get();
 
-            foreach ($doctors as $doctor) {
+            // Raggruppa i risultati per ID del dottore
+            $uniqueDoctors = collect($doctors)->groupBy('id')->map(function ($doctorGroup) {
+                // Prende solo la prima riga di ogni gruppo (poiché ogni gruppo rappresenta lo stesso dottore)
+                return $doctorGroup->first();
+            })->values()->all();
+
+            foreach ($uniqueDoctors as $doctor) {
                 $doctor->specializations = explode(',', $doctor->specialization_titles);
+                $doctor->doctor_sponsorship = explode(',', $doctor->sponsorships_end_date);
                 $doctor->votes = explode(',', $doctor->votes_id);
                 $doctor->reviews = explode(',', $doctor->reviews_id);
             }
@@ -63,7 +71,7 @@ class DoctorController extends Controller
         // risposta json
         return response()->json([
             'status' => true,
-            'results' => $doctors,
+            'results' => $uniqueDoctors,
         ]);
     }
 
