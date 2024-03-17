@@ -9,6 +9,7 @@ use App\Models\Guest\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class DoctorController extends Controller
 {
@@ -98,25 +99,28 @@ class DoctorController extends Controller
      * dottori che hanno una sponsorizzazione
      */
     public function sponsor(Request $request)
-    {
-        $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) {
-            $query->orderBy('id', 'desc'); // sponsorizzazioni per ID in ordine decrescente
+{
+    $currentDate = now()->toDateString(); // Ottieni la data corrente
+
+    $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) {
+            $query->where('end_date', '>', now()->toDateString())->orderBy('id', 'desc'); // Sponsorizzazioni attive ordinate per ID in ordine decrescente
         }])
-            ->whereHas('sponsorships')
-            ->with(['specializations' => function ($query) {
-                $query->orderBy('title', 'asc'); // specializzazioni per titolo in ordine alfabetico
-            }])
-            ->join('doctor_sponsorship', 'doctors.id', '=', 'doctor_sponsorship.doctor_id')
-            ->orderByRaw("FIELD(doctor_sponsorship.sponsorship_id, " . implode(',', Sponsorship::orderBy('id', 'desc')->pluck('id')->toArray()) . ")")
-            ->orderByRaw("(SELECT MIN(title) FROM specializations WHERE specializations.id IN (SELECT specialization_id FROM doctor_specialization WHERE doctor_id = doctors.id))") // ordina per il titolo più basso tra tutte le specializzazioni associate a ciascun dottore
-            ->paginate(3);
+        ->whereHas('sponsorships', function ($query) use ($currentDate) {
+            $query->where('end_date', '>', $currentDate); // Solo medici con sponsorizzazione attiva
+        })
+        ->with(['specializations' => function ($query) {
+            $query->orderBy('title', 'asc'); // Specializzazioni per titolo in ordine alfabetico
+        }])
+        ->join('doctor_sponsorship', 'doctors.id', '=', 'doctor_sponsorship.doctor_id')
+        ->orderByRaw("FIELD(doctor_sponsorship.sponsorship_id, " . implode(',', Sponsorship::orderBy('id', 'desc')->pluck('id')->toArray()) . ")")
+        ->orderByRaw("(SELECT MIN(title) FROM specializations WHERE specializations.id IN (SELECT specialization_id FROM doctor_specialization WHERE doctor_id = doctors.id))") // Ordina per il titolo più basso tra tutte le specializzazioni associate a ciascun dottore
+        ->paginate(3);
 
-        return response()->json([
-            'status' => true,
-            'results' => $sponsoredDoctors,
-        ]);
-    }
-
+    return response()->json([
+        'status' => true,
+        'results' => $sponsoredDoctors,
+    ]);
+}
 
     /**
      * Api per ricerca avanzata
