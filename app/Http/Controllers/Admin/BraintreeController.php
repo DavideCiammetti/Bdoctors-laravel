@@ -75,7 +75,7 @@ class BraintreeController extends Controller
         $totalHours = $hours + ($minutes / 60) + ($seconds / 3600);
 
         //fine sponsorizzazione
-        if ($user->doctor->sponsorships->first()) {
+        if ($user->doctor->sponsorships->first() && $doctor->sponsorships[0]->pivot->end_date > now()) {
             $endDate = Carbon::parse($doctor->sponsorships[0]->pivot->end_date)->addHours($totalHours);
         } else {
             $endDate = now(config("app.timezone"))->addHours($totalHours + 1);
