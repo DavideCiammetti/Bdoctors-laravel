@@ -100,13 +100,13 @@ class DoctorController extends Controller
      */
     public function sponsor(Request $request)
 {
-    $currentDate = now()->toDateString(); // Ottieni la data corrente
+    $currentDateTime = now()->toDateTimeString(); // Ottieni la data e l'ora correnti
 
-    $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) {
-            $query->where('end_date', '>', now()->toDateString())->orderBy('id', 'desc'); // Sponsorizzazioni attive ordinate per ID in ordine decrescente
+    $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) use ($currentDateTime) {
+            $query->where('end_date', '>', $currentDateTime)->orderBy('id', 'desc'); // Sponsorizzazioni attive ordinate per ID in ordine decrescente
         }])
-        ->whereHas('sponsorships', function ($query) use ($currentDate) {
-            $query->where('end_date', '>', $currentDate); // Solo medici con sponsorizzazione attiva
+        ->whereHas('sponsorships', function ($query) use ($currentDateTime) {
+            $query->where('end_date', '>', $currentDateTime); // Solo medici con sponsorizzazione attiva
         })
         ->with(['specializations' => function ($query) {
             $query->orderBy('title', 'asc'); // Specializzazioni per titolo in ordine alfabetico
