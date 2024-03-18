@@ -17,6 +17,8 @@ class DashboardControllers extends Controller
         $messages = $user->doctor->messages->reverse();
         $reviews = $user->doctor->reviews->reverse();
 
+
+
         $averageVote = $this->averageVote($doctor);
 
         $italianMonths = [

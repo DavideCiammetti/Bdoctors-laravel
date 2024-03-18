@@ -135,7 +135,7 @@
                         @if (count($user->doctor->messages) > 0)
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 @foreach ($messages as $key => $message)
-                                    @if ($key <= 5)
+                                    @if ($key > count($messages) - 6)
                                         <div class="accordion-item">
                                             <h6
                                                 class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
@@ -208,7 +208,7 @@
                         @if (count($user->doctor->reviews) > 0)
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 @foreach ($reviews as $key => $review)
-                                    @if ($key <= 5)
+                                    @if ($key > count($reviews) - 6)
                                         <div class="accordion-item">
                                             <h6
                                                 class="accordion-header d-flex justify-content-between align-items-center bg-green-dark ">
