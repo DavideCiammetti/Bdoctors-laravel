@@ -159,13 +159,13 @@
                                                 </div>
                                                 <button class="btn collapsed text-white " type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseThree{{ $message->id }}"
+                                                    data-bs-target="#flush-collapseThreeM{{ $message->id }}"
                                                     aria-expanded="false" aria-controls="flush-collapseThree">
                                                     <i class="fa-solid fa-chevron-down"></i>
                                                 </button>
 
                                             </h6>
-                                            <div id="flush-collapseThree{{ $message->id }}"
+                                            <div id="flush-collapseThreeM{{ $message->id }}"
                                                 class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
                                                 style="">
                                                 <div class="accordion-body">
@@ -229,13 +229,13 @@
                                                 </div>
                                                 <button class="btn collapsed text-white " type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseThree{{ $review->id }}"
+                                                    data-bs-target="#flush-collapseThreeM{{ $review->id }}"
                                                     aria-expanded="false" aria-controls="flush-collapseThree">
                                                     <i class="fa-solid fa-chevron-down"></i>
                                                 </button>
 
                                             </h6>
-                                            <div id="flush-collapseThree{{ $review->id }}"
+                                            <div id="flush-collapseThreeM{{ $review->id }}"
                                                 class="accordion-collapse collapse " data-bs-parent="#accordionFlushExample"
                                                 style="">
                                                 <div class="accordion-body">
