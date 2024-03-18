@@ -85,7 +85,7 @@ class DoctorController extends Controller
     public function show(string $slug)
     {
         // dettaglio dottore con relazione tabella - user, specializzazioni, recensioni
-        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews', 'votes','sponsorships')->first();
+        $doctor = Doctor::where('slug', $slug)->with('user', 'specializations', 'reviews', 'votes', 'sponsorships')->first();
 
         // risposta json
         return response()->json([
@@ -99,28 +99,28 @@ class DoctorController extends Controller
      * dottori che hanno una sponsorizzazione
      */
     public function sponsor(Request $request)
-{
-    $currentDateTime = now()->toDateTimeString(); // Ottieni la data e l'ora correnti
+    {
+        $currentDateTime = now()->toDateTimeString(); // Ottieni la data e l'ora correnti
 
-    $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) use ($currentDateTime) {
+        $sponsoredDoctors = Doctor::with(['user', 'specializations', 'reviews', 'votes', 'sponsorships' => function ($query) use ($currentDateTime) {
             $query->where('end_date', '>', $currentDateTime)->orderBy('id', 'desc'); // Sponsorizzazioni attive ordinate per ID in ordine decrescente
         }])
-        ->whereHas('sponsorships', function ($query) use ($currentDateTime) {
-            $query->where('end_date', '>', $currentDateTime); // Solo medici con sponsorizzazione attiva
-        })
-        ->with(['specializations' => function ($query) {
-            $query->orderBy('title', 'asc'); // Specializzazioni per titolo in ordine alfabetico
-        }])
-        ->join('doctor_sponsorship', 'doctors.id', '=', 'doctor_sponsorship.doctor_id')
-        ->orderByRaw("FIELD(doctor_sponsorship.sponsorship_id, " . implode(',', Sponsorship::orderBy('id', 'desc')->pluck('id')->toArray()) . ")")
-        ->orderByRaw("(SELECT MIN(title) FROM specializations WHERE specializations.id IN (SELECT specialization_id FROM doctor_specialization WHERE doctor_id = doctors.id))") // Ordina per il titolo più basso tra tutte le specializzazioni associate a ciascun dottore
-        ->paginate(3);
+            ->whereHas('sponsorships', function ($query) use ($currentDateTime) {
+                $query->where('end_date', '>', $currentDateTime); // Solo medici con sponsorizzazione attiva
+            })
+            ->with(['specializations' => function ($query) {
+                $query->orderBy('title', 'asc'); // Specializzazioni per titolo in ordine alfabetico
+            }])
+            ->join('doctor_sponsorship', 'doctors.id', '=', 'doctor_sponsorship.doctor_id')
+            ->orderByRaw("FIELD(doctor_sponsorship.sponsorship_id, " . implode(',', Sponsorship::orderBy('id', 'desc')->pluck('id')->toArray()) . ")")
+            ->orderByRaw("(SELECT MIN(title) FROM specializations WHERE specializations.id IN (SELECT specialization_id FROM doctor_specialization WHERE doctor_id = doctors.id))") // Ordina per il titolo più basso tra tutte le specializzazioni associate a ciascun dottore
+            ->paginate(3);
 
-    return response()->json([
-        'status' => true,
-        'results' => $sponsoredDoctors,
-    ]);
-}
+        return response()->json([
+            'status' => true,
+            'results' => $sponsoredDoctors,
+        ]);
+    }
 
     /**
      * Api per ricerca avanzata
@@ -178,10 +178,19 @@ class DoctorController extends Controller
             $sponsoredDoctors = [];
             $notSponsoredDoctors = [];
 
+            $currentDate = Carbon::now();
+
             foreach ($mergedResults as $doctor) {
-                if ($doctor->sponsorships->isNotEmpty()) {
-                    $sponsoredDoctors[] = $doctor;
+                if ($doctor->sponsorships()->exists()) {
+                    $sponsorship = $doctor->sponsorships()->first(); // Ottieni la prima sponsorizzazione associata al medico
+
+                    if ($sponsorship->pivot->end_date > $currentDate) {
+                        // La data di fine della sponsorizzazione è successiva alla data attuale
+                        // Il medico ha sponsorizzazioni associate
+                        $sponsoredDoctors[] = $doctor;
+                    }
                 } else {
+                    // Il medico non ha sponsorizzazioni associate
                     $notSponsoredDoctors[] = $doctor;
                 }
             }
