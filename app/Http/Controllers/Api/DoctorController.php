@@ -188,6 +188,10 @@ class DoctorController extends Controller
                         // La data di fine della sponsorizzazione è successiva alla data attuale
                         // Il medico ha sponsorizzazioni associate
                         $sponsoredDoctors[] = $doctor;
+                    } else {
+                        // La data di fine della sponsorizzazione è precedente alla data attuale
+                        // Il medico ha sponsorizzazioni scadute associate
+                        $notSponsoredDoctors[] = $doctor;
                     }
                 } else {
                     // Il medico non ha sponsorizzazioni associate
