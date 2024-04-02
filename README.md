@@ -23,3 +23,5 @@ Il backend di BDoctor è stato progettato per consentire ai medici di gestire il
 ## Layout e Design
 
 Il codice mira a fornire un'ottima esperienza utente attraverso un design efficace, ponendo l'accento sulla facilità di ricerca delle informazioni desiderate piuttosto che su elementi accattivanti. Il layout è strutturato per ridurre la ripetitività e migliorare la manutenibilità del codice.
+
+La repo Frontend la trovate [qui](https://github.com/DavideCiammetti/B-doctor-vue)
